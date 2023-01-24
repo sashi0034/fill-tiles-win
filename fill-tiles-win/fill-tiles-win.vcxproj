@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\debug.h" />
+    <ClInclude Include="src\gameEngine\AppState.h" />
+    <ClInclude Include="src\gameEngine\arrayUtil.h" />
+    <ClInclude Include="src\gameEngine\ChildBase.h" />
+    <ClInclude Include="src\gameEngine\ChildrenPool.h" />
+    <ClInclude Include="src\gameEngine\CoroTask.h" />
+    <ClInclude Include="src\gameEngine\coroUtil.h" />
+    <ClInclude Include="src\gameEngine\CoroutineManager.h" />
+    <ClInclude Include="src\gameEngine\DirChangeDetector.h" />
+    <ClInclude Include="src\gameEngine\easing.h" />
+    <ClInclude Include="src\gameEngine\FileChangeDetector.h" />
+    <ClInclude Include="src\gameEngine\FontResource.h" />
+    <ClInclude Include="src\gameEngine\gameEngine.h" />
+    <ClInclude Include="src\gameEngine\Graph.h" />
+    <ClInclude Include="src\gameEngine\GraphBlend.h" />
+    <ClInclude Include="src\gameEngine\log.h" />
+    <ClInclude Include="src\gameEngine\MouseState.h" />
+    <ClInclude Include="src\gameEngine\ProcessTimer.h" />
+    <ClInclude Include="src\gameEngine\Random.h" />
+    <ClInclude Include="src\gameEngine\Range.h" />
+    <ClInclude Include="src\gameEngine\Rect.h" />
+    <ClInclude Include="src\gameEngine\ReferencePool.h" />
+    <ClInclude Include="src\gameEngine\renderingProcess.h" />
+    <ClInclude Include="src\gameEngine\Rgba.h" />
+    <ClInclude Include="src\gameEngine\Singleton.h" />
+    <ClInclude Include="src\gameEngine\SpriteTexture.h" />
+    <ClInclude Include="src\gameEngine\SprRectCollider.h" />
+    <ClInclude Include="src\gameEngine\SprRectColliderManager.h" />
+    <ClInclude Include="src\gameEngine\TempRenderTargetChanger.h" />
+    <ClInclude Include="src\gameEngine\TextureAnimator.h" />
+    <ClInclude Include="src\gameEngine\textureAnimator\textureAnimation.h" />
+    <ClInclude Include="src\gameEngine\textureAnimator\TextureAnimationEaser.h" />
+    <ClInclude Include="src\gameEngine\textureAnimator\TextureAnimationProcessor.h" />
+    <ClInclude Include="src\gameEngine\TextureText.h" />
+    <ClInclude Include="src\gameEngine\Time.h" />
+    <ClInclude Include="src\gameEngine\UniqueCollection.h" />
+    <ClInclude Include="src\gameEngine\Vec2.h" />
+    <ClInclude Include="src\gameEngine\WeakCollection.h" />
+    <ClInclude Include="src\gameEngine\WeakPtr.h" />
+    <ClInclude Include="src\GameProcess.h" />
+    <ClInclude Include="src\inGame\ActorBase.h" />
+    <ClInclude Include="src\inGame\Angle.h" />
+    <ClInclude Include="src\inGame\AnimTest.h" />
+    <ClInclude Include="src\inGame\Boolean.h" />
+    <ClInclude Include="src\inGame\CharacterViewModel.h" />
+    <ClInclude Include="src\inGame\character\BigTree.h" />
+    <ClInclude Include="src\inGame\character\Carrot.h" />
+    <ClInclude Include="src\inGame\character\Catfish.h" />
+    <ClInclude Include="src\inGame\character\CharacterBase.h" />
+    <ClInclude Include="src\inGame\character\CheckpointBlock.h" />
+    <ClInclude Include="src\inGame\character\Fairy.h" />
+    <ClInclude Include="src\inGame\character\GlassFloor.h" />
+    <ClInclude Include="src\inGame\character\GrowingChick.h" />
+    <ClInclude Include="src\inGame\character\MineFlower.h" />
+    <ClInclude Include="src\inGame\character\MovableObjectLogic.h" />
+    <ClInclude Include="src\inGame\character\PuniCat.h" />
+    <ClInclude Include="src\inGame\character\SmallTree.h" />
+    <ClInclude Include="src\inGame\character\SolidRock.h" />
+    <ClInclude Include="src\inGame\character\SwitchAcorn.h" />
+    <ClInclude Include="src\inGame\character\SwitchButton.h" />
+    <ClInclude Include="src\inGame\character\WarpTile.h" />
+    <ClInclude Include="src\inGame\character\WinTile.h" />
+    <ClInclude Include="src\inGame\EffectManager.h" />
+    <ClInclude Include="src\inGame\effect\BurningFire.h" />
+    <ClInclude Include="src\inGame\effect\GeoExplosion.h" />
+    <ClInclude Include="src\inGame\effect\SakuraFormation.h" />
+    <ClInclude Include="src\inGame\effect\ScatteredStar.h" />
+    <ClInclude Include="src\inGame\effect\Smoke.h" />
+    <ClInclude Include="src\inGame\effect\SpiritualController.h" />
+    <ClInclude Include="src\inGame\effect\SpiritualElement.h" />
+    <ClInclude Include="src\inGame\effect\TextureScrapping.h" />
+    <ClInclude Include="src\inGame\effect\WarpLoops.h" />
+    <ClInclude Include="src\inGame\FieldEventManager.h" />
+    <ClInclude Include="src\inGame\FieldManager.h" />
+    <ClInclude Include="src\inGame\field\FieldRenderer.h" />
+    <ClInclude Include="src\inGame\field\StaticTileset.h" />
+    <ClInclude Include="src\inGame\field\TileMap.h" />
+    <ClInclude Include="src\inGame\field\TileMapMatElement.h" />
+    <ClInclude Include="src\inGame\field\tileMap\ReadObjectInObjectGroup.h" />
+    <ClInclude Include="src\inGame\field\tileMap\SummonCharacterByChip.h" />
+    <ClInclude Include="src\inGame\FontTest.h" />
+    <ClInclude Include="src\inGame\GameLooper.h" />
+    <ClInclude Include="src\inGame\GameRoot.h" />
+    <ClInclude Include="src\inGame\IntCounter.h" />
+    <ClInclude Include="src\inGame\LibraryTest.h" />
+    <ClInclude Include="src\inGame\LuaEngine.h" />
+    <ClInclude Include="src\inGame\MainScene.h" />
+    <ClInclude Include="src\inGame\MatPos.h" />
+    <ClInclude Include="src\inGame\MineFlowerClass.h" />
+    <ClInclude Include="src\inGame\MineFlowerManager.h" />
+    <ClInclude Include="src\inGame\NineAnchor.h" />
+    <ClInclude Include="src\inGame\NinePatchImage.h" />
+    <ClInclude Include="src\inGame\ParabolaAnimation.h" />
+    <ClInclude Include="src\inGame\pixel.h" />
+    <ClInclude Include="src\inGame\Player.h" />
+    <ClInclude Include="src\inGame\player\input.h" />
+    <ClInclude Include="src\inGame\player\PlayerActionData.h" />
+    <ClInclude Include="src\inGame\player\PlayerAnimation.h" />
+    <ClInclude Include="src\inGame\player\PlayerMoveData.h" />
+    <ClInclude Include="src\inGame\player\PlayerScroll.h" />
+    <ClInclude Include="src\inGame\player\PlayerState.h" />
+    <ClInclude Include="src\inGame\PollFlag.h" />
+    <ClInclude Include="src\inGame\RemainingMineUi.h" />
+    <ClInclude Include="src\inGame\resource\Font.h" />
+    <ClInclude Include="src\inGame\resource\Image.h" />
+    <ClInclude Include="src\inGame\rx.h" />
+    <ClInclude Include="src\inGame\ScrollManager.h" />
+    <ClInclude Include="src\inGame\SimpleTextLabel.h" />
+    <ClInclude Include="src\inGame\StageClearEvent.h" />
+    <ClInclude Include="src\inGame\SteppedOnMineEvent.h" />
+    <ClInclude Include="src\inGame\SwitchAcornManager.h" />
+    <ClInclude Include="src\inGame\TalkingBalloon.h" />
+    <ClInclude Include="src\inGame\test\EffectTest.h" />
+    <ClInclude Include="src\inGame\test\FieldViewTest.h" />
+    <ClInclude Include="src\inGame\TextPassage.h" />
+    <ClInclude Include="src\inGame\title\MenuScene.h" />
+    <ClInclude Include="src\inGame\title\PlusMinusSign.h" />
+    <ClInclude Include="src\inGame\title\ScreenshotView.h" />
+    <ClInclude Include="src\inGame\title\StageClearInfoView.h" />
+    <ClInclude Include="src\inGame\title\StageContainer.h" />
+    <ClInclude Include="src\inGame\title\StageView.h" />
+    <ClInclude Include="src\inGame\title\TitleBackground.h" />
+    <ClInclude Include="src\inGame\title\zIndex.h" />
+    <ClInclude Include="src\inGame\UpFlag.h" />
+    <ClInclude Include="src\inGame\util.h" />
+    <ClInclude Include="src\inGame\WarpManager.h" />
+    <ClInclude Include="src\inGame\ZIndex.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\gameEngine\AppState.cpp" />
+    <ClCompile Include="src\gameEngine\arrayUtil.cpp" />
+    <ClCompile Include="src\gameEngine\ChildBase.cpp" />
+    <ClCompile Include="src\gameEngine\coroUtil.cpp" />
+    <ClCompile Include="src\gameEngine\CoroutineManager.cpp" />
+    <ClCompile Include="src\gameEngine\DirChangeDetector.cpp" />
+    <ClCompile Include="src\gameEngine\easing.cpp" />
+    <ClCompile Include="src\gameEngine\FileChangeDetector.cpp" />
+    <ClCompile Include="src\gameEngine\FontResource.cpp" />
+    <ClCompile Include="src\gameEngine\Graph.cpp" />
+    <ClCompile Include="src\gameEngine\GraphBlend.cpp" />
+    <ClCompile Include="src\gameEngine\MouseState.cpp" />
+    <ClCompile Include="src\gameEngine\ProcessTimer.cpp" />
+    <ClCompile Include="src\gameEngine\Random.cpp" />
+    <ClCompile Include="src\gameEngine\renderingProcess.cpp" />
+    <ClCompile Include="src\gameEngine\Rgba.cpp" />
+    <ClCompile Include="src\gameEngine\SpriteTexture.cpp" />
+    <ClCompile Include="src\gameEngine\SprRectCollider.cpp" />
+    <ClCompile Include="src\gameEngine\SprRectColliderManager.cpp" />
+    <ClCompile Include="src\gameEngine\TempRenderTargetChanger.cpp" />
+    <ClCompile Include="src\gameEngine\TextureAnimator.cpp" />
+    <ClCompile Include="src\gameEngine\textureAnimator\textureAnimation.cpp" />
+    <ClCompile Include="src\gameEngine\textureAnimator\TextureAnimationEaser.cpp" />
+    <ClCompile Include="src\gameEngine\textureAnimator\TextureAnimationProcessor.cpp" />
+    <ClCompile Include="src\gameEngine\TextureText.cpp" />
+    <ClCompile Include="src\gameEngine\Time.cpp" />
+    <ClCompile Include="src\gameEngine\UniqueCollection.cpp" />
+    <ClCompile Include="src\gameEngine\WeakCollection.cpp" />
+    <ClCompile Include="src\GameProcess.cpp" />
+    <ClCompile Include="src\inGame\ActorBase.cpp" />
+    <ClCompile Include="src\inGame\Angle.cpp" />
+    <ClCompile Include="src\inGame\AnimTest.cpp" />
+    <ClCompile Include="src\inGame\Boolean.cpp" />
+    <ClCompile Include="src\inGame\CharacterViewModel.cpp" />
+    <ClCompile Include="src\inGame\character\BigTree.cpp" />
+    <ClCompile Include="src\inGame\character\Carrot.cpp" />
+    <ClCompile Include="src\inGame\character\Catfish.cpp" />
+    <ClCompile Include="src\inGame\character\CharacterBase.cpp" />
+    <ClCompile Include="src\inGame\character\CheckpointBlock.cpp" />
+    <ClCompile Include="src\inGame\character\Fairy.cpp" />
+    <ClCompile Include="src\inGame\character\GlassFloor.cpp" />
+    <ClCompile Include="src\inGame\character\GrowingChick.cpp" />
+    <ClCompile Include="src\inGame\character\MineFlower.cpp" />
+    <ClCompile Include="src\inGame\character\MovableObjectLogic.cpp" />
+    <ClCompile Include="src\inGame\character\PuniCat.cpp" />
+    <ClCompile Include="src\inGame\character\SmallTree.cpp" />
+    <ClCompile Include="src\inGame\character\SolidRock.cpp" />
+    <ClCompile Include="src\inGame\character\SwitchAcorn.cpp" />
+    <ClCompile Include="src\inGame\character\SwitchButton.cpp" />
+    <ClCompile Include="src\inGame\character\WarpTile.cpp" />
+    <ClCompile Include="src\inGame\character\WinTile.cpp" />
+    <ClCompile Include="src\inGame\EffectManager.cpp" />
+    <ClCompile Include="src\inGame\effect\BurningFire.cpp" />
+    <ClCompile Include="src\inGame\effect\GeoExplosion.cpp" />
+    <ClCompile Include="src\inGame\effect\SakuraFormation.cpp" />
+    <ClCompile Include="src\inGame\effect\ScatteredStar.cpp" />
+    <ClCompile Include="src\inGame\effect\Smoke.cpp" />
+    <ClCompile Include="src\inGame\effect\SpiritualController.cpp" />
+    <ClCompile Include="src\inGame\effect\SpiritualElement.cpp" />
+    <ClCompile Include="src\inGame\effect\TextureScrapping.cpp" />
+    <ClCompile Include="src\inGame\effect\WarpLoops.cpp" />
+    <ClCompile Include="src\inGame\FieldEventManager.cpp" />
+    <ClCompile Include="src\inGame\FieldManager.cpp" />
+    <ClCompile Include="src\inGame\field\FieldRenderer.cpp" />
+    <ClCompile Include="src\inGame\field\StaticTileset.cpp" />
+    <ClCompile Include="src\inGame\field\TileMap.cpp" />
+    <ClCompile Include="src\inGame\field\TileMapMatElement.cpp" />
+    <ClCompile Include="src\inGame\field\tileMap\ReadObjectInObjectGroup.cpp" />
+    <ClCompile Include="src\inGame\field\tileMap\SummonCharacterByChip.cpp" />
+    <ClCompile Include="src\inGame\FontTest.cpp" />
+    <ClCompile Include="src\inGame\GameLooper.cpp" />
+    <ClCompile Include="src\inGame\GameRoot.cpp" />
+    <ClCompile Include="src\inGame\IntCounter.cpp" />
+    <ClCompile Include="src\inGame\LibraryTest.cpp" />
+    <ClCompile Include="src\inGame\LuaEngine.cpp" />
+    <ClCompile Include="src\inGame\MainScene.cpp" />
+    <ClCompile Include="src\inGame\MatPos.cpp" />
+    <ClCompile Include="src\inGame\MineFlowerClass.cpp" />
+    <ClCompile Include="src\inGame\MineFlowerManager.cpp" />
+    <ClCompile Include="src\inGame\NineAnchor.cpp" />
+    <ClCompile Include="src\inGame\NinePatchImage.cpp" />
+    <ClCompile Include="src\inGame\ParabolaAnimation.cpp" />
+    <ClCompile Include="src\inGame\pixel.cpp" />
+    <ClCompile Include="src\inGame\Player.cpp" />
+    <ClCompile Include="src\inGame\player\input.cpp" />
+    <ClCompile Include="src\inGame\player\PlayerActionData.cpp" />
+    <ClCompile Include="src\inGame\player\PlayerAnimation.cpp" />
+    <ClCompile Include="src\inGame\player\PlayerMoveData.cpp" />
+    <ClCompile Include="src\inGame\player\PlayerScroll.cpp" />
+    <ClCompile Include="src\inGame\player\PlayerState.cpp" />
+    <ClCompile Include="src\inGame\PollFlag.cpp" />
+    <ClCompile Include="src\inGame\RemainingMineUi.cpp" />
+    <ClCompile Include="src\inGame\resource\Font.cpp" />
+    <ClCompile Include="src\inGame\resource\Image.cpp" />
+    <ClCompile Include="src\inGame\rx.cpp" />
+    <ClCompile Include="src\inGame\ScrollManager.cpp" />
+    <ClCompile Include="src\inGame\SimpleTextLabel.cpp" />
+    <ClCompile Include="src\inGame\StageClearEvent.cpp" />
+    <ClCompile Include="src\inGame\SteppedOnMineEvent.cpp" />
+    <ClCompile Include="src\inGame\SwitchAcornManager.cpp" />
+    <ClCompile Include="src\inGame\TalkingBalloon.cpp" />
+    <ClCompile Include="src\inGame\test\EffectTest.cpp" />
+    <ClCompile Include="src\inGame\test\FieldViewTest.cpp" />
+    <ClCompile Include="src\inGame\TextPassage.cpp" />
+    <ClCompile Include="src\inGame\title\MenuScene.cpp" />
+    <ClCompile Include="src\inGame\title\PlusMinusSign.cpp" />
+    <ClCompile Include="src\inGame\title\ScreenshotView.cpp" />
+    <ClCompile Include="src\inGame\title\StageClearInfoView.cpp" />
+    <ClCompile Include="src\inGame\title\StageContainer.cpp" />
+    <ClCompile Include="src\inGame\title\StageView.cpp" />
+    <ClCompile Include="src\inGame\title\TitleBackground.cpp" />
+    <ClCompile Include="src\inGame\title\zIndex.cpp" />
+    <ClCompile Include="src\inGame\UpFlag.cpp" />
+    <ClCompile Include="src\inGame\util.cpp" />
+    <ClCompile Include="src\inGame\WarpManager.cpp" />
+    <ClCompile Include="src\inGame\ZIndex.cpp" />
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{bb8295b3-bd1c-48a3-b668-5d4fb3c4d0b3}</ProjectGuid>
+    <RootNamespace>filltileswin</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NOMINMAX</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\SDK\SDL2-2.26.1\include;C:\SDK\SDL2_image-2.6.2\include;C:\SDK\SDL2_ttf-2.20.1\include;C:\Users\satos\boost_1_79_0\include;C:\Users\satos\RxCpp-4.1.1\Rx\v2\src;C:\Users\satos\RxCpp-4.1.1\Ix\CPP\src;C:\SDK\lua-5.4.2_Win64_dll16_lib\include;C:\dev\VisualStudioRepos\fill-tiles-win\fill-tiles-win\include</AdditionalIncludeDirectories>
+      <AdditionalOptions>/source-charset:utf-8 /execution-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\SDK\SDL2-2.26.1\lib\x64;C:\SDK\SDL2_ttf-2.20.1\lib\x64;C:\SDK\SDL2_image-2.6.2\lib\x64;C:\Users\satos\boost_1_79_0\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;"C:\SDK\lua-5.4.2_Win64_dll16_lib\lua54.lib";%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NOMINMAX</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\SDK\SDL2-2.26.1\include;C:\SDK\SDL2_image-2.6.2\include;C:\SDK\SDL2_ttf-2.20.1\include;C:\Users\satos\boost_1_79_0\include;C:\Users\satos\RxCpp-4.1.1\Rx\v2\src;C:\Users\satos\RxCpp-4.1.1\Ix\CPP\src;C:\SDK\lua-5.4.2_Win64_dll16_lib\include;C:\dev\VisualStudioRepos\fill-tiles-win\fill-tiles-win\include</AdditionalIncludeDirectories>
+      <AdditionalOptions>/source-charset:utf-8 /execution-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\SDK\SDL2-2.26.1\lib\x64;C:\SDK\SDL2_ttf-2.20.1\lib\x64;C:\SDK\SDL2_image-2.6.2\lib\x64;C:\Users\satos\boost_1_79_0\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;"C:\SDK\lua-5.4.2_Win64_dll16_lib\lua54.lib";%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
