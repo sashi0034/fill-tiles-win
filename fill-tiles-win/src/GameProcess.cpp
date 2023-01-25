@@ -2,7 +2,7 @@
 // Created by sashi0034 on 2022/05/04.
 //
 
-#include "stdafx.h"
+#include "gameEngine/gameEngine.h"
 #include "GameProcess.h"
 #include "inGame/GameLooper.h"
 

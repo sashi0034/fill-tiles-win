@@ -5,7 +5,7 @@
 #ifndef FILL_TILES_GAMEENGINE_H
 #define FILL_TILES_GAMEENGINE_H
 
-#include <memory>
+#include <stdafx.h>
 #include "AppState.h"
 #include "arrayUtil.h"
 #include "ChildrenPool.h"

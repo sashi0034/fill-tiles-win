@@ -5,12 +5,8 @@
 #ifndef FILL_TILES_UNIQUECOLLECTION_H
 #define FILL_TILES_UNIQUECOLLECTION_H
 
-#include <memory>
-#include <vector>
-#include <algorithm>
-#include <cassert>
-#include <iostream>
-#include <functional>
+
+#include <stdafx.h>
 
 using std::unique_ptr;
 

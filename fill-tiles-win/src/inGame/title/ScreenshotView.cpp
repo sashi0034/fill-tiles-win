@@ -4,7 +4,7 @@
 
 #include "ScreenshotView.h"
 #include "../GameRoot.h"
-#include "./zIndex.h"
+#include "./zParam.h"
 #include "../util.h"
 
 namespace inGame::title
@@ -16,7 +16,7 @@ namespace inGame::title
             _pos(centerPos)
     {
         _srcImage = shared_ptr<Graph>(Graph::CreateFromFilePath(sceneRef->RootRef->GetAppState()->GetRenderer(), filePath));
-        _texture.SetZ(zIndex::Screenshot);
+        _texture.SetZ(zParam::Screenshot);
         _texture.SetGraph(_srcImage.get());
         _texture.SetSrcRect(Rect<int>(Vec2{0, 0}, _srcImage->GetSize()));
         _texture.SetRenderingProcess([this](auto&& app){renderingProcess::RenderSpriteDotByDot(app, &_texture);});

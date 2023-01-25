@@ -5,7 +5,8 @@
 #ifndef FILL_TILES_RECT_H
 #define FILL_TILES_RECT_H
 
-#include <memory>
+#include <stdafx.h>
+
 using std::unique_ptr;
 
 namespace gameEngine

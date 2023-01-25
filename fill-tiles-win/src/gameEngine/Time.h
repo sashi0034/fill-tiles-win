@@ -2,8 +2,7 @@
 // Created by sashi0034 on 2022/04/29.
 //
 
-#include <chrono>
-#include <memory>
+#include <stdafx.h>
 
 #ifndef FILL_TILES_TIME_H
 #define FILL_TILES_TIME_H

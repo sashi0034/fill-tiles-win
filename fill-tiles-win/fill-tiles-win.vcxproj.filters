@@ -123,7 +123,7 @@
     <ClInclude Include="src\inGame\title\StageContainer.h" />
     <ClInclude Include="src\inGame\title\StageView.h" />
     <ClInclude Include="src\inGame\title\TitleBackground.h" />
-    <ClInclude Include="src\inGame\title\zIndex.h" />
+    <ClInclude Include="src\inGame\title\zParam.h" />
     <ClInclude Include="src\inGame\UpFlag.h" />
     <ClInclude Include="src\inGame\util.h" />
     <ClInclude Include="src\inGame\WarpManager.h" />
@@ -242,7 +242,7 @@
     <ClCompile Include="src\inGame\title\StageContainer.cpp" />
     <ClCompile Include="src\inGame\title\StageView.cpp" />
     <ClCompile Include="src\inGame\title\TitleBackground.cpp" />
-    <ClCompile Include="src\inGame\title\zIndex.cpp" />
+    <ClCompile Include="src\inGame\title\zParam.cpp" />
     <ClCompile Include="src\inGame\UpFlag.cpp" />
     <ClCompile Include="src\inGame\util.cpp" />
     <ClCompile Include="src\inGame\WarpManager.cpp" />

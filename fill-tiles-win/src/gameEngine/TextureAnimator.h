@@ -5,6 +5,7 @@
 #ifndef FILL_TILES_TEXTUREANIMATOR_H
 #define FILL_TILES_TEXTUREANIMATOR_H
 
+#include <stdafx.h>
 #include "SpriteTexture.h"
 #include "ChildrenPool.h"
 #include "boost/coroutine2/coroutine.hpp"

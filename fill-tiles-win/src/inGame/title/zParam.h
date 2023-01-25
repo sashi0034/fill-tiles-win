@@ -6,7 +6,7 @@
 #define FILL_TILES_ZINDEX_H
 
 
-namespace inGame::title::zIndex
+namespace inGame::title::zParam
 {
     constexpr double BackGround = 1000;
 

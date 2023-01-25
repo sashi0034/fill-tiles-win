@@ -5,10 +5,8 @@
 #ifndef FILL_TILES_RENDERINGPROCESS_H
 #define FILL_TILES_RENDERINGPROCESS_H
 
-#include "SDL.h"
-#include "SDL_image.h"
+#include <stdafx.h>
 #include "AppState.h"
-#include <functional>
 
 namespace gameEngine{
     class IAppState;

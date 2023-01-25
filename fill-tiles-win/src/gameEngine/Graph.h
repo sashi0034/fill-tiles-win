@@ -5,9 +5,7 @@
 #ifndef FILL_TILES_GRAPH_H
 #define FILL_TILES_GRAPH_H
 
-#include <SDL.h>
-#include <SDL_image.h>
-#include <memory>
+#include <stdafx.h>
 #include "Vec2.h"
 #include "Rect.h"
 #include "GraphBlend.h"

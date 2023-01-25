@@ -5,8 +5,7 @@
 #ifndef FILL_TILES_RANGE_H
 #define FILL_TILES_RANGE_H
 
-#include <cassert>
-#include <algorithm>
+#include <stdafx.h>
 
 namespace gameEngine
 {

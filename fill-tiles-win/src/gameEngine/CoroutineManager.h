@@ -5,11 +5,10 @@
 #ifndef FILL_TILES_COROUTINEMANAGER_H
 #define FILL_TILES_COROUTINEMANAGER_H
 
+#include <stdafx.h>
 #include "WeakPtr.h"
 #include "ChildrenPool.h"
 #include "CoroTask.h"
-#include "boost/coroutine2/coroutine.hpp"
-#include <functional>
 
 namespace gameEngine
 {

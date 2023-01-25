@@ -5,8 +5,7 @@
 #ifndef FILL_TILES_WEAKPTR_H
 #define FILL_TILES_WEAKPTR_H
 
-#include <assert.h>
-#include <type_traits>
+#include <stdafx.h>
 
 namespace gameEngine
 {

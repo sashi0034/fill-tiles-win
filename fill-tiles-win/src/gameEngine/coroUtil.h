@@ -5,6 +5,7 @@
 #ifndef FILL_TILES_COROUTIL_H
 #define FILL_TILES_COROUTIL_H
 
+#include <stdafx.h>
 #include "CoroTask.h"
 #include "WeakPtr.h"
 #include "Time.h"

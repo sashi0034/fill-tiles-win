@@ -5,7 +5,7 @@
 #ifndef FILL_TILES_ACTORBASE_H
 #define FILL_TILES_ACTORBASE_H
 
-#include "stdafx.h"
+#include "../gameEngine/gameEngine.h"
 #include "util.h"
 
 namespace inGame

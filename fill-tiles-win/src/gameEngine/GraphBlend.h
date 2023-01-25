@@ -5,7 +5,7 @@
 #ifndef FILL_TILES_GRAPHBLEND_H
 #define FILL_TILES_GRAPHBLEND_H
 
-#include <SDL_image.h>
+#include <stdafx.h>
 
 namespace gameEngine
 {

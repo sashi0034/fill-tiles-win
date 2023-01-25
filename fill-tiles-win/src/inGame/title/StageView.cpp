@@ -4,7 +4,7 @@
 
 #include "StageView.h"
 #include "../GameRoot.h"
-#include "zIndex.h"
+#include "zParam.h"
 
 namespace inGame::title
 {
@@ -48,7 +48,7 @@ namespace inGame::title
         spr.SetSrcRect(Rect<int>{Vec2{cellSize * index, 0}, Vec2{cellSize, cellSize}});
         util::SetTextureByCenter(spr, args.CenterPos + Vec2<double>{modifierX * space, headerCenterY});
         spr.SetPositionParent(args.ParentSpr);
-        spr.SetZ(zIndex::Screenshot-1);
+        spr.SetZ(zParam::Screenshot-1);
     }
 
     void StageView::initCrown(const StageViewArgs &args)
@@ -59,7 +59,7 @@ namespace inGame::title
         constexpr double padY = -4;
         util::SetTextureByCenter(_crownSpr, args.CenterPos + Vec2<double>{0, headerCenterY + padY});
         _crownSpr.SetPositionParent(args.ParentSpr);
-        _crownSpr.SetZ(zIndex::Screenshot);
+        _crownSpr.SetZ(zParam::Screenshot);
     }
 
 } // inGame

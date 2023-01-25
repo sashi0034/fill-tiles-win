@@ -5,7 +5,7 @@
 #include "TitleBackground.h"
 #include "MenuScene.h"
 #include "../GameRoot.h"
-#include "./zIndex.h"
+#include "./zParam.h"
 
 namespace inGame::title
 {
@@ -15,7 +15,7 @@ namespace inGame::title
         _bgChip(menuScene->RootRef->RscImage->title_bg_chip.get())
     {
         _texture.SetRenderingProcess([this](IAppState* app){ render(app);});
-        _texture.SetZ(zIndex::BackGround);
+        _texture.SetZ(zParam::BackGround);
     }
 
     void TitleBackground::render(IAppState *app)

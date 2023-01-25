@@ -5,8 +5,7 @@
 #ifndef FILL_TILES_LOG_H
 #define FILL_TILES_LOG_H
 
-#include <iostream>
-#include "cassert"
+#include <stdafx.h>
 
 #define DEBUG_BUILD
 

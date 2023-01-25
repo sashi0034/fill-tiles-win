@@ -5,7 +5,7 @@
 #ifndef FILL_TILES_VEC_H
 #define FILL_TILES_VEC_H
 
-#include "sstream"
+#include <stdafx.h>
 
 namespace gameEngine
 {
@@ -82,6 +82,9 @@ namespace gameEngine
     template <class InputIterator>
     Vec2(InputIterator, InputIterator)
     -> Vec2<typename std::iterator_traits<InputIterator>::value_type>;
+
+    using IntVec2 = Vec2<int>;
+    using DoubleVec2 = Vec2<double>;
 }
 
 #endif //FILL_TILES_VEC_H

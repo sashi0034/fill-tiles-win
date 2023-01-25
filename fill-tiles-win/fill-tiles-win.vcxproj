@@ -141,7 +141,7 @@
     <ClInclude Include="src\inGame\title\StageContainer.h" />
     <ClInclude Include="src\inGame\title\StageView.h" />
     <ClInclude Include="src\inGame\title\TitleBackground.h" />
-    <ClInclude Include="src\inGame\title\zIndex.h" />
+    <ClInclude Include="src\inGame\title\zParam.h" />
     <ClInclude Include="src\inGame\UpFlag.h" />
     <ClInclude Include="src\inGame\util.h" />
     <ClInclude Include="src\inGame\WarpManager.h" />
@@ -260,7 +260,7 @@
     <ClCompile Include="src\inGame\title\StageContainer.cpp" />
     <ClCompile Include="src\inGame\title\StageView.cpp" />
     <ClCompile Include="src\inGame\title\TitleBackground.cpp" />
-    <ClCompile Include="src\inGame\title\zIndex.cpp" />
+    <ClCompile Include="src\inGame\title\zParam.cpp" />
     <ClCompile Include="src\inGame\UpFlag.cpp" />
     <ClCompile Include="src\inGame\util.cpp" />
     <ClCompile Include="src\inGame\WarpManager.cpp" />
@@ -356,9 +356,10 @@
       <AdditionalIncludeDirectories>C:\SDK\SDL2-2.26.1\include;C:\SDK\SDL2_image-2.6.2\include;C:\SDK\SDL2_ttf-2.20.1\include;C:\SDK\boost_1_79_0\include;C:\SDK\RxCpp-4.1.1\Rx\v2\src;C:\SDK\RxCpp-4.1.1\Ix\CPP\src;C:\SDK\lua-5.4.2_Win64_dll16_lib\include;include</AdditionalIncludeDirectories>
       <AdditionalOptions>/source-charset:utf-8 /execution-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>stdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -378,9 +379,10 @@
       <AdditionalIncludeDirectories>C:\SDK\SDL2-2.26.1\include;C:\SDK\SDL2_image-2.6.2\include;C:\SDK\SDL2_ttf-2.20.1\include;C:\SDK\boost_1_79_0\include;C:\SDK\RxCpp-4.1.1\Rx\v2\src;C:\SDK\RxCpp-4.1.1\Ix\CPP\src;C:\SDK\lua-5.4.2_Win64_dll16_lib\include;include</AdditionalIncludeDirectories>
       <AdditionalOptions>/source-charset:utf-8 /execution-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>stdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

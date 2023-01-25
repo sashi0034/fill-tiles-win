@@ -5,7 +5,7 @@
 #ifndef FILL_TILES_SPRRECTCOLLIDER_H
 #define FILL_TILES_SPRRECTCOLLIDER_H
 
-#include <any>
+#include <stdafx.h>
 #include "WeakPtr.h"
 #include "SpriteTexture.h"
 #include "ChildrenPool.h"

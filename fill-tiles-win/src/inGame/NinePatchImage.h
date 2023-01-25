@@ -5,7 +5,7 @@
 #ifndef FILL_TILES_NINEPATCHIMAGE_H
 #define FILL_TILES_NINEPATCHIMAGE_H
 
-#include "stdafx.h"
+#include "../gameEngine/gameEngine.h"
 
 namespace inGame
 {

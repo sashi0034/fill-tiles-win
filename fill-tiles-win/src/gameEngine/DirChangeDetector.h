@@ -5,13 +5,7 @@
 #ifndef FILL_TILES_DIRCHANGEDETECTOR_H
 #define FILL_TILES_DIRCHANGEDETECTOR_H
 
-#include <string>
-#include <iostream>
-#include <fstream>
-#include <filesystem>
-#include <ctime>
-#include <iomanip>
-#include <unordered_map>
+#include <stdafx.h>
 
 namespace gameEngine
 {

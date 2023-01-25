@@ -5,12 +5,9 @@
 #ifndef FILL_TILES_SPRITETEXTURE_H
 #define FILL_TILES_SPRITETEXTURE_H
 
+#include <stdafx.h>
 #include "WeakPtr.h"
-#include <SDL.h>
-#include <SDL_image.h>
 #include "Vec2.h"
-#include <vector>
-#include <functional>
 #include "Graph.h"
 #include "GraphBlend.h"
 #include "AppState.h"

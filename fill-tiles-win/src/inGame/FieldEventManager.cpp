@@ -2,7 +2,7 @@
 // Created by sashi0034 on 2022/06/27.
 //
 
-#include "stdafx.h"
+#include "../gameEngine/gameEngine.h"
 #include "FieldEventManager.h"
 
 namespace inGame{

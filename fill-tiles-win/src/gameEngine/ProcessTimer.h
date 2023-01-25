@@ -5,7 +5,7 @@
 #ifndef FILL_TILES_PROCESSTIMER_H
 #define FILL_TILES_PROCESSTIMER_H
 
-#include <functional>
+#include <stdafx.h>
 
 namespace gameEngine
 {

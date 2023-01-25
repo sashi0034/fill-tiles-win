@@ -81,7 +81,9 @@ namespace inGame::effect
     {
         _texture.SetGraph(effectManager->GetRoot()->RscImage->spirit_64x64.get());
         _texture.SetSrcRect(Rect{Vec2{0, 0}, imageSize});
-        _texture.SetScale(Vec2<double>{1, 1} * 100.0 / (100 + Random::Instance->Get(100)));
+
+        constexpr double baseScale = 1.5;
+        _texture.SetScale(Vec2<double>{1, 1} * baseScale * 100.0 / (100 + Random::Instance->Get(100)));
         ZIndexEffect(&_texture).SetIndex(0).ApplyZ();
         _texture.SetBlend(GraphBlend(0));
         _texture.SetRenderingProcess([this](auto&& app){renderingProcess::RenderSpriteDotByDot(app, &_texture); });

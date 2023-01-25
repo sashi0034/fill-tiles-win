@@ -5,10 +5,8 @@
 #ifndef FILL_TILES_ARRAYUTIL_H
 #define FILL_TILES_ARRAYUTIL_H
 
-#include <vector>
-#include <algorithm>
-#include "assert.h"
-#include "cstdint"
+
+#include <stdafx.h>
 
 namespace gameEngine
 {

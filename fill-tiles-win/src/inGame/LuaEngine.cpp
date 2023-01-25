@@ -2,7 +2,7 @@
 // Created by sashi0034 on 2022/07/28.
 //
 
-#include "stdafx.h"
+#include "../gameEngine/gameEngine.h"
 
 #include "LuaEngine.h"
 #include "GameRoot.h"

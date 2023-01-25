@@ -5,8 +5,7 @@
 #ifndef FILL_TILES_FILECHANGEDETECTOR_H
 #define FILL_TILES_FILECHANGEDETECTOR_H
 
-#include <filesystem>
-#include "string"
+#include <stdafx.h>
 
 namespace gameEngine
 {

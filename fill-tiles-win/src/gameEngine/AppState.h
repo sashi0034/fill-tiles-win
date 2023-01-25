@@ -5,8 +5,7 @@
 #ifndef FILL_TILES_APPSTATE_H
 #define FILL_TILES_APPSTATE_H
 
-#include <SDL.h>
-#include <SDL_image.h>
+#include <stdafx.h>
 #include "Time.h"
 #include "Vec2.h"
 #include "MouseState.h"

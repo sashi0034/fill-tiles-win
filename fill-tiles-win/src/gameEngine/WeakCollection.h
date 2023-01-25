@@ -5,8 +5,7 @@
 #ifndef FILL_TILES_WEAKCOLLECTION_H
 #define FILL_TILES_WEAKCOLLECTION_H
 
-#include "vector"
-#include "functional"
+#include <stdafx.h>
 #include "WeakPtr.h"
 
 namespace gameEngine

@@ -2,7 +2,7 @@
 // Created by sashi0034 on 2022/06/11.
 //
 
-#include "stdafx.h"
+#include "../../gameEngine/gameEngine.h"
 #include "TileMap.h"
 #include "magic_enum.h"
 #include "../GameRoot.h"

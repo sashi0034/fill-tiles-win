@@ -5,9 +5,7 @@
 #ifndef FILL_TILES_COROTASK_H
 #define FILL_TILES_COROTASK_H
 
-#include <memory>
-#include "boost/coroutine2/coroutine.hpp"
-
+#include <stdafx.h>
 
 namespace gameEngine
 {

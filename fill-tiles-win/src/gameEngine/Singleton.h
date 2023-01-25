@@ -5,8 +5,8 @@
 #ifndef FILL_TILES_SINGLETON_H
 #define FILL_TILES_SINGLETON_H
 
+#include <stdafx.h>
 #include "log.h"
-#include <memory>
 
 using std::unique_ptr;
 

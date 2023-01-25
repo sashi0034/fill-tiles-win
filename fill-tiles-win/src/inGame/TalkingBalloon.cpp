@@ -14,7 +14,7 @@ namespace inGame{
           m_Scene(scene),
           m_Text(text),
           m_TextPassage(scene->GetRoot()->GetAppState(),
-                        scene->GetRoot()->RscFont->KHDotAkihabara32px.get(), Rgba(255, 255, 255), Rgba(16, 16, 16))
+                        scene->GetRoot()->RscFont->KHDotAkihabara32px.get(), Rgba(255, 255, 255), Rgba(16, 16, 16, 144))
     {
         m_SpriteRoot.SetPosition(pos);
         scene->GetScrollManager()->RegisterSprite(m_SpriteRoot);
@@ -33,7 +33,8 @@ namespace inGame{
                 scene->GetRoot()->GetAppState(),
                 scene->GetRoot()->RscImage->ui_gray_rounnd_rect.get(),
                 Vec2{0.0, 0.0}, Vec2<double>{bgSize.X, bgSize.Y}, sideRatio);
-        m_Background->GetSprite().SetBlend(GraphBlend(200));
+        constexpr int bgAlpha = 224;
+        m_Background->GetSprite().SetBlend(GraphBlend(bgAlpha));
         m_Background->GetSprite().SetPositionParent(m_SpriteRoot);
         m_Background->GetSprite().SetScale(Vec2{0.0, 1.0});
     }
@@ -79,10 +80,12 @@ namespace inGame{
             coroUtil::WaitForTime(yield, m_Text[i]!='>' ? duration/10.0 : duration);
         }
 
-        performAnimGuruGuruChar(yield, duration / 4.0, currStr, 1);
-        performAnimGuruGuruChar(yield, duration / 2.0, currStr, 1);
+        coroUtil::WaitForTime(yield, 2.5);
 
-        coroUtil::WaitForTime(yield, duration);
+        //performAnimGuruGuruChar(yield, duration / 4.0, currStr, 1);
+        //performAnimGuruGuruChar(yield, duration / 2.0, currStr, 1);
+
+        //coroUtil::WaitForTime(yield, duration);
 
         getBelongingPool()->Destroy(this);
     }
