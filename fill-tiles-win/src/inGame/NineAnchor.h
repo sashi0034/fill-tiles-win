@@ -5,8 +5,7 @@
 #ifndef FILL_TILES_NINEANCHOR_H
 #define FILL_TILES_NINEANCHOR_H
 
-#include "../gameEngine/gameEngine.h"
-#include <array>
+#include "stdafx.h"
 
 
 namespace inGame

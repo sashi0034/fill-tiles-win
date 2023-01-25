@@ -11,8 +11,8 @@
 class GameProcess {
 private:
     static const int pixelPerUnit = inGame::pixel::PixelPerUnit;
-    static const int screenWidth = 416;
-    static const int screenHeight = 240;
+    static const int screenWidth = 416; // 640
+    static const int screenHeight = 240; // 360
 public:
     static int RunGame();
 };

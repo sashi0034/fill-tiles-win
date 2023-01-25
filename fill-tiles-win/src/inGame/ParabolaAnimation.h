@@ -5,7 +5,8 @@
 #ifndef FILL_TILES_PARABOLAANIMATION_H
 #define FILL_TILES_PARABOLAANIMATION_H
 
-#include "../gameEngine/gameEngine.h"
+#include "stdafx.h"
+
 #include "EffectManager.h"
 
 namespace inGame

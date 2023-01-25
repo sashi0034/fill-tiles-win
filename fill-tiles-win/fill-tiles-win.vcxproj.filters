@@ -128,6 +128,7 @@
     <ClInclude Include="src\inGame\util.h" />
     <ClInclude Include="src\inGame\WarpManager.h" />
     <ClInclude Include="src\inGame\ZIndex.h" />
+    <ClInclude Include="include\stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\gameEngine\AppState.cpp" />

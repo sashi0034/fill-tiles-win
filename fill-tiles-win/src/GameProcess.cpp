@@ -2,14 +2,9 @@
 // Created by sashi0034 on 2022/05/04.
 //
 
-#include <SDL.h>
-#include <SDL_ttf.h>
-#include <SDL_image.h>
-
-#include <memory>
+#include "stdafx.h"
 #include "GameProcess.h"
 #include "inGame/GameLooper.h"
-#include "gameEngine/gameEngine.h"
 
 int GameProcess::RunGame()
 {

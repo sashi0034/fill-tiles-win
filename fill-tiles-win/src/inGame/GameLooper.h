@@ -5,9 +5,7 @@
 #ifndef FILL_TILES_GAMELOOPER_H
 #define FILL_TILES_GAMELOOPER_H
 
-#include <SDL.h>
-#include <SDL_image.h>
-#include "../gameEngine/gameEngine.h"
+#include "stdafx.h"
 
 namespace inGame {
     class GameLooper {

@@ -5,7 +5,7 @@
 #ifndef FILL_TILES_CHARACTERVIEWMODEL_H
 #define FILL_TILES_CHARACTERVIEWMODEL_H
 
-#include "../gameEngine/gameEngine.h"
+#include "stdafx.h"
 #include "ScrollManager.h"
 #include "MatPos.h"
 #include "FieldManager.h"

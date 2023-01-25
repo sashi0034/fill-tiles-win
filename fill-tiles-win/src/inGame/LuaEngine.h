@@ -5,8 +5,7 @@
 #ifndef FILL_TILES_LUAENGINE_H
 #define FILL_TILES_LUAENGINE_H
 
-#include <sol.hpp>
-#include "../gameEngine/gameEngine.h"
+#include "stdafx.h"
 
 namespace inGame
 {

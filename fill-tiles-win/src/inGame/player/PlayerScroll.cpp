@@ -2,7 +2,8 @@
 // Created by sashi0034 on 2022/08/17.
 //
 
-#include "../../gameEngine/gameEngine.h"
+#include "stdafx.h"
+
 #include "PlayerScroll.h"
 #include "../ScrollManager.h"
 #include "../FieldEventManager.h"

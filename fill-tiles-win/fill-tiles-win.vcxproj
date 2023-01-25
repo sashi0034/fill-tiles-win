@@ -146,6 +146,7 @@
     <ClInclude Include="src\inGame\util.h" />
     <ClInclude Include="src\inGame\WarpManager.h" />
     <ClInclude Include="src\inGame\ZIndex.h" />
+    <ClInclude Include="include\stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\gameEngine\AppState.cpp" />
@@ -352,14 +353,17 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NOMINMAX</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\SDK\SDL2-2.26.1\include;C:\SDK\SDL2_image-2.6.2\include;C:\SDK\SDL2_ttf-2.20.1\include;C:\Users\satos\boost_1_79_0\include;C:\Users\satos\RxCpp-4.1.1\Rx\v2\src;C:\Users\satos\RxCpp-4.1.1\Ix\CPP\src;C:\SDK\lua-5.4.2_Win64_dll16_lib\include;C:\dev\VisualStudioRepos\fill-tiles-win\fill-tiles-win\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SDK\SDL2-2.26.1\include;C:\SDK\SDL2_image-2.6.2\include;C:\SDK\SDL2_ttf-2.20.1\include;C:\SDK\boost_1_79_0\include;C:\SDK\RxCpp-4.1.1\Rx\v2\src;C:\SDK\RxCpp-4.1.1\Ix\CPP\src;C:\SDK\lua-5.4.2_Win64_dll16_lib\include;include</AdditionalIncludeDirectories>
       <AdditionalOptions>/source-charset:utf-8 /execution-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>stdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\SDK\SDL2-2.26.1\lib\x64;C:\SDK\SDL2_ttf-2.20.1\lib\x64;C:\SDK\SDL2_image-2.6.2\lib\x64;C:\Users\satos\boost_1_79_0\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\SDK\SDL2-2.26.1\lib\x64;C:\SDK\SDL2_ttf-2.20.1\lib\x64;C:\SDK\SDL2_image-2.6.2\lib\x64;C:\SDK\boost_1_79_0\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;"C:\SDK\lua-5.4.2_Win64_dll16_lib\lua54.lib";%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -371,16 +375,19 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NOMINMAX</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\SDK\SDL2-2.26.1\include;C:\SDK\SDL2_image-2.6.2\include;C:\SDK\SDL2_ttf-2.20.1\include;C:\Users\satos\boost_1_79_0\include;C:\Users\satos\RxCpp-4.1.1\Rx\v2\src;C:\Users\satos\RxCpp-4.1.1\Ix\CPP\src;C:\SDK\lua-5.4.2_Win64_dll16_lib\include;C:\dev\VisualStudioRepos\fill-tiles-win\fill-tiles-win\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SDK\SDL2-2.26.1\include;C:\SDK\SDL2_image-2.6.2\include;C:\SDK\SDL2_ttf-2.20.1\include;C:\SDK\boost_1_79_0\include;C:\SDK\RxCpp-4.1.1\Rx\v2\src;C:\SDK\RxCpp-4.1.1\Ix\CPP\src;C:\SDK\lua-5.4.2_Win64_dll16_lib\include;include</AdditionalIncludeDirectories>
       <AdditionalOptions>/source-charset:utf-8 /execution-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>stdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\SDK\SDL2-2.26.1\lib\x64;C:\SDK\SDL2_ttf-2.20.1\lib\x64;C:\SDK\SDL2_image-2.6.2\lib\x64;C:\Users\satos\boost_1_79_0\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\SDK\SDL2-2.26.1\lib\x64;C:\SDK\SDL2_ttf-2.20.1\lib\x64;C:\SDK\SDL2_image-2.6.2\lib\x64;C:\SDK\boost_1_79_0\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;"C:\SDK\lua-5.4.2_Win64_dll16_lib\lua54.lib";%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

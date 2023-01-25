@@ -2,13 +2,8 @@
 // Created by sashi0034 on 2022/06/11.
 //
 
+#include "stdafx.h"
 #include "TileMap.h"
-#include <memory>
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/xml_parser.hpp>
-#include <boost/lexical_cast.hpp>
-#include <sstream>
-#include <regex>
 #include "magic_enum.h"
 #include "../GameRoot.h"
 #include "../Player.h"

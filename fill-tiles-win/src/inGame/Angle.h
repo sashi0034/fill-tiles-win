@@ -5,8 +5,7 @@
 #ifndef FILL_TILES_ANGLE_H
 #define FILL_TILES_ANGLE_H
 
-#include <array>
-#include "../gameEngine/gameEngine.h"
+#include "stdafx.h"
 
 namespace inGame
 {

@@ -2,12 +2,10 @@
 // Created by sashi0034 on 2022/05/03.
 //
 
-#include <iostream>
-#include <SDL_ttf.h>
+
 #include "GameLooper.h"
 #include "FontTest.h"
 #include "LibraryTest.h"
-#include "../gameEngine/gameEngine.h"
 #include "GameRoot.h"
 
 void inGame::GameLooper::Loop(unique_ptr<AppState>& appState) {

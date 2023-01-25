@@ -5,10 +5,10 @@
 #ifndef FILL_TILES_TILEMAP_H
 #define FILL_TILES_TILEMAP_H
 
-#include "../../gameEngine/gameEngine.h"
+#include "stdafx.h"
+
 #include "TileMapMatElement.h"
-#include <boost/tokenizer.hpp>
-#include <boost/property_tree/ptree.hpp>
+
 #include "../Boolean.h"
 #include "StaticTileset.h"
 #include "../MatPos.h"

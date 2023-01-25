@@ -5,7 +5,7 @@
 #ifndef FILL_TILES_IMAGE_H
 #define FILL_TILES_IMAGE_H
 
-#include "../../gameEngine/gameEngine.h"
+#include "stdafx.h"
 
 #define REGISTER_RESOURCE_PNG(fileName) const unique_ptr<Graph> fileName = loadPng(#fileName)
 

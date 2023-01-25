@@ -5,8 +5,9 @@
 #ifndef FILL_TILES_PLAYERANIMATION_H
 #define FILL_TILES_PLAYERANIMATION_H
 
+#include "stdafx.h"
+
 #include "../Angle.h"
-#include "../../gameEngine/gameEngine.h"
 #include "../MatPos.h"
 
 namespace inGame{

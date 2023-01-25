@@ -2,8 +2,8 @@
 // Created by sashi0034 on 2022/07/28.
 //
 
-#include "string"
-#include "../gameEngine/gameEngine.h"
+#include "stdafx.h"
+
 #include "LuaEngine.h"
 #include "GameRoot.h"
 

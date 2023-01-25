@@ -2,8 +2,8 @@
 // Created by sashi0034 on 2022/06/27.
 //
 
+#include "stdafx.h"
 #include "FieldEventManager.h"
-#include "../gameEngine/gameEngine.h"
 
 namespace inGame{
     bool FieldEventManager::IsRunning() const

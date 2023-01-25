@@ -22,10 +22,10 @@ namespace gameEngine
         int m_DeltaMilli{};
         double m_DeltaSec{};
 
-        int m_FpsCount;
-        int m_FpsBuffer;
+        int m_FpsCount{};
+        int m_FpsBuffer{};
 
-        Fps m_Fps;
+        Fps m_Fps{};
 
         void countFps(bool isPrintDebugFps);
     public:
