@@ -231,15 +231,20 @@ namespace gameEngine
 
     void SpriteTextureContext::RenderAll(IAppState* appState)
     {
-        std::stable_sort(spriteTexturePool.begin(), spriteTexturePool.end(), [](const WeakPtr<SpriteTexture>& left, const WeakPtr<SpriteTexture>& right) -> bool {
+        checkResetRenderingBuffer(appState);
+
+        SDL_SetRenderTarget(appState->GetRenderer(), _renderingBuffer->GetSdlTexture());
+        SDL_RenderClear(appState->GetRenderer());
+
+        std::stable_sort(_spriteTexturePool.begin(), _spriteTexturePool.end(), [](const WeakPtr<SpriteTexture>& left, const WeakPtr<SpriteTexture>& right) -> bool {
             auto leftShared = left.GetPtr();
         auto rightShared = right.GetPtr();
         return (leftShared ? leftShared->GetZ() : 0.0) > (rightShared ? rightShared->GetZ() : 0.0); });
         std::vector<int> garbageIndexes{};
-        int size = spriteTexturePool.size();
+        int size = _spriteTexturePool.size();
 
         for (int i = 0; i < size; ++i)
-            if (auto renderingSpr = spriteTexturePool[i].GetPtr())
+            if (auto renderingSpr = _spriteTexturePool[i].GetPtr())
             {
                 if (renderingSpr == nullptr) continue;
 
@@ -255,11 +260,11 @@ namespace gameEngine
 
     void SpriteTextureContext::UpdateAll(IAppState* appState)
     {
-        int size = spriteTexturePool.size();
+        int size = _spriteTexturePool.size();
         std::vector<int> garbageIndexes{};
 
         for (int i = 0; i < size; ++i)
-            if (auto updatingSpr = spriteTexturePool[i].GetPtr())
+            if (auto updatingSpr = _spriteTexturePool[i].GetPtr())
                 updatingSpr->GetUpdateProcess()(appState);
             else
                 garbageIndexes.push_back(i);
@@ -269,7 +274,12 @@ namespace gameEngine
 
     void SpriteTextureContext::AddSprite(SpriteTexture& texture)
     {
-        spriteTexturePool.push_back(texture.GetWeakPtr());
+        _spriteTexturePool.push_back(texture.GetWeakPtr());
+    }
+
+    Graph* const SpriteTextureContext::GetRenderingBuffer()
+    {
+        return _renderingBuffer.get();
     }
 
     SpriteTextureContext* const SpriteTextureContext::Global()
@@ -277,12 +287,34 @@ namespace gameEngine
         return &globalInstance;
     }
 
+    void SpriteTextureContext::checkResetRenderingBuffer(IAppState* appState)
+    {
+        auto&& realScreenSize = appState->GetRealScreenSize();
+        if (realScreenSize == _renderingSize) return;
+
+        resetRenderingBuffer(appState, realScreenSize);
+    }
+
+    void SpriteTextureContext::resetRenderingBuffer(IAppState* appState, Vec2<int> newSize)
+    {
+        // 解像度調整で拡大するときに、ぼかしを加える
+        SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
+
+        SDL_Texture* renderingTarget = SDL_CreateTexture(
+            appState->GetRenderer(),
+            SDL_PIXELFORMAT_RGBA8888,
+            SDL_TEXTUREACCESS_TARGET,
+            newSize.X, newSize.Y);
+        _renderingBuffer = std::make_unique<Graph>(renderingTarget);
+        SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
+    }
+
     void SpriteTextureContext::collectGarbageInSpriteTexturePool(std::vector<int>& garbageIndexes)
     {
         for (int i = garbageIndexes.size() - 1; i >= 0; --i)
         {
             int index = garbageIndexes[i];
-            spriteTexturePool.erase(spriteTexturePool.begin() + index);
+            _spriteTexturePool.erase(_spriteTexturePool.begin() + index);
         }
     }
 

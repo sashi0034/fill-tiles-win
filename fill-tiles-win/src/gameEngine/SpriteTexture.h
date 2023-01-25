@@ -23,12 +23,17 @@ namespace gameEngine
         void RenderAll(IAppState* appState);
         void UpdateAll(IAppState* appState);
         void AddSprite(SpriteTexture& texture);
+        Graph* const GetRenderingBuffer();
         static SpriteTextureContext* const Global();
     private:
         static SpriteTextureContext globalInstance;
 
-        std::vector<WeakPtr<SpriteTexture>> spriteTexturePool;
+        unique_ptr<Graph> _renderingBuffer{};
+        Vec2<int> _renderingSize{};
+        std::vector<WeakPtr<SpriteTexture>> _spriteTexturePool;
 
+        void checkResetRenderingBuffer(IAppState* appState);
+        void resetRenderingBuffer(IAppState* appState, Vec2<int> newSize);
         void collectGarbageInSpriteTexturePool(std::vector<int>& garbageIndexes);
     };
 

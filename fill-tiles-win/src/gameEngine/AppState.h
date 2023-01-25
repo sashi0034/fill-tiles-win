@@ -55,9 +55,6 @@ namespace gameEngine
         void pollEvent();
         void processEvent(SDL_Event &e);
         MouseState m_Mouse{};
-        unique_ptr<Graph> m_RenderingBuffer{};
-        void resetRenderingBuffer(const Vec2<int> &newSize);
-
     public:
         [[nodiscard]] int GetPixelPerUnit() const override;
         [[nodiscard]] Vec2<int> GetScreenSize() const override;
