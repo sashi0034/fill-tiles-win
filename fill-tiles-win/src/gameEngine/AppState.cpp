@@ -55,7 +55,7 @@ namespace gameEngine
 
         m_KeyboardState = SDL_GetKeyboardState(NULL);
         m_Time->Update(true);
-        SpriteTexture::UpdateAll(this);
+        SpriteTextureContext::Global()->UpdateAll(this);
     }
 
     constexpr int maxPixelInScreen = 1920 * 1080;
@@ -84,7 +84,7 @@ namespace gameEngine
         SDL_SetRenderTarget(m_Renderer, m_RenderingBuffer->GetSdlTexture());
         SDL_RenderClear(m_Renderer);
 
-        SpriteTexture::RenderAll(this);
+        SpriteTextureContext::Global()->RenderAll(this);
 
         SDL_SetRenderTarget(m_Renderer, nullptr);
         SDL_RenderClear(m_Renderer);

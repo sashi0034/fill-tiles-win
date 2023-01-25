@@ -17,11 +17,24 @@ using std::unique_ptr;
 
 namespace gameEngine
 {
+    class SpriteTextureContext
+    {
+    public:
+        void RenderAll(IAppState* appState);
+        void UpdateAll(IAppState* appState);
+        void AddSprite(SpriteTexture& texture);
+        static SpriteTextureContext* const Global();
+    private:
+        static SpriteTextureContext globalInstance;
+
+        std::vector<WeakPtr<SpriteTexture>> spriteTexturePool;
+
+        void collectGarbageInSpriteTexturePool(std::vector<int>& garbageIndexes);
+    };
+
     class SpriteTexture
     {
         DEF_WEAK_CONTROLLER(SpriteTexture);
-        
-        static std::vector<WeakPtr<SpriteTexture>> spriteTexturePool;
 
         Vec2<double> m_Position{0, 0};
         WeakPtr<SpriteTexture> m_PositionParent{};
@@ -37,8 +50,6 @@ namespace gameEngine
 
         std::function<void(IAppState*)> m_RenderingProcess;
         std::function<void(IAppState*)> m_UpdateProcess;
-
-        static void collectGarbageInSpriteTexturePool(std::vector<int> &garbageIndexes);
 
         SpriteTexture();
         SpriteTexture(Graph *graph, const Rect<int> &srcRect);
@@ -82,7 +93,10 @@ namespace gameEngine
         [[nodiscard]] GraphBlend GetBlend() const;
 
         void SetUpdateProcess(const std::function<void(IAppState*)>& process);
+        [[nodiscard]] std::function<void(IAppState*)>& GetUpdateProcess();
+
         void SetRenderingProcess(const std::function<void(IAppState*)>& process);
+        [[nodiscard]] std::function<void(IAppState*)>& GetRenderingProcess();
 
         Vec2<double> GetParentalGlobalPosition();
         bool GetParentalVisibility();

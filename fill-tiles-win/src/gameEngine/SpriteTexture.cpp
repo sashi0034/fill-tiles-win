@@ -9,7 +9,7 @@
 
 namespace gameEngine
 {
-    std::vector<WeakPtr<SpriteTexture>> SpriteTexture::spriteTexturePool = {};
+    SpriteTextureContext SpriteTextureContext::globalInstance = {};
 
     SpriteTexture::SpriteTexture(Graph *graph, const Rect<int> &srcRect)
     {
@@ -37,7 +37,7 @@ namespace gameEngine
     {
         auto product = SpriteTexture(graph, srcRect);
 
-        spriteTexturePool.push_back(product.GetWeakPtr());
+        SpriteTextureContext::Global()->AddSprite(product);
 
         return product;
     }
@@ -143,6 +143,11 @@ namespace gameEngine
         m_RenderingProcess = process;
     }
 
+    std::function<void(IAppState*)>& SpriteTexture::GetRenderingProcess()
+    {
+        return m_RenderingProcess;
+    }
+
     Vec2<double> SpriteTexture::GetParentalGlobalPosition()
     {
         if (auto parent = m_PositionParent.GetPtr())
@@ -169,58 +174,9 @@ namespace gameEngine
         }
     }
 
-
-
-    void SpriteTexture::UpdateAll(IAppState *appState)
-    {
-        int size = spriteTexturePool.size();
-        std::vector<int> garbageIndexes{};
-
-        for (int i = 0; i < size; ++i)
-            if (auto updatingSpr = spriteTexturePool[i].GetPtr())
-                updatingSpr->m_UpdateProcess(appState);
-            else
-                garbageIndexes.push_back(i);
-
-        collectGarbageInSpriteTexturePool(garbageIndexes);
-    }
-
-    void SpriteTexture::RenderAll(IAppState*appState)
-    {
-        std::stable_sort(spriteTexturePool.begin(), spriteTexturePool.end(), [](const WeakPtr<SpriteTexture> &left, const WeakPtr<SpriteTexture> &right) -> bool {
-            auto leftShared =left.GetPtr();
-            auto rightShared = right.GetPtr();
-            return (leftShared ? leftShared->GetZ() : 0.0) > (rightShared ? rightShared->GetZ() : 0.0); });
-        std::vector<int> garbageIndexes{};
-        int size = spriteTexturePool.size();
-
-        for (int i=0; i < size ; ++i)
-            if (auto renderingSpr = spriteTexturePool[i].GetPtr())
-            {
-                if (renderingSpr == nullptr) continue;
-
-                renderingSpr->m_RenderingProcess(appState);
-            }
-            else
-            {
-                garbageIndexes.push_back(i);
-            }
-
-        collectGarbageInSpriteTexturePool(garbageIndexes);
-    }
-
     SpriteTexture::SpriteTexture()
     {
         assert(false);
-    }
-
-    void SpriteTexture::collectGarbageInSpriteTexturePool(std::vector<int> &garbageIndexes)
-    {
-        for (int i=garbageIndexes.size()-1; i>=0; --i)
-        {
-            int index = garbageIndexes[i];
-            spriteTexturePool.erase(spriteTexturePool.begin() + index);
-        }
     }
 
     void SpriteTexture::SetVisibilityParent(SpriteTexture &parent)
@@ -248,6 +204,11 @@ namespace gameEngine
         m_UpdateProcess = process;
     }
 
+    std::function<void(IAppState*)>& SpriteTexture::GetUpdateProcess()
+    {
+        return m_UpdateProcess;
+    }
+
     void SpriteTexture::CopyVisuallyFrom(SpriteTexture& origin)
     {
         auto&& clone = *this;
@@ -267,5 +228,62 @@ namespace gameEngine
     }
 
 
+
+    void SpriteTextureContext::RenderAll(IAppState* appState)
+    {
+        std::stable_sort(spriteTexturePool.begin(), spriteTexturePool.end(), [](const WeakPtr<SpriteTexture>& left, const WeakPtr<SpriteTexture>& right) -> bool {
+            auto leftShared = left.GetPtr();
+        auto rightShared = right.GetPtr();
+        return (leftShared ? leftShared->GetZ() : 0.0) > (rightShared ? rightShared->GetZ() : 0.0); });
+        std::vector<int> garbageIndexes{};
+        int size = spriteTexturePool.size();
+
+        for (int i = 0; i < size; ++i)
+            if (auto renderingSpr = spriteTexturePool[i].GetPtr())
+            {
+                if (renderingSpr == nullptr) continue;
+
+                renderingSpr->GetRenderingProcess()(appState);
+            }
+            else
+            {
+                garbageIndexes.push_back(i);
+            }
+
+        collectGarbageInSpriteTexturePool(garbageIndexes);
+    }
+
+    void SpriteTextureContext::UpdateAll(IAppState* appState)
+    {
+        int size = spriteTexturePool.size();
+        std::vector<int> garbageIndexes{};
+
+        for (int i = 0; i < size; ++i)
+            if (auto updatingSpr = spriteTexturePool[i].GetPtr())
+                updatingSpr->GetUpdateProcess()(appState);
+            else
+                garbageIndexes.push_back(i);
+
+        collectGarbageInSpriteTexturePool(garbageIndexes);
+    }
+
+    void SpriteTextureContext::AddSprite(SpriteTexture& texture)
+    {
+        spriteTexturePool.push_back(texture.GetWeakPtr());
+    }
+
+    SpriteTextureContext* const SpriteTextureContext::Global()
+    {
+        return &globalInstance;
+    }
+
+    void SpriteTextureContext::collectGarbageInSpriteTexturePool(std::vector<int>& garbageIndexes)
+    {
+        for (int i = garbageIndexes.size() - 1; i >= 0; --i)
+        {
+            int index = garbageIndexes[i];
+            spriteTexturePool.erase(spriteTexturePool.begin() + index);
+        }
+    }
 
 }
