@@ -6,6 +6,7 @@
 
 #include <memory>
 #include "ZIndex.h"
+#include "util.h"
 
 namespace inGame
 {
@@ -58,7 +59,7 @@ namespace inGame
     void NinePatchImage::renderUnsafely(SDL_Renderer *renderer, SDL_Texture *renderingTarget) const
     {
         auto renderChange = TempRenderTargetChanger(renderer);
-        renderChange.ChangeInScope(renderingTarget)->RenderClear();
+        renderChange.ChangeInScope(renderingTarget)->RenderClearTransparent();
 
         for (int x=0; x<3; ++x)
         {

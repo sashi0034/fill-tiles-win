@@ -10,6 +10,7 @@
 #include "RemainingMineUi.h"
 #include "MineFlowerManager.h"
 #include "Player.h"
+#include "field/renderBackmostGrass.h"
 
 namespace inGame
 {
@@ -19,8 +20,11 @@ namespace inGame
             ActorBase(belonging),
             m_ParentalScene(parentalScene), m_TileMap(parentalScene)
     {
-        ZIndexBackGround(&m_Texture).ApplyZ();
-        m_ParentalScene->GetScrollManager()->RegisterSprite(m_Texture);
+        ZIndexBackGround(&m_BackmostTexture).GoFront(0).ApplyZ();
+        m_BackmostTexture.SetRenderingProcess([&](auto&& app) { renderBackmostGrass(app, m_ParentalScene); });
+
+        ZIndexBackGround(&m_TileMapTexture).GoFront(1).ApplyZ();
+        m_ParentalScene->GetScrollManager()->RegisterSprite(m_TileMapTexture);
 
         m_MineFlowerManager = std::make_unique<MineFlowerManager>(parentalScene);
 
@@ -32,8 +36,8 @@ namespace inGame
         m_TileMap.LoadMapFile(getCurrentMapFileName());
 
         createRenderedTileMapToBuffer(m_ParentalScene->GetRoot()->GetAppState());
-        m_Texture.SetGraph(m_BufferGraph.get());
-        m_Texture.SetSrcRect(Rect<int>{Vec2{0, 0}, m_BufferGraphSize});
+        m_TileMapTexture.SetGraph(m_BufferGraph.get());
+        m_TileMapTexture.SetSrcRect(Rect<int>{Vec2{0, 0}, m_BufferGraphSize});
 
         m_MineFlowerManager->Init();
 
@@ -83,7 +87,7 @@ namespace inGame
                                         SDL_Renderer *const sdlRenderer, SDL_Texture *renderingTarget)
     {
         auto renderChange = TempRenderTargetChanger(sdlRenderer);
-        renderChange.ChangeInScope(renderingTarget)->RenderClear();
+        renderChange.ChangeInScope(renderingTarget)->RenderClearTransparent();
 
         for (int chipY = renderingChipStartingPoint.Y; chipY<=renderingChipEndPoint.Y; ++chipY)
             for (int chipX = renderingChipStartingPoint.X; chipX<=renderingChipEndPoint.X; ++chipX)

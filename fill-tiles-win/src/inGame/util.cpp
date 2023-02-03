@@ -13,6 +13,38 @@ namespace inGame
         texture.SetPosition(pos - size * unitRate / 2.0);
     }
 
+    int util::Mod2(int value, int law)
+    {
+        int result = value % law;
+        while (result < 0)
+        {
+            result += law;
+        }
+
+        return result;
+    }
+
+    double util::ModDouble2(double value, double law)
+    {
+        double result = value;
+        while (result > law)
+        {
+            result -= law;
+        }
+        while (result < 0)
+        {
+            result += law;
+        }
+
+        return result;
+    }
+
+    void util::ClearRendererTransparent(SDL_Renderer* renderer)
+    {
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+        SDL_RenderClear(renderer);
+    }
+
     Vec2<double> util::GetTextureCentralPos(SpriteTexture &texture)
     {
         const auto pos = texture.GetPosition();

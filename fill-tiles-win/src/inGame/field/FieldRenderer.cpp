@@ -30,6 +30,9 @@ namespace inGame::field
                     return isNeighbor(x, y, ETileKind::normal_plain);
                 });
                 break;
+            case ETileKind::low_basin:
+                // renderBackmostGrassで塗りつぶす
+                break;
             case ETileKind::low_basin_shade_face:
                 renderCell(m_ResImage->low_basin_16x16.get(), Vec2<int>{4, 4});
                 break;

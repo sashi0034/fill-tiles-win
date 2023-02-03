@@ -15,7 +15,7 @@ namespace gameEngine
     public:
         [[nodiscard("Keep it in scope.")]] explicit TempRenderTargetChanger(SDL_Renderer* renderer);
         TempRenderTargetChanger* ChangeInScope(SDL_Texture* changingTarget);
-        void RenderClear();
+        void RenderClearTransparent();
         ~TempRenderTargetChanger();
     private:
         SDL_Renderer* const renderer;

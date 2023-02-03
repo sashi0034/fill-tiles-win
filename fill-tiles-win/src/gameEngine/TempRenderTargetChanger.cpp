@@ -22,8 +22,9 @@ namespace gameEngine
         SDL_SetRenderTarget(renderer, beforeTexture);
     }
 
-    void TempRenderTargetChanger::RenderClear()
+    void TempRenderTargetChanger::RenderClearTransparent()
     {
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
         SDL_RenderClear(renderer);
     }
 } // gameEngine

@@ -129,6 +129,7 @@
     <ClInclude Include="src\inGame\WarpManager.h" />
     <ClInclude Include="src\inGame\ZIndex.h" />
     <ClInclude Include="include\stdafx.h" />
+    <ClInclude Include="src\inGame\field\renderBackmostGrass.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\gameEngine\AppState.cpp" />
@@ -248,5 +249,6 @@
     <ClCompile Include="src\inGame\WarpManager.cpp" />
     <ClCompile Include="src\inGame\ZIndex.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\inGame\field\renderBackmostGrass.cpp" />
   </ItemGroup>
 </Project>

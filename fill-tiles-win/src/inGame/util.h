@@ -15,6 +15,11 @@ namespace inGame
     {
         Vec2<double> GetTextureCentralPos(SpriteTexture& texture);
         void SetTextureByCenter(SpriteTexture& texture, const Vec2<double>& pos, int pixelPerUnit=pixel::PixelPerUnit);
+
+        int Mod2(int value, int law);
+        double ModDouble2(double value, double law);
+
+        void ClearRendererTransparent(SDL_Renderer* renderer);
     }
 }
 

@@ -56,6 +56,7 @@ namespace inGame::resource
         REGISTER_RESOURCE_PNG(carrot_16x32);
         REGISTER_RESOURCE_PNG(win_24x24);
         REGISTER_RESOURCE_PNG(clear_label);
+        REGISTER_RESOURCE_PNG(grass_texture_01);
 
         explicit Image(IAppState* appState);
     private:
