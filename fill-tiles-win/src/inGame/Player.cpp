@@ -160,7 +160,7 @@ namespace inGame
         const bool isDash = args.IsDash;
 
         auto moveVector = Angle(goingAngle).ToXY().CastTo<double>() * FieldManager::PixelPerMat;
-        double movingTIme = args.IsDash ? 0.2 : 0.4;
+        double movingTime = args.IsDash ? 0.2 : 0.3;
 
         if (args.CanChangeAnim)
             this->m_AnimationLogic->AnimWalk(goingAngle, args.IsDash ? 0.5 : 1.0);
@@ -178,7 +178,7 @@ namespace inGame
 
         // 歩行アニメーション
         auto moveAnim = this->m_PlayerAnimator.TargetTo(this->m_View->GetModel())
-                ->AnimPosition(moveVector, movingTIme)->SetEase(EAnimEase::Linear)->SetRelative(true)
+                ->AnimPosition(moveVector, movingTime)->SetEase(EAnimEase::Linear)->SetRelative(true)
                 ->ToWeakPtr();
 
         coroUtil::WaitForExpire<>(yield, moveAnim);

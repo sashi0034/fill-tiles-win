@@ -87,6 +87,8 @@ namespace inGame::field
         void checkCliffFlagOf(const Vec2<int> &pos, ETileKind checkingKind, ETileKind cliffKind);
 
         void initTilePropertyByKind(TilePropertyChip *propertyRef, const ETileKind &kind) const;
+
+        bool isChipStairAt(const Vec2<int>& pos);
     };
 }
 

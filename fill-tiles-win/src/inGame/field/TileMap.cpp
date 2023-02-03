@@ -4,7 +4,6 @@
 
 #include "../../gameEngine/gameEngine.h"
 #include "TileMap.h"
-#include "magic_enum.h"
 #include "../GameRoot.h"
 #include "../Player.h"
 #include "../FieldManager.h"
@@ -116,9 +115,18 @@ namespace inGame::field
     {
         checkCliffFlagOf(pos, ETileKind::high_plateau, ETileKind::high_plateau_cliff);
         checkCliffFlagOf(pos, ETileKind::normal_plain, ETileKind::normal_plain_cliff);
+
+        // 階段の処理
+        if (isChipStairAt(pos) && isChipStairAt(pos + Vec2{-1, 0}) == false) {
+            getElementAt(pos)->SetCliffFlag(EAngle::Left, true);
+            getElementAt(pos + Vec2{ -1, 0 })->SetCliffFlag(EAngle::Right, true);
+        }
+        if (isChipStairAt(pos) && isChipStairAt(pos + Vec2{ 1, 0 }) == false) {
+            getElementAt(pos)->SetCliffFlag(EAngle::Right, true);
+            getElementAt(pos + Vec2{ 1, 0 })->SetCliffFlag(EAngle::Left, true);
+        }
     }
 
-    // @tileSwitch
     void TileMap::checkCliffFlagOf(const Vec2<int> &pos, ETileKind checkingKind, ETileKind cliffKind)
     {
         if (HasChipAt(pos, checkingKind) == Boolean::False &&
@@ -319,6 +327,10 @@ namespace inGame::field
 
             initTilePropertyByKind(propertyRef, kind);
         }
+        //else if (propertyName == "cliff")
+        //{
+        //    propertyRef->DetailProps[propertyName] = value;
+        //}
         else
         {
             assert(!"Invalid chip property exit.");
@@ -339,6 +351,11 @@ namespace inGame::field
                 break;
         }
         (void)propertyRef;
+    }
+
+    bool TileMap::isChipStairAt(const Vec2<int>& pos)
+    {
+        return HasChipAt(pos, ETileKind::stairs) != Boolean::True;
     }
 
     Vec2<int> TileMap::GetMatSize() const

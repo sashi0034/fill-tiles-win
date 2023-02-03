@@ -7,7 +7,6 @@
 
 #include "../ActorBase.h"
 #include "../character/CharacterBase.h"
-#include <bitset>
 #include "../Angle.h"
 
 namespace inGame::character
@@ -56,6 +55,10 @@ namespace inGame::field
         ETileKind Kind = ETileKind::none;
         bool IsWall = false;
         Vec2<int> SrcPoint{};
+
+        // 実装したが今のところ未使用
+        //std::map<std::string, std::string> DetailProps{};
+        //std::string GetDetailPropOf(const std::string& key) const;
     };
 
     class ITileMapMatElement

@@ -8,6 +8,13 @@
 
 namespace inGame::field{
 
+    //std::string TilePropertyChip::GetDetailPropOf(const std::string& key) const
+    //{
+    //    auto&& iter = DetailProps.find(key);
+    //    if (iter == DetailProps.end()) return "";
+    //    return iter->second;
+    //}
+
     TileMapMatElement::TileMapMatElement()
     {}
 
