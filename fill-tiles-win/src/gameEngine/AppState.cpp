@@ -110,25 +110,38 @@ namespace gameEngine
     {
         switch (e.type)
         {
-            case SDL_QUIT:
-                m_CanQuitApp = true;
-                break;
-            case SDL_MOUSEBUTTONDOWN:
-                m_Mouse.SetPushed(e.button.button, true);
-                break;
-            case SDL_MOUSEBUTTONUP:
-                m_Mouse.SetPushed(e.button.button, false);
-                break;
-            case SDL_MOUSEMOTION:
-                m_Mouse.SetPosition(Vec2<double>(double(e.motion.x), double(e.motion.y)) / m_PixelPerUnit);
-                break;
-            case SDL_WINDOWEVENT_RESIZED:
-                // SDL2に動作しないバグがあるかも
-                std::cout << e.window.data1 << ", " << e.window.data2 << std::endl;
-                assert(false);
-                break;
-            default:
-                break;
+        case SDL_QUIT:
+            m_CanQuitApp = true;
+            break;
+        case SDL_MOUSEBUTTONDOWN:
+            m_Mouse.SetPushed(e.button.button, true);
+            break;
+        case SDL_MOUSEBUTTONUP:
+            m_Mouse.SetPushed(e.button.button, false);
+            break;
+        case SDL_MOUSEMOTION:
+            m_Mouse.SetPosition(Vec2<double>(double(e.motion.x), double(e.motion.y)) / m_PixelPerUnit);
+            break;
+        case SDL_KEYDOWN:
+            // m_KeyboardStateはSDL_GetKeyboardState(NULL)で外で入れている
+            // ここではもっとプリミティブなキー操作を扱う
+            handleKeyDown(e.key.keysym.scancode);
+            break;
+        case SDL_WINDOWEVENT_RESIZED:
+            // SDL2に動作しないバグがあるかも
+            std::cout << e.window.data1 << ", " << e.window.data2 << std::endl;
+            assert(false);
+            break;
+        default:
+            break;
+        }
+    }
+
+    void AppState::handleKeyDown(const SDL_Scancode& keyCode)
+    {
+        if (keyCode == SDL_SCANCODE_F11) {
+            m_IsWindowFullScreen = !m_IsWindowFullScreen;
+            SDL_SetWindowFullscreen(m_Window, m_IsWindowFullScreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
         }
     }
 

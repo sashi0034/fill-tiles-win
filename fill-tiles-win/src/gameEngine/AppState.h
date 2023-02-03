@@ -52,8 +52,10 @@ namespace gameEngine
         SDL_Renderer* m_Renderer{};
         const Uint8* m_KeyboardState{};
         bool m_CanQuitApp = false;
+        bool m_IsWindowFullScreen = false;
         void pollEvent();
         void processEvent(SDL_Event &e);
+        void handleKeyDown(const SDL_Scancode& keyCode);
         MouseState m_Mouse{};
     public:
         [[nodiscard]] int GetPixelPerUnit() const override;
