@@ -35,7 +35,7 @@ namespace inGame
         return m_View;
     }
 
-    void CharacterViewModel::SetCollider(ISprRectColliderOwner *owner, IFieldManager *field, const Rect<int> &collider)
+    void CharacterViewModel::SetCollider(ISprRectColliderOwner *owner, FieldManager *field, const Rect<int> &collider)
     {
         m_Collider = SprRectCollider::Create(owner, &m_ViewModel, collider);
         field->GetCharacterCollider()->AddCollider(*m_Collider);

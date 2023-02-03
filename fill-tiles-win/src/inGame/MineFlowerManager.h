@@ -32,7 +32,7 @@ namespace inGame
         void removeAlreadyClearedBlocks();
 
         bool checkBloomMineFlower(const MatPos& matPos, MineFlowerClass& mineClass);
-        void bloomNewMineFlower(const MatPos &matPos, MineFlowerClass &mineClass, IFieldManager *const field) const;
+        void bloomNewMineFlower(const MatPos &matPos, MineFlowerClass &mineClass, FieldManager *const field) const;
 
         static CoroTask driveClearingCheckpointBlocksEvent(CoroTaskYield &yield, MineFlowerManager *self, MineFlowerClass& mineClass);
         CoroTask fadeMineFlowersOneByOne(CoroTaskYield& yield, MineFlowerClass& mineClass);

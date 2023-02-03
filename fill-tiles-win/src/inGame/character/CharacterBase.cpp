@@ -7,7 +7,7 @@
 
 namespace inGame::character
 {
-    CharacterBase::CharacterBase(IFieldManager *parentField)
+    CharacterBase::CharacterBase(FieldManager *parentField)
         : ChildBase<CharacterBase>(parentField->GetCharacterPool()),
         m_ParentalField(parentField)
     {}
@@ -17,7 +17,7 @@ namespace inGame::character
         this->getBelongingPool()->Destroy(this);
     }
 
-    IFieldManager *CharacterBase::getParentField()
+    FieldManager *CharacterBase::getParentField()
     {
         return m_ParentalField;
     }

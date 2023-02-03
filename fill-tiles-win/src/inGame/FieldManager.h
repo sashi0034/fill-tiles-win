@@ -35,63 +35,42 @@ namespace inGame
         FieldCheckMoveResult(const bool canMove, ISprRectColliderOwner *const collidedObject);
     };
 
-    class IFieldManager
+    class FieldManager : public ActorBase
     {
     public:
-        virtual FieldCheckMoveResult CheckMoveTo(const MatPos &currPos, EAngle goingAngle) = 0;
-        virtual bool CanMovableObjectMoveTo(const MatPos &currPos, EAngle goingAngle) = 0;
-        virtual IChildrenPool<character::CharacterBase>* GetCharacterPool() = 0;
-        virtual ITextureAnimator* GetAnimator() = 0;
-        virtual SprRectColliderManager* GetCharacterCollider() = 0;
-        virtual field::ITileMap* GetTileMap() = 0;
-        virtual ICoroutineManager * GetCoroutine() = 0;
+        IChildrenPool<character::CharacterBase> *GetCharacterPool();
 
-        virtual void OverwriteWallFlag(const MatPos &pos, bool isWal) = 0;
-        virtual void OverwriteWallFlag(const MatPos &pos, const Vec2<int> &size, bool isWal) = 0;
+        WeakCollection<character::CheckpointBlock> &GetCheckpointBlockList(field::ETileKind blockKind);
 
-        virtual WeakCollection<character::CheckpointBlock> &GetCheckpointBlockList(field::ETileKind blockKind) = 0;
-        virtual MineFlowerManager* GetMineFlowerManager() = 0;
-
-        virtual SwitchAcornManager* GetSwitchAcornManager() = 0;
-        virtual WarpManager* GetWarpManager() = 0;
-    };
-
-    class FieldManager : public IFieldManager, public ActorBase
-    {
-    public:
-        IChildrenPool<character::CharacterBase> *GetCharacterPool() override;
-
-        WeakCollection<character::CheckpointBlock> &GetCheckpointBlockList(field::ETileKind blockKind) override;
-
-        SprRectColliderManager *GetCharacterCollider() override;
+        SprRectColliderManager *GetCharacterCollider();
 
         explicit FieldManager(IChildrenPool<ActorBase> *belonging, IMainScene *parentalScene);
         ~FieldManager();
 
-        ITextureAnimator* GetAnimator() override;
+        ITextureAnimator* GetAnimator();
 
-        ICoroutineManager* GetCoroutine() override;
+        ICoroutineManager* GetCoroutine();
 
         void Init() override;
-        void Update(IAppState* app) override;
+        void Update(IAppState* app);
 
-        FieldCheckMoveResult CheckMoveTo(const MatPos &currMatPos, EAngle goingAngle) override;
+        FieldCheckMoveResult CheckMoveTo(const MatPos &currMatPos, EAngle goingAngle);
 
-        bool CanMovableObjectMoveTo(const MatPos &currPos, EAngle goingAngle) override;
+        bool CanMovableObjectMoveTo(const MatPos &currPos, EAngle goingAngle);
 
-        void OverwriteWallFlag(const MatPos &pos, bool isWall) override;
-        void OverwriteWallFlag(const MatPos &pos, const Vec2<int> &fillSize, bool isWall) override;
+        void OverwriteWallFlag(const MatPos &pos, bool isWall);
+        void OverwriteWallFlag(const MatPos &pos, const Vec2<int> &fillSize, bool isWall);
 
-        field::ITileMap* GetTileMap() override;
+        field::ITileMap* GetTileMap();
 
         static inline const int PixelPerMat = pixel::PixelPerMat;
         static inline const Vec2<int> MatPixelSize = {PixelPerMat, PixelPerMat};
         static inline const Vec2<double> CharacterPadding{0, -PixelPerMat/4};
         Vec2<int> GetScreenMatSize() const;
 
-        MineFlowerManager *GetMineFlowerManager() override;
-        SwitchAcornManager* GetSwitchAcornManager() override;
-        WarpManager* GetWarpManager() override;
+        MineFlowerManager *GetMineFlowerManager();
+        SwitchAcornManager* GetSwitchAcornManager();
+        WarpManager* GetWarpManager();
     private:
         void createRenderedTileMapToBuffer(IAppState *appState);
         void renderChip(const field::TilePropertyChip *chip, field::FieldRenderer &fieldRenderer, SDL_Renderer *sdlRenderer,

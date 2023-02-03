@@ -17,7 +17,7 @@ namespace inGame
         const auto sideRatio = Vec2{0.1, 0.1};
         m_Background = std::make_unique<NinePatchImage>(
                 root->GetAppState(),
-                root->RscImage->ui_white_rounnd_rect.get(),
+                root->RscImage->ui_rounnd_rect_white.get(),
                 Vec2{0.0, 0.0}, Vec2<double>{size.X, size.Y}, sideRatio);
         m_Background->GetSprite().SetBlend(GraphBlend(200));
         m_Background->GetSprite().SetPositionParent(m_SprRootRef);

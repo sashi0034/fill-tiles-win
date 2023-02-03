@@ -19,7 +19,7 @@ namespace inGame
         CharacterViewModel(ScrollManager* scrollManager, Graph* graph);
         void SetModelPos(const Vec2<double>& pos);
         void SetModelPos(const MatPos& pos);
-        void SetCollider(ISprRectColliderOwner *owner, IFieldManager *field, const Rect<int> &collider);
+        void SetCollider(ISprRectColliderOwner *owner, FieldManager *field, const Rect<int> &collider);
         MatPos GetMatPos() const;
         Vec2<double> GetViewModelPos() const;
 

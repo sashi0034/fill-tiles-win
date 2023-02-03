@@ -12,7 +12,7 @@
 namespace inGame
 {
 
-    IFieldManager *SteppedOnMineEventArgs::GetFieldManager() const
+    FieldManager *SteppedOnMineEventArgs::GetFieldManager() const
     {
         return MainScene->GetFieldManager();
     }

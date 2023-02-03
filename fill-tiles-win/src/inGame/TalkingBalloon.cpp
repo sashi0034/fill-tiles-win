@@ -31,7 +31,7 @@ namespace inGame{
 
         m_Background = std::make_unique<NinePatchImage>(
                 scene->GetRoot()->GetAppState(),
-                scene->GetRoot()->RscImage->ui_gray_rounnd_rect.get(),
+                scene->GetRoot()->RscImage->ui_rounnd_rect_blue.get(),
                 Vec2{0.0, 0.0}, Vec2<double>{bgSize.X, bgSize.Y}, sideRatio);
         constexpr int bgAlpha = 224;
         m_Background->GetSprite().SetBlend(GraphBlend(bgAlpha));

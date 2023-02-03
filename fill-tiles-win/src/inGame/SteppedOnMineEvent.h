@@ -15,7 +15,7 @@ namespace inGame
         MineFlowerClass* const ClassAtFailed;
         MatPos const SteppedPos;
 
-        IFieldManager* GetFieldManager() const;
+        FieldManager* GetFieldManager() const;
     };
 
     class SteppedOnMineEvent

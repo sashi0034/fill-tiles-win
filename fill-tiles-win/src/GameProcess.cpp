@@ -22,6 +22,7 @@ int GameProcess::RunGame()
 
     SDL_Window *window = SDL_CreateWindow("Fill Tiles (Debug)", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
                                           screenWidth * pixelPerUnit, screenHeight * pixelPerUnit, SDL_WINDOW_SHOWN);
+    SDL_SetWindowResizable(window, SDL_TRUE);
 
     if (window == NULL)
     {

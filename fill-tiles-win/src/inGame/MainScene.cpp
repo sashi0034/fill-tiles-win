@@ -69,7 +69,7 @@ namespace inGame{
         return m_Root;
     }
 
-    IFieldManager* MainScene::GetFieldManager()
+    FieldManager* MainScene::GetFieldManager()
     {
         return m_FieldManager;
     }

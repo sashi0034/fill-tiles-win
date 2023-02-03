@@ -123,7 +123,7 @@ namespace inGame{
 
     void
     MineFlowerManager::bloomNewMineFlower(const MatPos &matPos, MineFlowerClass &mineClass,
-                                          IFieldManager *const field) const
+                                          FieldManager *const field) const
     {
         auto const newFlower = new character::MineFlower(m_MainScene, matPos);
         mineClass.PushBloomedMineFlower(newFlower);

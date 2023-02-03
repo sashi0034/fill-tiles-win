@@ -29,8 +29,9 @@ namespace inGame::resource
         REGISTER_RESOURCE_PNG(folder_16x16);
         REGISTER_RESOURCE_PNG(blobwob_24x24);
         REGISTER_RESOURCE_PNG(smoke_48x32);
-        REGISTER_RESOURCE_PNG(ui_white_rounnd_rect);
-        REGISTER_RESOURCE_PNG(ui_gray_rounnd_rect);
+        REGISTER_RESOURCE_PNG(ui_rounnd_rect_white);
+        REGISTER_RESOURCE_PNG(ui_rounnd_rect_gray);
+        REGISTER_RESOURCE_PNG(ui_rounnd_rect_blue);
         REGISTER_RESOURCE_PNG(ui_black_window);
         REGISTER_RESOURCE_PNG(punicat_24x24);
         REGISTER_RESOURCE_PNG(catfish_24x24);

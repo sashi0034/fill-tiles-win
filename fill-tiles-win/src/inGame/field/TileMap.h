@@ -15,7 +15,7 @@
 
 namespace inGame{
     class IMainScene;
-    class IFieldManager;
+    class FieldManager;
 }
 
 namespace inGame::field

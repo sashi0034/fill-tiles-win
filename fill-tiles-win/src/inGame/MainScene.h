@@ -34,7 +34,7 @@ namespace inGame
     public:
         virtual GameRoot* GetRoot() = 0;
         virtual ScrollManager* GetScrollManager() = 0;
-        virtual IFieldManager* GetFieldManager() = 0;
+        virtual FieldManager* GetFieldManager() = 0;
         virtual Player* GetPlayer() = 0;
         virtual FieldEventManager* GetFieldEventManager() = 0;
         virtual EffectManager* GetEffectManager() = 0;
@@ -51,7 +51,7 @@ namespace inGame
         TextureAnimator& GetTextureAnimator();
         void Update(IAppState* appState) override;
         GameRoot *GetRoot() override;
-        IFieldManager* GetFieldManager() override;
+        FieldManager* GetFieldManager() override;
         ScrollManager *GetScrollManager() override;
         FieldEventManager *GetFieldEventManager() override;
         EffectManager* GetEffectManager() override;

@@ -10,7 +10,7 @@
 #include "../GameRoot.h"
 
 namespace inGame{
-    class IFieldManager;
+    class FieldManager;
 }
 
 namespace inGame::character
@@ -19,14 +19,14 @@ namespace inGame::character
     {
     DEF_WEAK_GET(CharacterBase);
     public:
-        explicit CharacterBase(IFieldManager *parentField);
+        explicit CharacterBase(FieldManager *parentField);
         virtual ~CharacterBase() = default;
         virtual void Destroy();
         virtual void Update(IAppState* app);
     protected:
-        IFieldManager* getParentField();
+        FieldManager* getParentField();
     private:
-        IFieldManager* m_ParentalField;
+        FieldManager* m_ParentalField;
     };
 }
 

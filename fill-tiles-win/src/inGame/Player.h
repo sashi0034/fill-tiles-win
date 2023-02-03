@@ -68,7 +68,7 @@ namespace inGame
         PlayerState m_State = PlayerState(EPlayerState::Walking);
         EAngle m_Angle = EAngle::Down;
         IMainScene* m_ParentalScene;
-        IFieldManager* m_Field;
+        FieldManager* m_Field;
 
         ChildrenPool<ProcessTimer> m_SubProcess{};
         rx::subject<PlayerMoveData*> m_OnMoveBegin{};
