@@ -23,7 +23,7 @@ namespace inGame::character
         static const inline Vec2<int> cellSrcSize{24, 24};
         CharacterViewModel m_View;
 
-        void subscribePlayer(const MatPos &matPos, Player *const player);
+        void subscribePlayer(const MatPos &matPos, Player *const player, IMainScene* const scene);
     };
 
 } // inGame::character

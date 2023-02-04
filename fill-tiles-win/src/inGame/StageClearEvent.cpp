@@ -31,6 +31,8 @@ namespace inGame
 
     void StageClearEvent::startEvent(CoroTaskYield &yield, StageClearEventArgs args)
     {
+        auto eventInScope = args.SceneRef->GetFieldEventManager()->UseEvent();
+        eventInScope.StartFromHere();
         yield();
 
         constexpr double duration = 0.5;

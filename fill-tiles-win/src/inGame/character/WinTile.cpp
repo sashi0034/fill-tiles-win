@@ -4,6 +4,9 @@
 
 #include "WinTile.h"
 #include "../ZIndex.h"
+#include "../Player.h"
+#include "../MainScene.h"
+#include "../StageClearEvent.h"
 
 namespace inGame::character
 {
@@ -35,14 +38,17 @@ namespace inGame::character
 
         if (auto player = mainScene->GetPlayer())
         {
-            subscribePlayer(matPos, player);
+            subscribePlayer(matPos, player, mainScene);
         }
     }
 
-    void WinTile::subscribePlayer(const MatPos &matPos, Player *const player)
+    void WinTile::subscribePlayer(const MatPos &matPos, Player *const player, IMainScene* const scene)
     {
-        // TODO
-        (void)matPos;
-        (void)player;
+        player->OnMoveFinish().subscribe([matPos, this, scene](PlayerMoveData* data) {
+            if (matPos != data->AfterPos) return;
+
+            // プレイヤーがゴールした
+            StageClearEvent::Start(StageClearEventArgs{ scene });
+         });
     }
 } // inGame::character

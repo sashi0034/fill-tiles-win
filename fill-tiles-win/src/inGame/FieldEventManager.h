@@ -26,6 +26,7 @@ namespace inGame
         ~FieldEventInScope();
         void StartFromHere();
         void TakeScroll();
+    private:
         IFieldEventManagerCountable* m_Manager;
         bool m_IsStarted = false;
         IntCounter* m_TakingScroll = nullptr;
