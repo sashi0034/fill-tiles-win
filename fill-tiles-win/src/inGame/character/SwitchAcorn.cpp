@@ -8,7 +8,7 @@
 
 namespace inGame::character
 {
-    SwitchAcorn::SwitchAcorn(IMainScene *mainScene, const MatPos &matPos, ESwitchAcornKind kind)
+    SwitchAcorn::SwitchAcorn(MainScene *mainScene, const MatPos &matPos, ESwitchAcornKind kind)
             : CharacterBase(mainScene->GetFieldManager()),
               selfKind(kind),
               mainScene(mainScene),

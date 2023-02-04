@@ -15,7 +15,7 @@
 namespace inGame{
 
 
-    MineFlowerManager::MineFlowerManager(IMainScene *mainScene)
+    MineFlowerManager::MineFlowerManager(MainScene *mainScene)
         : m_MainScene(mainScene)
     {
         using kind = field::ETileKind;
@@ -27,7 +27,7 @@ namespace inGame{
         m_MineFlowerClass.emplace_back(kind::mine_flower_3, kind::checkpoint_block_3, 3);
         m_MineFlowerClass.emplace_back(kind::mine_flower_4, kind::checkpoint_block_4, 4);
 
-        m_CurrMineFlowerClass = GetMineFlowerClassByLevel(mainScene->ToSuper()->InitialLevel);
+        m_CurrMineFlowerClass = GetMineFlowerClassByLevel(mainScene->InitialLevel);
     }
 
 
@@ -58,7 +58,7 @@ namespace inGame{
     // 既に通過したチェックポイントまでブロックを取り除く
     void MineFlowerManager::removeAlreadyClearedBlocks()
     {
-        for (int level=1; level < m_MainScene->ToSuper()->InitialLevel; ++level)
+        for (int level=1; level < m_MainScene->InitialLevel; ++level)
         {
             auto mineClass = GetMineFlowerClassByLevel(level);
             auto& blockList = m_MainScene->GetFieldManager()->GetCheckpointBlockList(mineClass->BlockTile);

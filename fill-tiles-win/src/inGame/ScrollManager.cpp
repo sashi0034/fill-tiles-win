@@ -7,7 +7,7 @@
 
 namespace inGame
 {
-    ScrollManager::ScrollManager(IMainScene *parentScene)
+    ScrollManager::ScrollManager(MainScene *parentScene)
             : m_ParentScene(parentScene)
     {}
 

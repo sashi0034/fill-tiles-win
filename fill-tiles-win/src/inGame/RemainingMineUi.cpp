@@ -7,7 +7,7 @@
 
 namespace inGame
 {
-    RemainingMineUi::RemainingMineUi(IMainScene *scene, MineFlowerManager *mineFlowerManager)
+    RemainingMineUi::RemainingMineUi(MainScene *scene, MineFlowerManager *mineFlowerManager)
     : ActorBase(scene->GetEffectManager()->GetChildren()),
         m_SceneRef(scene), m_MineFlowerManagerRef(mineFlowerManager)
     {
@@ -32,7 +32,7 @@ namespace inGame
     }
 
 
-    void RemainingMineUi::initBackground(IMainScene *scene)
+    void RemainingMineUi::initBackground(MainScene *scene)
     {
         const auto sideRatio = Vec2{0.2, 0.2};
         m_Background = std::make_unique<NinePatchImage>(
@@ -44,7 +44,7 @@ namespace inGame
         ZIndexUi(&m_Background->GetSprite()).SetIndex(10).ApplyZ();
     }
 
-    void RemainingMineUi::initText(IMainScene *scene, const std::string &str)
+    void RemainingMineUi::initText(MainScene *scene, const std::string &str)
     {
         const Vec2<double> rightMargin{-6, 0};
 

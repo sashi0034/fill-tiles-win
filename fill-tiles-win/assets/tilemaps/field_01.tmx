@@ -178,7 +178,7 @@
 </data>
  </layer>
  <objectgroup id="5" name="オブジェクトレイヤー1">
-  <object id="1" name="restart_1" class="restart" x="192" y="528" width="16" height="16">
+  <object id="1" name="restart_1" class="restart" x="224" y="176" width="16" height="16">
    <properties>
     <property name="level" type="int" value="1"/>
    </properties>

@@ -11,7 +11,7 @@ namespace inGame
 {
     struct SteppedOnMineEventArgs
     {
-        IMainScene* const MainScene;
+        MainScene* const MainScene;
         MineFlowerClass* const ClassAtFailed;
         MatPos const SteppedPos;
 

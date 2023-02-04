@@ -13,7 +13,7 @@ namespace inGame::character
 {
     // TODO: 時間があったらキノコくんがぐるぐるするアニメーションを作りたいかも
 
-    WarpTile::WarpTile(IMainScene *mainScene, const MatPos &matPos, char key)
+    WarpTile::WarpTile(MainScene *mainScene, const MatPos &matPos, char key)
             : CharacterBase(mainScene->GetFieldManager()),
               Pos(MatPos(matPos.GetVec())),
               m_View(mainScene->GetScrollManager(),

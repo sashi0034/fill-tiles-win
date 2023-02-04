@@ -9,14 +9,14 @@
 
 
 namespace inGame{
-    class IMainScene;
+    class MainScene;
     class ETileKind;
 }
 
 namespace inGame::field::tileMap
 {
 
-    bool SummonCharacterByChip(IMainScene* mainScene, const Vec2<int> &pos, ETileKind kind);
+    bool SummonCharacterByChip(MainScene* mainScene, const Vec2<int> &pos, ETileKind kind);
 
 } // inGame
 

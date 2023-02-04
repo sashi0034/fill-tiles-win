@@ -8,7 +8,7 @@ static inline const int cellStep = pixel::PixelPerMat * 4;
 static inline const int cellSpace = 1;
 static inline const int cellLength = cellStep - cellSpace;
 
-void inGame::field::renderBackmostGrass(IAppState* app, IMainScene* mainScene)
+void inGame::field::renderBackmostGrass(IAppState* app, MainScene* mainScene)
 {
     auto&& root = mainScene->GetRoot();
     auto&& scroll = mainScene->GetScrollManager()->GetScroll();

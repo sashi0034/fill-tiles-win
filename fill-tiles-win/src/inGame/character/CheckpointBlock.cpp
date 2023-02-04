@@ -9,7 +9,7 @@
 namespace inGame::character
 {
 
-    CheckpointBlock::CheckpointBlock(IMainScene *mainScene, const MatPos &matPos, field::ETileKind tileKind)
+    CheckpointBlock::CheckpointBlock(MainScene *mainScene, const MatPos &matPos, field::ETileKind tileKind)
             : CharacterBase(mainScene->GetFieldManager()),
             m_Scene(mainScene),
             m_View(mainScene->GetScrollManager(), mainScene->GetRoot()->RscImage->folder_16x16.get()),

@@ -7,7 +7,7 @@
 
 namespace inGame::character{
 
-    SmallTree::SmallTree(IMainScene *mainScene, const MatPos &matPos)
+    SmallTree::SmallTree(MainScene *mainScene, const MatPos &matPos)
             : CharacterBase(mainScene->GetFieldManager())
             , m_View(mainScene->GetScrollManager(), mainScene->GetRoot()->RscImage->tree_16x16.get())
     {

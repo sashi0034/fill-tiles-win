@@ -10,7 +10,7 @@
 namespace inGame::field::tileMap
 {
     void ReadObjectInObjectGroup(
-            IMainScene* mainScene,
+            MainScene* mainScene,
             const std::string &objectType,
             const std::string &objectName,
             const Vec2<int> &pos,

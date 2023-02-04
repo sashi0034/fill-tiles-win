@@ -11,7 +11,7 @@
 
 namespace inGame
 {
-    class IMainScene;
+    class MainScene;
 }
 
 namespace inGame::test
@@ -20,12 +20,12 @@ namespace inGame::test
     class EffectTest : public ActorBase
     {
     public:
-        explicit EffectTest(IMainScene *sceneRef, IChildrenPool<ActorBase> *children);
+        explicit EffectTest(MainScene *sceneRef, IChildrenPool<ActorBase> *children);
 
         void Update(IAppState *appState) override;
 
     private:
-        IMainScene* m_SceneRef;
+        MainScene* m_SceneRef;
         DirChangeDetector m_FileChangeDetector;
         ProcessTimer m_Timer = initProcessTimer();
         ProcessTimer initProcessTimer();

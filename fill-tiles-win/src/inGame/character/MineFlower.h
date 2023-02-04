@@ -15,7 +15,7 @@ namespace inGame::character
     class MineFlower : public CharacterBase
     {
     public:
-        MineFlower(IMainScene *mainScene, const MatPos &matPos);
+        MineFlower(MainScene *mainScene, const MatPos &matPos);
         const MatPos Position;
     private:
         CharacterViewModel m_View;

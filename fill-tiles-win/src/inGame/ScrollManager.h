@@ -9,12 +9,12 @@
 
 namespace inGame
 {
-    class IMainScene;
+    class MainScene;
 
     class ScrollManager final
     {
     public:
-        explicit ScrollManager(IMainScene* parentScene);
+        explicit ScrollManager(MainScene* parentScene);
         void RegisterSprite(SpriteTexture &target);
 
         Vec2<double> GetScroll();
@@ -24,7 +24,7 @@ namespace inGame
         Vec2<double> MakePosInFieldRange(const Vec2<double> &pos);
     private:
         SpriteTexture m_ViewModel = SpriteTexture::Create(nullptr);
-        IMainScene* m_ParentScene;
+        MainScene* m_ParentScene;
     };
 }
 

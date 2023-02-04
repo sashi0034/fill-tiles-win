@@ -7,7 +7,7 @@
 
 namespace inGame::character
 {
-    Carrot::Carrot(IMainScene *mainScene, const MatPos &matPos) :
+    Carrot::Carrot(MainScene *mainScene, const MatPos &matPos) :
             CharacterBase(mainScene->GetFieldManager()),
             m_View(mainScene->GetScrollManager(), mainScene->GetRoot()->RscImage->carrot_16x32.get())
     {

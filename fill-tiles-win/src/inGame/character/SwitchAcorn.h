@@ -29,10 +29,10 @@ namespace inGame::character
     {
         DEF_WEAK_GET(SwitchAcorn);
     public:
-        SwitchAcorn(IMainScene *mainScene, const MatPos &matPos, ESwitchAcornKind kind);
+        SwitchAcorn(MainScene *mainScene, const MatPos &matPos, ESwitchAcornKind kind);
     private:
         const ESwitchAcornKind selfKind;
-        IMainScene *mainScene;
+        MainScene *mainScene;
         CharacterViewModel m_View;
         MatPos initialPos;
         static const inline Vec2<int> cellMatSize = Vec2<int>{1, 1};

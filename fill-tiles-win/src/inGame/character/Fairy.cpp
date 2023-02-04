@@ -10,7 +10,7 @@
 namespace inGame::character
 {
 
-    Fairy::Fairy(IMainScene *mainScene, const MatPos &matPos, const std::string &message)
+    Fairy::Fairy(MainScene *mainScene, const MatPos &matPos, const std::string &message)
             : CharacterBase(mainScene->GetFieldManager())
             , m_View(mainScene->GetScrollManager(), mainScene->GetRoot()->RscImage->blobwob_24x24.get())
     {
@@ -50,7 +50,7 @@ namespace inGame::character
                 ->AddFrame(Vec2{9, 0}, 0.4);
     }
 
-    void Fairy::subscribePlayerMove(IMainScene *mainScene, const MatPos &selfMatPos, const std::string &message,
+    void Fairy::subscribePlayerMove(MainScene *mainScene, const MatPos &selfMatPos, const std::string &message,
                                     const Player *player)
     {
         player->OnMoveBegin().subscribe([&, selfMatPos, message, mainScene](PlayerMoveData *moveData) {

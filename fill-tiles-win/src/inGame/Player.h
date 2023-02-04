@@ -36,7 +36,7 @@ namespace inGame
     class Player final : public ActorBase
     {
     public:
-        explicit Player(IChildrenPool<ActorBase> *belonging, IMainScene *mainScene);
+        explicit Player(IChildrenPool<ActorBase> *belonging, MainScene *mainScene);
         void Init() override;
         void Update(IAppState *appState) override;
         Vec2<double> GetPos();
@@ -67,7 +67,7 @@ namespace inGame
         TextureAnimator m_PlayerAnimator{};
         PlayerState m_State = PlayerState(EPlayerState::Walking);
         EAngle m_Angle = EAngle::Down;
-        IMainScene* m_ParentalScene;
+        MainScene* m_ParentalScene;
         FieldManager* m_Field;
 
         ChildrenPool<ProcessTimer> m_SubProcess{};

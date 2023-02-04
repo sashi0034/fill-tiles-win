@@ -16,7 +16,7 @@ namespace inGame::character
     class Carrot : public CharacterBase
     {
     public:
-        Carrot(IMainScene *mainScene, const MatPos &matPos);
+        Carrot(MainScene *mainScene, const MatPos &matPos);
         CharacterViewModel m_View;
     private:
         static const inline Vec2<int>cellMatSize = Vec2<int>{1, 2};

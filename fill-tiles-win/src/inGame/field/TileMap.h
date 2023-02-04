@@ -14,7 +14,7 @@
 #include "../MatPos.h"
 
 namespace inGame{
-    class IMainScene;
+    class MainScene;
     class FieldManager;
 }
 
@@ -35,7 +35,7 @@ namespace inGame::field
     class TileMap : public ITileMap
     {
     public:
-        explicit TileMap(IMainScene *mainScene);
+        explicit TileMap(MainScene *mainScene);
         void LoadMapFile(const std::string &fileName);
         Vec2<int> GetMatSize() const override;
         Vec2<int> GetSizeByPixel() const override;
@@ -48,7 +48,7 @@ namespace inGame::field
 
         static inline const std::string TileMapDirectory = "./assets/tilemaps/";
     private:
-        IMainScene* m_MainScene;
+        MainScene* m_MainScene;
         unique_ptr<Graph> m_TilesetImage{};
         std::unordered_map<int, TilePropertyChip> m_Tileset;
         std::unordered_map<ETileKind, TilePropertyChip*> m_TilesetByKind{};

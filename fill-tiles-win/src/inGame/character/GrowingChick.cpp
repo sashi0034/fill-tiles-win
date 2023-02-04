@@ -13,7 +13,7 @@ namespace inGame::character
 
     const int pixelPerMat = FieldManager::PixelPerMat;
 
-    GrowingChick::GrowingChick(IMainScene *mainScene, const MatPos &matPos)
+    GrowingChick::GrowingChick(MainScene *mainScene, const MatPos &matPos)
             : CharacterBase(mainScene->GetFieldManager()),
               m_Scene(mainScene),
               m_View(mainScene->GetScrollManager(), mainScene->GetRoot()->RscImage->egg_16x16.get())
@@ -36,7 +36,7 @@ namespace inGame::character
         }
     }
 
-    unique_ptr<TextPassage> GrowingChick::createManualText(IMainScene *mainScene) const
+    unique_ptr<TextPassage> GrowingChick::createManualText(MainScene *mainScene) const
     { return std::make_unique<TextPassage>(
             mainScene->GetRoot()->GetAppState(), mainScene->GetRoot()->RscFont->KHDotAkihabara32px.get(),
             Rgba(255, 255, 255),
@@ -66,7 +66,7 @@ namespace inGame::character
         ZIndexCharacter(m_View).ApplyZ();
     }
 
-    void GrowingChick::subscribePlayerMove(IMainScene *mainScene, const Player *player)
+    void GrowingChick::subscribePlayerMove(MainScene *mainScene, const Player *player)
     {
         player->OnMoveFinish().subscribe([mainScene, this](PlayerMoveData* moveData){
             if (m_Growth!=growth::Egg) return;

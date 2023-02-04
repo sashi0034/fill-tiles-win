@@ -7,7 +7,7 @@
 
 namespace inGame::character{
 
-    BigTree::BigTree(IMainScene *mainScene, const MatPos &matPos) :
+    BigTree::BigTree(MainScene *mainScene, const MatPos &matPos) :
             CharacterBase(mainScene->GetFieldManager()),
             m_View(mainScene->GetScrollManager(), mainScene->GetRoot()->RscImage->tree_48x48.get())
     {

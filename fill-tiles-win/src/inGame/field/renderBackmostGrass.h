@@ -6,6 +6,6 @@
 
 namespace inGame::field
 {
-    void renderBackmostGrass(IAppState* app, IMainScene* mainScene);
+    void renderBackmostGrass(IAppState* app, MainScene* mainScene);
 }
 

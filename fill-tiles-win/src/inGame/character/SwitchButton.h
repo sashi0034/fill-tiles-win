@@ -18,9 +18,9 @@ namespace inGame::character
     class SwitchButton : public CharacterBase
     {
     public:
-        SwitchButton(IMainScene *mainScene, const MatPos &matPos);
+        SwitchButton(MainScene *mainScene, const MatPos &matPos);
     private:
-        IMainScene* mainScene;
+        MainScene* mainScene;
         CharacterViewModel m_View;
         static const inline Vec2<int>cellMatSize = Vec2<int>{1, 1};
 

@@ -7,7 +7,7 @@
 
 namespace inGame::character
 {
-    SolidRock::SolidRock(IMainScene *mainScene, const MatPos &matPos)
+    SolidRock::SolidRock(MainScene *mainScene, const MatPos &matPos)
             : CharacterBase(mainScene->GetFieldManager()),
             m_View(mainScene->GetScrollManager(), mainScene->GetRoot()->RscImage->solid_rock_16x16.get()),
             m_Movable(mainScene, &m_View)

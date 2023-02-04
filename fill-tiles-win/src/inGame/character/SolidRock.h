@@ -17,7 +17,7 @@ namespace inGame::character
     class SolidRock : public CharacterBase, public ISprRectColliderOwner
     {
     public:
-        SolidRock(IMainScene *mainScene, const MatPos &matPos);
+        SolidRock(MainScene *mainScene, const MatPos &matPos);
         CharacterViewModel m_View;
         void Update(IAppState *app) override;
         MovableObjectLogic* GetMovable();

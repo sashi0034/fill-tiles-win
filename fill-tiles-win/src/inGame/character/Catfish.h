@@ -19,14 +19,14 @@ namespace inGame::character
     class Catfish final: public CharacterBase, public ISprRectColliderOwner
     {
     public:
-        Catfish(IMainScene *mainScene, const MatPos &matPos);
+        Catfish(MainScene *mainScene, const MatPos &matPos);
         ParabolaAnimation * JumpWhenEat();
         MovableObjectLogic* GetMovable();
 
         void Update(IAppState *app) override;
         UpFlag& GetEatableFlag();
     private:
-        IMainScene* m_Scene;
+        MainScene* m_Scene;
         CharacterViewModel m_View{};
         UpFlag m_EatableFlag{};
         MovableObjectLogic m_MovableObjectLogic;

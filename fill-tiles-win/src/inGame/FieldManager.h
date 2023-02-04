@@ -26,7 +26,7 @@ namespace inGame
         class CheckpointBlock;
     }
 
-    class IMainScene;
+    class MainScene;
 
     struct FieldCheckMoveResult{
         const bool CanMove;
@@ -44,7 +44,7 @@ namespace inGame
 
         SprRectColliderManager *GetCharacterCollider();
 
-        explicit FieldManager(IChildrenPool<ActorBase> *belonging, IMainScene *parentalScene);
+        explicit FieldManager(IChildrenPool<ActorBase> *belonging, MainScene *parentalScene);
         ~FieldManager();
 
         ITextureAnimator* GetAnimator();
@@ -75,7 +75,7 @@ namespace inGame
         void createRenderedTileMapToBuffer(IAppState *appState);
         void renderChip(const field::TilePropertyChip *chip, field::FieldRenderer &fieldRenderer, SDL_Renderer *sdlRenderer,
                         const Vec2<int> &screenPos, const Vec2<double> &renderingSize);
-        IMainScene* m_ParentalScene;
+        MainScene* m_ParentalScene;
         field::TileMap m_TileMap;
         SpriteTexture m_BackmostTexture = SpriteTexture::Create(nullptr);
         SpriteTexture m_TileMapTexture = SpriteTexture::Create(nullptr);

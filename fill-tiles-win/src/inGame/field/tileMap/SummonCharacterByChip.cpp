@@ -15,7 +15,7 @@
 
 namespace inGame::field::tileMap
 {
-    bool SummonCharacterByChip(IMainScene* mainScene, const Vec2<int> &pos, ETileKind kind)
+    bool SummonCharacterByChip(MainScene* mainScene, const Vec2<int> &pos, ETileKind kind)
     {
         const auto matPos = MatPos(pos);
         const auto field = mainScene->GetFieldManager()->GetCharacterPool();

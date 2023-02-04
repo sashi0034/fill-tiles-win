@@ -8,7 +8,7 @@
 
 namespace inGame::character
 {
-    GlassFloor::GlassFloor(IMainScene *mainScene, const MatPos &matPos)
+    GlassFloor::GlassFloor(MainScene *mainScene, const MatPos &matPos)
             : CharacterBase(mainScene->GetFieldManager()),
             mainScene(mainScene),
             m_View(mainScene->GetScrollManager(), mainScene->GetRoot()->RscImage->glass_floor_16x16.get())

@@ -18,18 +18,18 @@ namespace inGame
     {
         DEF_WEAK_GET(TalkingBalloon);
     public:
-        static TalkingBalloon* Create(IMainScene *scene, const std::string &text, const MatPos &pos);
+        static TalkingBalloon* Create(MainScene *scene, const std::string &text, const MatPos &pos);
     private:
-        TalkingBalloon(IMainScene *scene, const std::string &text, const Vec2<double> &pos);
+        TalkingBalloon(MainScene *scene, const std::string &text, const Vec2<double> &pos);
         SpriteTexture m_SpriteRoot = SpriteTexture::Create();
-        IMainScene* m_Scene;
+        MainScene* m_Scene;
         std::string m_Text;
 
         static const inline Vec2<double> bgSize = Vec2<double>{128.0, 48.0};
         unique_ptr<NinePatchImage> m_Background;
         TextPassage m_TextPassage;
 
-        void initBackground(IMainScene *scene);
+        void initBackground(MainScene *scene);
         void initTextPassage();
 
         CoroTask startAppear(CoroTaskYield &yield);

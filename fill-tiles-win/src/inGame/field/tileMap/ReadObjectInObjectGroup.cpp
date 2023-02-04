@@ -12,7 +12,7 @@
 #include "../../character/WinTile.h"
 
 
-void inGame::field::tileMap::ReadObjectInObjectGroup(inGame::IMainScene *mainScene, const std::string &objectType,
+void inGame::field::tileMap::ReadObjectInObjectGroup(inGame::MainScene *mainScene, const std::string &objectType,
                                                      const std::string &objectName, const Vec2<int> &pos,
                                                      std::unordered_map<std::string, std::string> &objectProperty)
 {

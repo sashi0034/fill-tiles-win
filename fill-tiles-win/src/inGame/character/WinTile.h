@@ -17,13 +17,13 @@ namespace inGame::character
     class WinTile : public CharacterBase
     {
     public:
-        WinTile(IMainScene *mainScene, const MatPos &matPos);
+        WinTile(MainScene *mainScene, const MatPos &matPos);
         const MatPos Pos;
     private:
         static const inline Vec2<int> cellSrcSize{24, 24};
         CharacterViewModel m_View;
 
-        void subscribePlayer(const MatPos &matPos, Player *const player, IMainScene* const scene);
+        void subscribePlayer(const MatPos &matPos, Player *const player, MainScene* const scene);
     };
 
 } // inGame::character

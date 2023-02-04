@@ -16,7 +16,7 @@ namespace inGame::character
     class BigTree : public CharacterBase
     {
     public:
-        BigTree(IMainScene *mainScene, const MatPos &matPos);
+        BigTree(MainScene *mainScene, const MatPos &matPos);
         CharacterViewModel m_View;
     private:
         static const inline Vec2<int>cellMatSize = Vec2<int>{3, 3};

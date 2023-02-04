@@ -16,7 +16,7 @@ using namespace boost::coroutines2;
 
 namespace inGame
 {
-    Player::Player(IChildrenPool<ActorBase> *belonging, IMainScene *mainScene)
+    Player::Player(IChildrenPool<ActorBase> *belonging, MainScene *mainScene)
             : ActorBase(belonging), m_State(EPlayerState::Walking), m_ParentalScene(mainScene), m_Field(mainScene->GetFieldManager())
 {
         m_Image = mainScene->GetRoot()->RscImage->kisaragi_32x32.get();

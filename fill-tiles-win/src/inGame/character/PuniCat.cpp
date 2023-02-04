@@ -8,7 +8,7 @@
 
 namespace inGame::character
 {
-    PuniCat::PuniCat(IMainScene *mainScene, const MatPos &matPos)
+    PuniCat::PuniCat(MainScene *mainScene, const MatPos &matPos)
             : CharacterBase(mainScene->GetFieldManager()),
             m_Scene(mainScene),
             m_View(mainScene->GetScrollManager(), mainScene->GetRoot()->RscImage->punicat_24x24.get())
@@ -33,7 +33,7 @@ namespace inGame::character
         }
     }
 
-    void PuniCat::subscribePlayerAction(IMainScene *mainScene, const Player *player)
+    void PuniCat::subscribePlayerAction(MainScene *mainScene, const Player *player)
     {
         player->OnAction().subscribe([&, mainScene, this](auto&& action){
            if (auto actionDetail = dynamic_cast<PlayerActionPushCatfish*>(action))
@@ -44,7 +44,7 @@ namespace inGame::character
         });
     }
 
-    void PuniCat::searchCatfishEveryAngle(IMainScene *mainScene, Catfish *nullableTargetCatfish)
+    void PuniCat::searchCatfishEveryAngle(MainScene *mainScene, Catfish *nullableTargetCatfish)
     {
         if (nullableTargetCatfish)
             if (!nullableTargetCatfish->GetEatableFlag().IsUp()) return;
@@ -78,7 +78,7 @@ namespace inGame::character
         }
     }
 
-    void PuniCat::startGoToEatCatfish(IMainScene *mainScene, Catfish *targetCatfish, const Vec2<int> &stepVec,
+    void PuniCat::startGoToEatCatfish(MainScene *mainScene, Catfish *targetCatfish, const Vec2<int> &stepVec,
                                       const MatPos &checkingPos, EAngle angle)
     {
         targetCatfish->GetEatableFlag().GoDown();

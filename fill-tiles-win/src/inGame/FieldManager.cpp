@@ -16,7 +16,7 @@ namespace inGame
 {
     using namespace field;
 
-    FieldManager::FieldManager(IChildrenPool<ActorBase> *belonging, IMainScene *parentalScene) :
+    FieldManager::FieldManager(IChildrenPool<ActorBase> *belonging, MainScene *parentalScene) :
             ActorBase(belonging),
             m_ParentalScene(parentalScene), m_TileMap(parentalScene)
     {

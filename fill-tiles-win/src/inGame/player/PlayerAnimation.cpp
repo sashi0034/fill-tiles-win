@@ -97,7 +97,7 @@ namespace inGame::player
         (void)appState;
     }
 
-    PlayerAnimation::PlayerAnimation(IMainScene *mainScene, const Vec2<int> &cellSize, TextureAnimator &animator,
+    PlayerAnimation::PlayerAnimation(MainScene *mainScene, const Vec2<int> &cellSize, TextureAnimator &animator,
                                      CharacterViewModel *const view) : mainScene(mainScene), cellSize(cellSize),
                                                                        animator(animator), view(view)
     {}

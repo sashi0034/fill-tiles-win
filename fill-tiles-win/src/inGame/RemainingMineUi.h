@@ -17,7 +17,7 @@ namespace inGame
     class RemainingMineUi : public ActorBase
     {
     public:
-        explicit RemainingMineUi(IMainScene *scene, MineFlowerManager *mineFlowerManager);
+        explicit RemainingMineUi(MainScene *scene, MineFlowerManager *mineFlowerManager);
         void Init() override;
 
         void Update(IAppState *appState) override;
@@ -27,16 +27,16 @@ namespace inGame
         SpriteTexture m_SpriteRoot = SpriteTexture::Create();
         SpriteTexture m_Icon = SpriteTexture::Create();
         static const inline Vec2<double> bgSize = Vec2<double>{80, 24};
-        IMainScene* m_SceneRef;
+        MainScene* m_SceneRef;
         MineFlowerManager* m_MineFlowerManagerRef;
         unique_ptr<NinePatchImage> m_Background;
         unique_ptr<TextPassage> m_TextPassage;
         int m_RemainingCountBefore = 0;
         int m_MaxRemainingCountBefore = 0;
 
-        void initText(IMainScene *scene, const std::string &str);
+        void initText(MainScene *scene, const std::string &str);
 
-        void initBackground(IMainScene *scene);
+        void initBackground(MainScene *scene);
 
         void updateViewAsync(CoroTaskYield &yield, IAppState *appState);
 

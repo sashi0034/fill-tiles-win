@@ -9,7 +9,7 @@
 
 namespace inGame{
 
-    TalkingBalloon::TalkingBalloon(IMainScene *scene, const std::string &text, const Vec2<double> &pos) :
+    TalkingBalloon::TalkingBalloon(MainScene *scene, const std::string &text, const Vec2<double> &pos) :
           ActorBase(scene->GetEffectManager()->GetChildren()),
           m_Scene(scene),
           m_Text(text),
@@ -25,7 +25,7 @@ namespace inGame{
                 ));
     }
 
-    void TalkingBalloon::initBackground(IMainScene *scene)
+    void TalkingBalloon::initBackground(MainScene *scene)
     {
         const auto sideRatio = Vec2{0.1, 0.1};
 
@@ -125,7 +125,7 @@ namespace inGame{
     }
 
 
-    TalkingBalloon* TalkingBalloon::Create(IMainScene *scene, const std::string &text, const MatPos &pos)
+    TalkingBalloon* TalkingBalloon::Create(MainScene *scene, const std::string &text, const MatPos &pos)
     {
         auto effectManager = scene->GetEffectManager()->GetChildren();
         auto product = new TalkingBalloon(scene, text, pos.ToPixelPos() + FieldManager::MatPixelSize.CastTo<double>() / 2.0 +

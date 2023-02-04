@@ -13,7 +13,7 @@ namespace inGame
 {
     struct StageClearEventArgs
     {
-        IMainScene* const SceneRef;
+        MainScene* const SceneRef;
 
         [[nodiscard]] GameRoot* GetRoot() const;
         [[nodiscard]] TextureAnimator* GetAnimator() const;

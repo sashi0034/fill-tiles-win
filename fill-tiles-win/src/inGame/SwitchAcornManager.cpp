@@ -10,7 +10,7 @@ namespace inGame
 {
     using character::ESwitchAcornKind;
 
-    SwitchAcornManager::SwitchAcornManager(IMainScene *mainScene)
+    SwitchAcornManager::SwitchAcornManager(MainScene *mainScene)
     : mainScene(mainScene)
     {}
 

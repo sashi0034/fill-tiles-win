@@ -11,7 +11,7 @@
 
 namespace inGame
 {
-    class IMainScene;
+    class MainScene;
 
     namespace character{
         class MineFlower;

@@ -14,7 +14,7 @@ namespace inGame
     class MineFlowerManager
     {
     public:
-        explicit MineFlowerManager(IMainScene *mainScene);
+        explicit MineFlowerManager(MainScene *mainScene);
         void Init();
         MineFlowerClass* GetCurrMineFlowerClass();
         MineFlowerClass* GetNextMineFlowerClass();
@@ -23,7 +23,7 @@ namespace inGame
         bool IsMineFlowerMat(const MatPos& matPos) const;
         void CheckStepOnMine(const MatPos &pos);
     private:
-        IMainScene* m_MainScene;
+        MainScene* m_MainScene;
         std::vector<MineFlowerClass> m_MineFlowerClass{};
         MineFlowerClass* m_CurrMineFlowerClass{};
         UpFlag AliveFlag{};

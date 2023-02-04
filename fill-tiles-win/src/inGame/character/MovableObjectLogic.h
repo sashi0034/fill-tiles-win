@@ -20,11 +20,11 @@ namespace inGame::character
         bool CanMove(EAngle angle);
         void ForceMove(EAngle angle);
 
-        MovableObjectLogic(IMainScene *mainScene, CharacterViewModel *view);
+        MovableObjectLogic(MainScene *mainScene, CharacterViewModel *view);
     private:
         void move(CoroTaskYield& yield, EAngle angle);
 
-        IMainScene* mainScene;
+        MainScene* mainScene;
         CharacterViewModel* view;
     };
 

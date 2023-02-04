@@ -29,34 +29,21 @@ namespace inGame
         static MainSceneResetInfo FromLevel(int level);
     };
 
-    class IMainScene
-    {
-    public:
-        virtual GameRoot* GetRoot() = 0;
-        virtual ScrollManager* GetScrollManager() = 0;
-        virtual FieldManager* GetFieldManager() = 0;
-        virtual Player* GetPlayer() = 0;
-        virtual FieldEventManager* GetFieldEventManager() = 0;
-        virtual EffectManager* GetEffectManager() = 0;
-        virtual MainScene* ToSuper() = 0;
-    };
-
-    class MainScene: public ActorBase, public IMainScene
+    class MainScene: public ActorBase
     {
     public:
         explicit MainScene(IChildrenPool<ActorBase> *parent, GameRoot *root, const MainSceneResetInfo &resetInfo);
         ~MainScene();
 
-        Player *GetPlayer() override;
+        Player* GetPlayer();
         TextureAnimator& GetTextureAnimator();
         void Update(IAppState* appState) override;
-        GameRoot *GetRoot() override;
-        FieldManager* GetFieldManager() override;
-        ScrollManager *GetScrollManager() override;
-        FieldEventManager *GetFieldEventManager() override;
-        EffectManager* GetEffectManager() override;
+        GameRoot *GetRoot();
+        FieldManager* GetFieldManager();
+        ScrollManager *GetScrollManager();
+        FieldEventManager *GetFieldEventManager();
+        EffectManager* GetEffectManager();
         void RequestResetScene(MainSceneResetInfo resetInfo);
-        MainScene *ToSuper() override;
 
         const int InitialLevel;
     private:
@@ -73,6 +60,8 @@ namespace inGame
         EffectManager* m_EffectManager;
 
         unique_ptr<MainSceneResetInfo> m_NextResetInfo{};
+
+        bool m_IsCleared = false;
     };
 }
 

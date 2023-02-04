@@ -7,7 +7,7 @@
 
 namespace inGame::character{
 
-    MineFlower::MineFlower(IMainScene *mainScene, const MatPos &matPos)
+    MineFlower::MineFlower(MainScene *mainScene, const MatPos &matPos)
             : CharacterBase(mainScene->GetFieldManager()),
               Position(matPos),
               m_View(mainScene->GetScrollManager(), mainScene->GetRoot()->RscImage->mine_flower_16x16.get())

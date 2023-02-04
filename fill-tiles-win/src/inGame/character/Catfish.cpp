@@ -8,7 +8,7 @@
 
 namespace inGame::character
 {
-    Catfish::Catfish(IMainScene *mainScene, const MatPos &matPos)
+    Catfish::Catfish(MainScene *mainScene, const MatPos &matPos)
             : CharacterBase(mainScene->GetFieldManager()),
               m_Scene(mainScene),
               m_View(mainScene->GetScrollManager(), mainScene->GetRoot()->RscImage->catfish_24x24.get()),

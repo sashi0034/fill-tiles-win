@@ -103,11 +103,6 @@ namespace inGame{
         return m_EffectManager;
     }
 
-    MainScene *MainScene::ToSuper()
-    {
-        return this;
-    }
-
     void MainScene::RequestResetScene(MainSceneResetInfo resetInfo)
     {
         m_NextResetInfo = unique_ptr<MainSceneResetInfo>(new MainSceneResetInfo(resetInfo));

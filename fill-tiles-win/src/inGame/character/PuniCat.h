@@ -17,11 +17,11 @@ namespace inGame::character
     class PuniCat final: public CharacterBase, public ISprRectColliderOwner
     {
     public:
-        PuniCat(IMainScene *mainScene, const MatPos &matPos);
+        PuniCat(MainScene *mainScene, const MatPos &matPos);
 
         void Update(IAppState *app) override;
     private:
-        IMainScene* m_Scene;
+        MainScene* m_Scene;
         CharacterViewModel m_View;
         TextureAnimationWeakPtr m_AnimationRef{};
 
@@ -32,12 +32,12 @@ namespace inGame::character
         static const inline Vec2<int>cellMatSize = Vec2<int>{1, 1};
         static const inline Vec2<int>cellSrcSize = Vec2<int>{24, 24};
 
-        void subscribePlayerAction(IMainScene *mainScene, const Player *player);
+        void subscribePlayerAction(MainScene *mainScene, const Player *player);
 
-        void searchCatfishEveryAngle(IMainScene *mainScene, Catfish *nullableTargetCatfish);
+        void searchCatfishEveryAngle(MainScene *mainScene, Catfish *nullableTargetCatfish);
 
         void
-        startGoToEatCatfish(IMainScene *mainScene, Catfish *targetCatfish, const Vec2<int> &stepVec,
+        startGoToEatCatfish(MainScene *mainScene, Catfish *targetCatfish, const Vec2<int> &stepVec,
                             const MatPos &checkingPos, EAngle angle);
     };
 

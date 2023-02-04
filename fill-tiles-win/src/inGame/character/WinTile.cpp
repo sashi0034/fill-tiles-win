@@ -10,7 +10,7 @@
 
 namespace inGame::character
 {
-    WinTile::WinTile(IMainScene *mainScene, const MatPos &matPos) :
+    WinTile::WinTile(MainScene *mainScene, const MatPos &matPos) :
         CharacterBase(mainScene->GetFieldManager()),
         Pos(MatPos(matPos.GetVec())),
         m_View(mainScene->GetScrollManager(),
@@ -42,7 +42,7 @@ namespace inGame::character
         }
     }
 
-    void WinTile::subscribePlayer(const MatPos &matPos, Player *const player, IMainScene* const scene)
+    void WinTile::subscribePlayer(const MatPos &matPos, Player *const player, MainScene* const scene)
     {
         player->OnMoveFinish().subscribe([matPos, this, scene](PlayerMoveData* data) {
             if (matPos != data->AfterPos) return;

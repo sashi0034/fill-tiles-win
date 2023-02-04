@@ -23,12 +23,12 @@ namespace inGame::character
     class GrowingChick final : public CharacterBase, public ISprRectColliderOwner
     {
     public:
-        GrowingChick(IMainScene *mainScene, const MatPos &matPos);
+        GrowingChick(MainScene *mainScene, const MatPos &matPos);
 
         void Update(IAppState *app) override;
     private:
         static const inline std::string className = "GrowingChick";
-        IMainScene* m_Scene;
+        MainScene* m_Scene;
         ITextureAnimator* animator = m_Scene->GetFieldManager()->GetAnimator();
         CharacterViewModel m_View;
         TextureAnimationWeakPtr m_AnimationRef{};
@@ -36,7 +36,7 @@ namespace inGame::character
         IAppState* appState = m_Scene->GetRoot()->GetAppState();
         LuaEngine* lua = m_Scene->GetRoot()->GetLua();
 
-        void subscribePlayerMove(IMainScene *mainScene, const Player *player);
+        void subscribePlayerMove(MainScene *mainScene, const Player *player);
 
         static const inline Vec2<int> cellMatSize = Vec2<int>{1, 1};
         static const inline Vec2<int> eggCellSrcSize = Vec2<int>{16, 16};
@@ -68,7 +68,7 @@ namespace inGame::character
 
         void performAnimJumpUpWhenBorn(CoroTaskYield &yield);
 
-        unique_ptr<TextPassage> createManualText(IMainScene *mainScene) const;
+        unique_ptr<TextPassage> createManualText(MainScene *mainScene) const;
 
         void initManualText(unique_ptr<TextPassage> &manualText);
     };

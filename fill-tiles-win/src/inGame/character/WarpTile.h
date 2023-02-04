@@ -18,7 +18,7 @@ namespace inGame::character
     class WarpTile : public CharacterBase
     {
     public:
-        WarpTile(IMainScene *mainScene, const MatPos &matPos, char key);
+        WarpTile(MainScene *mainScene, const MatPos &matPos, char key);
         const MatPos Pos;
     private:
         static const inline Vec2<int>cellMatSize = Vec2<int>{1, 1};

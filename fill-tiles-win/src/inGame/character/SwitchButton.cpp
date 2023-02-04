@@ -9,7 +9,7 @@
 
 namespace inGame::character
 {
-    SwitchButton::SwitchButton(IMainScene *mainScene, const MatPos &matPos)
+    SwitchButton::SwitchButton(MainScene *mainScene, const MatPos &matPos)
             : CharacterBase(mainScene->GetFieldManager()),
               mainScene(mainScene),
               m_View(mainScene->GetScrollManager(), mainScene->GetRoot()->RscImage->button_floor_16x16.get())

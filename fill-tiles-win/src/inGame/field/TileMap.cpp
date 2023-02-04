@@ -14,7 +14,7 @@
 namespace inGame::field
 {
 
-    TileMap::TileMap(IMainScene *mainScene)
+    TileMap::TileMap(MainScene *mainScene)
     : m_MainScene(mainScene)
     {}
 

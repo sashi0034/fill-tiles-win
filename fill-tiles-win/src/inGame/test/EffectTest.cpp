@@ -11,7 +11,7 @@
 
 namespace inGame::test
 {
-    EffectTest::EffectTest(IMainScene *sceneRef, IChildrenPool<ActorBase> *children)
+    EffectTest::EffectTest(MainScene *sceneRef, IChildrenPool<ActorBase> *children)
     : ActorBase(children),
     m_SceneRef(sceneRef),
     m_FileChangeDetector("assets/lua")

@@ -38,7 +38,7 @@ namespace inGame
         coroUtil::WaitForExpire(yield, animation);
     }
 
-    character::MovableObjectLogic::MovableObjectLogic(IMainScene *mainScene, CharacterViewModel *view) : mainScene(mainScene),
+    character::MovableObjectLogic::MovableObjectLogic(MainScene *mainScene, CharacterViewModel *view) : mainScene(mainScene),
                                                                                                          view(view)
     {}
 } // inGame

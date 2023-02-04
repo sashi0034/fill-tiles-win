@@ -11,7 +11,7 @@
 #include "../MatPos.h"
 
 namespace inGame{
-    class IMainScene;
+    class MainScene;
     class CharacterViewModel;
 }
 
@@ -20,7 +20,7 @@ namespace inGame::player
     class PlayerAnimation
     {
     public:
-        PlayerAnimation(IMainScene *mainScene, const Vec2<int> &cellSize, TextureAnimator &animator,
+        PlayerAnimation(MainScene *mainScene, const Vec2<int> &cellSize, TextureAnimator &animator,
                         CharacterViewModel *const view);
 
         void AnimWalk(EAngle angle, double frameSpeed);
@@ -28,7 +28,7 @@ namespace inGame::player
         void PerformDead(CoroTaskYield& yield, IAppState* appState);
         void PerformWarp(CoroTaskYield& yield, const MatPos& startPos, const MatPos& endPos);
     private:
-        IMainScene* const mainScene;
+        MainScene* const mainScene;
         const Vec2<int> cellSize;
         TextureAnimator& animator;
         CharacterViewModel* const view;
