@@ -58,15 +58,18 @@ namespace inGame::title
     {
         auto const app = _sceneRef->RootRef->GetAppState();
 
+        bool isPushedOkBefore = true;
+
         while (true)
         {
             yield();
 
-            if (util::IsPushedOk(app))
+            if (isPushedOkBefore == false && util::IsPushedOk(app))
             {
                 // ステージ決定
                 _sceneRef->GetInfo().ConfirmSelect(_currStageIndex);
             }
+            isPushedOkBefore = util::IsPushedOk(app);
 
             auto inputSign = PlusMinusSign::FromHorizontal(player::input::GetInputAngle(app->GetKeyboardState()));
             if (inputSign.HasValue()) scrollStageAsync(yield, inputSign);
