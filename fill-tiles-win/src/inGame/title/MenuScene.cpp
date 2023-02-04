@@ -40,4 +40,21 @@ namespace inGame::title
     {
         return &m_TextureAnimator;
     }
+    MenuSelectedInfo& MenuScene::GetInfo()
+    {
+        return m_SelectedInfo;
+    }
+    bool MenuSelectedInfo::IsSelected() const
+    {
+        return _isSelected;
+    }
+    int MenuSelectedInfo::GetSelectedIndex() const
+    {
+        return _selectedIndex;
+    }
+    void MenuSelectedInfo::ConfirmSelect(int index)
+    {
+        _isSelected = true;
+        _selectedIndex = index;
+    }
 } // inGame

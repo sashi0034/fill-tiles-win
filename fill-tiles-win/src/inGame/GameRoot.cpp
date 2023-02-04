@@ -16,12 +16,7 @@ namespace inGame{
       m_AppState(appState)
     {
         createSelfSpr();
-
-#ifdef INGAME_DEBUG_MAINSCENE
-        m_ChildrenPool.Birth(new MainScene(&m_ChildrenPool, this, MainSceneResetInfo::FromLevel(1)));
-#else
-        m_ChildrenPool.Birth(new title::MenuScene(&m_ChildrenPool, this));
-#endif
+        m_Coro.Start([this](CoroTaskYield& yield) { processAppFlow(yield); });
     }
 
     GameRoot::~GameRoot()
@@ -34,6 +29,7 @@ namespace inGame{
         m_Spr.SetUpdateProcess([&](IAppState* app){
             m_ChildrenPool.ProcessEach([&](ActorBase& child){ child.Update(app);});
             m_TextureAnimator.Update(app->GetTime().GetDeltaSec());
+            m_Coro.UpdateEach();
         });
     }
 
@@ -61,6 +57,34 @@ namespace inGame{
     {
         return &m_Anchor;
     }
+
+    void GameRoot::processAppFlow(CoroTaskYield& yield)
+    {
+        while (true) {
+            flowMainScene(yield);
+
+            flowMenuScene(yield);
+        }
+    }
+
+    void GameRoot::flowMenuScene(gameEngine::CoroTaskYield& yield)
+    {
+        auto title = m_ChildrenPool.BirthAs<title::MenuScene>(new title::MenuScene(&m_ChildrenPool, this));
+
+        while (title->GetInfo().IsSelected() == false) { yield(); }
+
+        m_ChildrenPool.Destroy(title);
+    }
+
+    void GameRoot::flowMainScene(gameEngine::CoroTaskYield& yield)
+    {
+        auto&& mainScene = m_ChildrenPool.BirthAs<MainScene>(new MainScene(&m_ChildrenPool, this, MainSceneResetInfo::FromLevel(1)));
+
+        while (mainScene->IsFinished() == false) { yield(); }
+
+        m_ChildrenPool.Destroy(mainScene);
+    }
+
 }
 
 

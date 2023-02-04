@@ -55,6 +55,10 @@ namespace inGame
 
         coroUtil::WaitForTime(yield, duration);
 
+        args.SceneRef->FinishScene();
+
+        // TODO: このスコープが破棄されるとき、ちゃんとSprite消えるか確認 (coroutineで例外起こると中は解放されるのか...?)
+
         while (true)
         {
             yield();

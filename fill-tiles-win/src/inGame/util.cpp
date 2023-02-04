@@ -45,6 +45,11 @@ namespace inGame
         SDL_RenderClear(renderer);
     }
 
+    bool util::IsPushedOk(IAppState* app)
+    {
+        return app->GetKeyboardState()[SDL_Scancode::SDL_SCANCODE_SPACE];
+    }
+
     Vec2<double> util::GetTextureCentralPos(SpriteTexture &texture)
     {
         const auto pos = texture.GetPosition();

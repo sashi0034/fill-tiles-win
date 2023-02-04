@@ -40,8 +40,12 @@ namespace inGame
         TextureAnimator m_TextureAnimator{};
         IAppState* m_AppState;
         LuaEngine m_LuaEngine{this};
+        CoroutineManager m_Coro{};
         NineAnchor m_Anchor{};
         void createSelfSpr();
+        void processAppFlow(CoroTaskYield& yield);
+        void flowMenuScene(gameEngine::CoroTaskYield& yield);
+        void flowMainScene(gameEngine::CoroTaskYield& yield);
     };
 }
 

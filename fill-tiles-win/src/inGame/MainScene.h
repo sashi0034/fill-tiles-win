@@ -45,6 +45,9 @@ namespace inGame
         EffectManager* GetEffectManager();
         void RequestResetScene(MainSceneResetInfo resetInfo);
 
+        void FinishScene();
+        bool IsFinished() const;
+
         const int InitialLevel;
     private:
         void initAfterBirth();
@@ -61,7 +64,7 @@ namespace inGame
 
         unique_ptr<MainSceneResetInfo> m_NextResetInfo{};
 
-        bool m_IsCleared = false;
+        bool m_IsFinished = false;
     };
 }
 

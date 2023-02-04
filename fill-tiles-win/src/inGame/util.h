@@ -20,6 +20,8 @@ namespace inGame
         double ModDouble2(double value, double law);
 
         void ClearRendererTransparent(SDL_Renderer* renderer);
+
+        bool IsPushedOk(IAppState* app);
     }
 }
 

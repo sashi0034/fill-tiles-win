@@ -108,6 +108,16 @@ namespace inGame{
         m_NextResetInfo = unique_ptr<MainSceneResetInfo>(new MainSceneResetInfo(resetInfo));
     }
 
+    void MainScene::FinishScene()
+    {
+        m_IsFinished = true;
+    }
+
+    bool MainScene::IsFinished() const
+    {
+        return m_IsFinished;
+    }
+
     void MainScene::resetScene()
     {
         auto const gameRoot = m_Root;

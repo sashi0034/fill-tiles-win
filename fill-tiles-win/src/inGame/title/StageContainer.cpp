@@ -61,6 +61,13 @@ namespace inGame::title
         while (true)
         {
             yield();
+
+            if (util::IsPushedOk(app))
+            {
+                // ステージ決定
+                _sceneRef->GetInfo().ConfirmSelect(_currStageIndex);
+            }
+
             auto inputSign = PlusMinusSign::FromHorizontal(player::input::GetInputAngle(app->GetKeyboardState()));
             if (inputSign.HasValue()) scrollStageAsync(yield, inputSign);
         }

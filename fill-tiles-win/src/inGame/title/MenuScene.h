@@ -13,6 +13,17 @@ namespace inGame{
 
 namespace inGame::title
 {
+    class MenuSelectedInfo
+    {
+    public:
+        bool IsSelected() const;
+        int GetSelectedIndex() const;
+        void ConfirmSelect(int index);
+    public:
+        bool _isSelected;
+        int _selectedIndex;
+    };
+
 
     class MenuScene: public ActorBase
     {
@@ -23,10 +34,14 @@ namespace inGame::title
         IChildrenPool<ActorBase>* GetChildren();
         ITextureAnimator* GetAnimator();
         GameRoot* const RootRef;
+
+        MenuSelectedInfo& GetInfo();
     private:
         ChildrenPool<ActorBase> m_ChildrenPool{};
         TextureAnimator m_TextureAnimator{};
         CoroutineManager m_Coroutine{};
+
+        MenuSelectedInfo m_SelectedInfo{};
     };
 
 } // inGame
