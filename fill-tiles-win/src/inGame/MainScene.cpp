@@ -18,9 +18,23 @@
 namespace inGame{
     MainScene::MainScene(IChildrenPool<ActorBase> *parent, GameRoot *root, const MainSceneResetInfo &resetInfo):
             ActorBase(parent),
-            InitialLevel(resetInfo.InitialLevel),
             m_Root(root)
     {
+        constructInternal(resetInfo);
+    }
+
+    void MainScene::constructInternal(const inGame::MainSceneResetInfo& resetInfo)
+    {
+        // 解放
+        m_ChildrenPool.Release();
+        m_TextureAnimator.Release();
+        m_ScrollManager.reset();
+
+        // 初期化
+        m_LevelOnRestart = resetInfo.InitialLevel;
+
+        m_FieldEventManager = FieldEventManager();
+
         m_ScrollManager = std::make_unique<ScrollManager>(this);
 
         m_FieldManager = m_ChildrenPool.BirthAs<FieldManager>(new FieldManager(&m_ChildrenPool, this));
@@ -28,8 +42,8 @@ namespace inGame{
         m_Player = m_ChildrenPool.BirthAs<Player>(new Player(&m_ChildrenPool, this));
 
         m_EffectManager = m_ChildrenPool.BirthAs<EffectManager>(new EffectManager(&m_ChildrenPool,
-                                                                                  m_ScrollManager->GetSprite()->GetWeakPtr(),
-                                                                                  m_Root));
+            m_ScrollManager->GetSprite()->GetWeakPtr(),
+            m_Root));
         m_ChildrenPool.Birth(new RemainingMineUi(this, m_FieldManager->GetMineFlowerManager()));
 
 #ifdef INGAME_DEBUG_EFFECTTEST
@@ -118,12 +132,17 @@ namespace inGame{
         return m_IsFinished;
     }
 
+    int MainScene::GetLevelOnRestart() const
+    {
+        return m_LevelOnRestart;
+    }
+
     void MainScene::resetScene()
     {
         auto const gameRoot = m_Root;
         auto const resetInfo = std::move(m_NextResetInfo);
-        gameRoot->GetChildren()->Destroy(this);
-        gameRoot->GetChildren()->Birth(new MainScene(gameRoot->GetChildren(), gameRoot, *resetInfo));
+
+        constructInternal(*resetInfo);
     }
 
     MainSceneResetInfo MainSceneResetInfo::FromLevel(int level)

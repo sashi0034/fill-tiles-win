@@ -27,7 +27,7 @@ namespace inGame{
         m_MineFlowerClass.emplace_back(kind::mine_flower_3, kind::checkpoint_block_3, 3);
         m_MineFlowerClass.emplace_back(kind::mine_flower_4, kind::checkpoint_block_4, 4);
 
-        m_CurrMineFlowerClass = GetMineFlowerClassByLevel(mainScene->InitialLevel);
+        m_CurrMineFlowerClass = GetMineFlowerClassByLevel(mainScene->GetLevelOnRestart());
     }
 
 
@@ -58,7 +58,7 @@ namespace inGame{
     // 既に通過したチェックポイントまでブロックを取り除く
     void MineFlowerManager::removeAlreadyClearedBlocks()
     {
-        for (int level=1; level < m_MainScene->InitialLevel; ++level)
+        for (int level=1; level < m_MainScene->GetLevelOnRestart(); ++level)
         {
             auto mineClass = GetMineFlowerClassByLevel(level);
             auto& blockList = m_MainScene->GetFieldManager()->GetCheckpointBlockList(mineClass->BlockTile);

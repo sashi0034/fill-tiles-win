@@ -35,7 +35,7 @@ namespace inGame::title
     {
         _text = std::make_unique<TextPassage>(
                 args.SceneRef->RootRef->GetAppState(),
-                args.SceneRef->RootRef->RscFont->PixelMPlus24Px.get(),
+                args.SceneRef->RootRef->RscFont->KHDotAkihabara32px.get(),
                 Rgba(255, 255, 255), Rgba(16, 16, 16));
         constexpr double padX = 16;
         _text->SetPos( Vec2<double>(-bgSize.X/2.0 + padX, centerY));

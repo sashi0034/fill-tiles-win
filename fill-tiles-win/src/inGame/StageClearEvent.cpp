@@ -113,7 +113,7 @@ namespace inGame
     {
         auto text = std::make_unique<TextPassage>(
                 args.GetRoot()->GetAppState(),
-                args.GetRoot()->RscFont->PixelMPlus24Px.get(),
+                args.GetRoot()->RscFont->KHDotAkihabara32px.get(),
                 Rgba(255, 255, 255), Rgba(16, 16, 16));
 
         constexpr double padX = 16;

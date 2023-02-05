@@ -47,10 +47,10 @@ namespace inGame
 
         void FinishScene();
         bool IsFinished() const;
-
-        const int InitialLevel;
+        int GetLevelOnRestart() const;
     private:
         void initAfterBirth();
+        void constructInternal(const inGame::MainSceneResetInfo& resetInfo);
         void resetScene();
 
         GameRoot* m_Root;
@@ -65,6 +65,7 @@ namespace inGame
         unique_ptr<MainSceneResetInfo> m_NextResetInfo{};
 
         bool m_IsFinished = false;
+        int m_LevelOnRestart{};
     };
 }
 
