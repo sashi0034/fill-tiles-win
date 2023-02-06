@@ -19,7 +19,7 @@ namespace inGame::effect
 
         void Update(IAppState *appState) override;
     private:
-        SakuraFormation(EffectManager *effectManager, const Vec2<double> &pos);
+        SakuraFormation(EffectManager *effectManager, const Vec2<double> &pos, int kind);
         EffectManager* m_Manager;
         double m_Lifetime{};
         static const inline int cellSize = 32;

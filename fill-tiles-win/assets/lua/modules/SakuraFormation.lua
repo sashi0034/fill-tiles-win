@@ -21,8 +21,6 @@ function SakuraFormation.Update(
     local scalingTime = 0.3
     local fadeTime = 0.2
     local lifetimeMax = scalingTime + fadeTime
-
-    setFrame(1)
     
     setRotation(lifetime*720)
 
@@ -55,7 +53,9 @@ function SakuraFormation.ProduceEffects(
             local theta = (r*(360/numRound) + count * (360/numRound/4)) / 180 * math.pi
             local dx = radius*math.sin(theta)
             local dy = radius*math.cos(theta)
-            produce(dx, dy)
+            produce(
+                dx, dy, 
+                math.random(0, 3))
         end
 
         yield(0.05)
