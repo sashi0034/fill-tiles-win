@@ -68,6 +68,7 @@ namespace inGame::title
             {
                 // ステージ決定
                 _sceneRef->GetInfo().ConfirmSelect(_currStageIndex);
+                return;
             }
             isPushedOkBefore = util::IsPushedOk(app);
 

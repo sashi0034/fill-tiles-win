@@ -8,6 +8,7 @@ namespace inGame {
     {
     public:
         InterludeCurtain(GameRoot* root);
+        void renderCurtain(IAppState* app, Graph* image, VecInt2 imageSize);
         void Update(IAppState* app) override;
         void StartOpen();
         void StartClose();
