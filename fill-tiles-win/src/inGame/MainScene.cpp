@@ -14,6 +14,7 @@
 #include "test/FieldViewTest.h"
 #include "effect/SpiritualController.h"
 #include "StageClearEvent.h"
+#include "ScreenSweeper.h"
 
 namespace inGame{
     MainScene::MainScene(IChildrenPool<ActorBase> *parent, GameRoot *root, const MainSceneResetInfo &resetInfo):
@@ -145,6 +146,13 @@ namespace inGame{
         auto const resetInfo = std::move(m_NextResetInfo);
 
         constructInternal(*resetInfo);
+
+        m_ChildrenPool.Birth(new ScreenSweeper(
+            &m_ChildrenPool,
+            m_Root->GetAppState(),
+            &m_TextureAnimator,
+            SpriteTextureContext::Global()
+        ));
     }
 
     MainSceneResetInfo MainSceneResetInfo::FromLevel(int level)

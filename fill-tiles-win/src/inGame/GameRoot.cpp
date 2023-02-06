@@ -64,9 +64,9 @@ namespace inGame{
         auto&& interlude = m_ChildrenPool.BirthAs<InterludeCurtain>(new InterludeCurtain(this));
 
         while (true) {
-            flowMenuScene(yield, interlude);
-
             flowMainScene(yield, interlude);
+
+            flowMenuScene(yield, interlude);
         }
     }
 

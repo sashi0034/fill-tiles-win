@@ -27,12 +27,12 @@ namespace gameEngine::textureAnimator::textureAnimation
         ~EaseAbleAnimationBase() override = default;
     };
 
-    class VirtualDelay final: public AnimationBase
+    class DelayVirtual final: public AnimationBase
     {
     public:
-        VirtualDelay(std::function<void()> process, double delayTime);
+        DelayVirtual(std::function<void()> process, double delayTime);
         bool UpdateAnimation(double deltaSecond) override;
-        ~VirtualDelay() override = default;
+        ~DelayVirtual() override = default;
     private:
         double m_Time=0;
         double m_DelayTime;

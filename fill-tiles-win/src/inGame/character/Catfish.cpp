@@ -27,7 +27,7 @@ namespace inGame::character
                            Rect{0, 0, FieldManager::PixelPerMat, FieldManager::PixelPerMat});
 
         mainScene->GetFieldManager()->GetAnimator()->TargetTo(m_View.GetView())
-                ->VirtualDelay([]() {}, (matPos.GetSumXY() % 4) * 0.2)
+                ->DelayVirtual([]() {}, (matPos.GetSumXY() % 4) * 0.2)
                 ->Then()
                 ->AnimGraph(cellSrcSize)->SetFrameLoopEndless(true)->SetCanFlip(false)
                 ->AddFrame(Vec2{0, 0}, 0.3)

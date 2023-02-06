@@ -14,11 +14,11 @@ namespace gameEngine::textureAnimator::textureAnimation
     }
 
 
-    VirtualDelay::VirtualDelay(std::function<void()> process, double delayTime)
+    DelayVirtual::DelayVirtual(std::function<void()> process, double delayTime)
             : m_DelayTime(delayTime), m_Process(process)
     {}
 
-    bool VirtualDelay::UpdateAnimation(double deltaSecond)
+    bool DelayVirtual::UpdateAnimation(double deltaSecond)
     {
         if (m_Time > m_DelayTime) return false;
 

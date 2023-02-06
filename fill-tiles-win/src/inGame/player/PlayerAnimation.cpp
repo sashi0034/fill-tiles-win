@@ -127,7 +127,7 @@ namespace inGame::player
 
         // プレイヤー上昇
         animator.TargetTo(view->GetView())->AnimPosition(Vec2{0.0, -risingHeight}, risingDuration)->SetRelative(true);
-        animator.TargetTo(view->GetView())->VirtualDelay([](){}, risingDuration - fadeDuration)->Then()->AnimBlend(0, fadeDuration);
+        animator.TargetTo(view->GetView())->DelayVirtual([](){}, risingDuration - fadeDuration)->Then()->AnimBlend(0, fadeDuration);
         coroUtil::WaitForTime(yield, risingDuration);
 
         // 画面スクロール

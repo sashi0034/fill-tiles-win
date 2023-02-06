@@ -89,10 +89,10 @@ namespace gameEngine::textureAnimator
 
 
     ITextureAnimationLinker *
-    TextureAnimationProcessor::VirtualDelay(std::function<void()> process, double delayTime)
+    TextureAnimationProcessor::DelayVirtual(std::function<void()> process, double delayTime)
     {
         auto nextAnimation = new TextureAnimationProcessor(m_TargetTexture, m_ParentalPool, &m_SelfWeakPtr);
-        nextAnimation->m_AnimationProcess = std::make_unique<textureAnimation::VirtualDelay>(process, delayTime);
+        nextAnimation->m_AnimationProcess = std::make_unique<textureAnimation::DelayVirtual>(process, delayTime);
 
         m_ParentalPool->Birth(nextAnimation);
         m_NextAnimation = nextAnimation->GetWeakPtr();

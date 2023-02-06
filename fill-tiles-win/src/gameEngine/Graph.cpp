@@ -73,10 +73,16 @@ namespace gameEngine
         return new Graph(renderer, surface);
     }
 
-    Vec2<int> Graph::GetSize() const
+    VecInt2 Graph::GetSize() const
     {
-        assert(m_SdlSurface);
-        return Vec2<int>{m_SdlSurface->w, m_SdlSurface->h};
+        if (m_SdlSurface != nullptr)
+            return VecInt2{m_SdlSurface->w, m_SdlSurface->h};
+
+        int w{};
+        int h{};
+        SDL_QueryTexture(m_SdlTexture, nullptr, nullptr, &w, &h);
+
+        return VecInt2{ w, h };
     }
 
 }

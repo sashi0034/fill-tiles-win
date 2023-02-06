@@ -51,7 +51,7 @@ namespace inGame::character
             ZIndexCharacter(m_View).ApplyZ();
             m_View.GetView().SetSrcRect(Rect<int>{Vec2{0, cellY} * FieldManager::PixelPerMat, cellMatSize * FieldManager::PixelPerMat});
             m_TextureAnimation = mainScene->GetFieldManager()->GetAnimator()->TargetTo(m_View.GetView())
-                    ->VirtualDelay([]() {}, (initialPos.GetSumXY() % 4) * 0.2)
+                    ->DelayVirtual([]() {}, (initialPos.GetSumXY() % 4) * 0.2)
                     ->Then()
                     ->AnimGraph(cellMatSize * FieldManager::PixelPerMat)->SetFrameLoopEndless(true)
                     ->AddFrame(Vec2{0, cellY}, 0.2)

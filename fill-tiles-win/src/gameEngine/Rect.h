@@ -50,6 +50,8 @@ namespace gameEngine
             && std::abs(other.Y + other.Height / 2.0 - (this->Y + this->Height / 2.0)) < (this->Height + other.Height) / 2.0;
         }
     };
+
+    using RectInt = Rect<int>;
 }
 
 

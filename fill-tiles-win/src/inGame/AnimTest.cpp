@@ -46,11 +46,11 @@ namespace inGame
 //                ->Then()
 //                ->AnimPosition(Vec2<double>{32, 32}, 3.0)->SetEase(EAnimEase::Linear)->SetLoop(2)->SetRelative(true)
 //                ->Then()
-//                ->VirtualDelay([]() { std::cout << "finished animation?" << std::endl; }, 1.0)
+//                ->DelayVirtual([]() { std::cout << "finished animation?" << std::endl; }, 1.0)
 //                ->Then()
-//                ->VirtualDelay([]() { std::cout << "yes!" << std::endl; }, 0)
+//                ->DelayVirtual([]() { std::cout << "yes!" << std::endl; }, 0)
 //                ->Then()
-//                ->VirtualDelay([]() { std::cout << "finished animation!" << std::endl; }, 0.5);
+//                ->DelayVirtual([]() { std::cout << "finished animation!" << std::endl; }, 0.5);
 
 
         yield();

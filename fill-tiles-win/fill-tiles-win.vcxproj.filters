@@ -131,6 +131,7 @@
     <ClInclude Include="include\stdafx.h" />
     <ClInclude Include="src\inGame\field\renderBackmostGrass.h" />
     <ClInclude Include="src\inGame\InterludeCurtain.h" />
+    <ClInclude Include="src\inGame\ScreenSweeper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\gameEngine\AppState.cpp" />
@@ -252,5 +253,6 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\inGame\field\renderBackmostGrass.cpp" />
     <ClCompile Include="src\inGame\InterludeCurtain.cpp" />
+    <ClCompile Include="src\inGame\ScreenSweeper.cpp" />
   </ItemGroup>
 </Project>

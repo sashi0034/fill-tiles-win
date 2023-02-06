@@ -16,11 +16,12 @@ namespace inGame {
             if (_openingRate == 0) return;
 
             auto&& screenSize = app->GetRealScreenSize();
+            const int srcW = int(_openingRate * imageSize.X);
             const int showingW = _openingRate * screenSize.X;
-            auto upSrc = SDL_Rect{ 0, 0, imageSize.X, imageSize.Y / 2 };
+            auto upSrc = SDL_Rect{ 0, 0, srcW, imageSize.Y / 2 };
             auto upDest = SDL_Rect{ 0, 0, showingW, screenSize.Y / 2 };
 
-            auto downSrc = SDL_Rect{ 0, imageSize.Y / 2 , imageSize.X, imageSize.Y / 2 };
+            auto downSrc = SDL_Rect{ imageSize.X - srcW, imageSize.Y / 2 , srcW, imageSize.Y / 2 };
             auto downDest = SDL_Rect{ screenSize.X - showingW, screenSize.Y / 2, showingW, screenSize.Y / 2 };
 
             SDL_RenderCopy(app->GetRenderer(), image->GetSdlTexture(), &upSrc, &upDest );

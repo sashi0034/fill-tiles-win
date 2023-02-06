@@ -85,6 +85,26 @@ namespace gameEngine
 
     using VecInt2 = Vec2<int>;
     using VecDouble2 = Vec2<double>;
+
+    namespace vec2 {
+        template <typename T> Vec2<T> VecZero()
+        {
+            return Vec2<T>{0, 0};
+        }
+        template <typename T> Vec2<T> VecRight()
+        {
+            return Vec2<T>{1, 0};
+        }
+        template <typename T> Vec2<T> VecUp()
+        {
+            return Vec2<T>{0, 1};
+        }
+        template <typename T> Vec2<T> VecOne()
+        {
+            return Vec2<T>{1, 1};
+        }
+    }
+    using namespace vec2;
 }
 
 #endif //FILL_TILES_VEC_H
