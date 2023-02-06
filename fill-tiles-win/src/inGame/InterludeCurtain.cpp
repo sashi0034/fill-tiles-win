@@ -9,7 +9,7 @@ namespace inGame {
     {
         ZIndexForeground(&_selfSprite).ApplyZ();
 
-        auto&& image = root->RscImage->pattern_japanse_yellow_flower.get();
+        auto&& image = root->RscImage->illust_scenery.get();
         auto&& imageSize = image->GetSize();
 
         _selfSprite.SetRenderingProcess([this, root, image, imageSize](IAppState* app) {

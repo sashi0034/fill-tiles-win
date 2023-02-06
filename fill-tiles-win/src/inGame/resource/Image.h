@@ -57,7 +57,7 @@ namespace inGame::resource
         REGISTER_RESOURCE_PNG(win_24x24);
         REGISTER_RESOURCE_PNG(clear_label);
         REGISTER_RESOURCE_PNG(grass_texture_01);
-        REGISTER_RESOURCE_PNG(pattern_japanse_yellow_flower);
+        REGISTER_RESOURCE_PNG(illust_scenery);
 
         explicit Image(IAppState* appState);
     private:
