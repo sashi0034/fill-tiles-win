@@ -33,7 +33,7 @@ namespace inGame
 
         args.MainScene->GetPlayer()->ChangeStateToDead();
 
-        coroUtil::WaitForTime(yield, 3.0);
+        coroUtil::WaitForTime(yield, 2.0);
 
         args.MainScene->RequestResetScene(MainSceneResetInfo::FromLevel(args.ClassAtFailed->GetClassLevel()));
     }
