@@ -54,6 +54,22 @@ namespace inGame{
         return *this;
     }
 
+    ZIndexForeground::ZIndexForeground(SpriteTexture* texture)
+        : m_Texture(texture)
+    {}
+
+    void ZIndexForeground::ApplyZ()
+    {
+        m_Texture->SetZ(baseForegroundZ - m_Index);
+    }
+
+    ZIndexForeground& ZIndexForeground::SetIndex(int frontLargerIndex)
+    {
+        assert(Range<int>(0, baseRange).IsBetween(frontLargerIndex));
+        m_Index = frontLargerIndex;
+        return *this;
+    }
+
     ZIndexEffect::ZIndexEffect(SpriteTexture *texture)
     : m_Texture(texture)
     {}

@@ -8,6 +8,7 @@
 #include "MainScene.h"
 #include "../debug.h"
 #include "title/MenuScene.h"
+#include "InterludeCurtain.h"
 
 namespace inGame{
     GameRoot::GameRoot(IAppState *appState)
@@ -60,27 +61,37 @@ namespace inGame{
 
     void GameRoot::processAppFlow(CoroTaskYield& yield)
     {
-        while (true) {
-            flowMainScene(yield);
+        auto&& interlude = m_ChildrenPool.BirthAs<InterludeCurtain>(new InterludeCurtain(this));
 
-            flowMenuScene(yield);
+        while (true) {
+            flowMenuScene(yield, interlude);
+
+            flowMainScene(yield, interlude);
         }
     }
 
-    void GameRoot::flowMenuScene(gameEngine::CoroTaskYield& yield)
+    void GameRoot::flowMenuScene(gameEngine::CoroTaskYield& yield, InterludeCurtain* interlude)
     {
+        interlude->StartOpen();
+
         auto title = m_ChildrenPool.BirthAs<title::MenuScene>(new title::MenuScene(&m_ChildrenPool, this));
 
         while (title->GetInfo().IsSelected() == false) { yield(); }
 
+        interlude->WaitProcessClose(yield);
+
         m_ChildrenPool.Destroy(title);
     }
 
-    void GameRoot::flowMainScene(gameEngine::CoroTaskYield& yield)
+    void GameRoot::flowMainScene(gameEngine::CoroTaskYield& yield, InterludeCurtain* interlude)
     {
+        interlude->StartOpen();
+
         auto&& mainScene = m_ChildrenPool.BirthAs<MainScene>(new MainScene(&m_ChildrenPool, this, MainSceneResetInfo::FromLevel(1)));
 
         while (mainScene->IsFinished() == false) { yield(); }
+
+        interlude->WaitProcessClose(yield);
 
         m_ChildrenPool.Destroy(mainScene);
     }

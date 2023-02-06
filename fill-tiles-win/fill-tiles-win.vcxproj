@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\inGame\InterludeCurtain.h" />
     <ClInclude Include="src\inGame\field\renderBackmostGrass.h" />
     <ClInclude Include="src\debug.h" />
     <ClInclude Include="src\gameEngine\AppState.h" />
@@ -150,6 +151,7 @@
     <ClInclude Include="include\stdafx.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\inGame\InterludeCurtain.cpp" />
     <ClCompile Include="src\inGame\field\renderBackmostGrass.cpp" />
     <ClCompile Include="src\gameEngine\AppState.cpp" />
     <ClCompile Include="src\gameEngine\arrayUtil.cpp" />

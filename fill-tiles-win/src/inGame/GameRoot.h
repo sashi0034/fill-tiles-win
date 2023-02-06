@@ -20,6 +20,7 @@ namespace inGame
     }
 
     class LuaEngine;
+    class InterludeCurtain;
 
 
     class GameRoot : public Singleton<GameRoot>
@@ -44,8 +45,8 @@ namespace inGame
         NineAnchor m_Anchor{};
         void createSelfSpr();
         void processAppFlow(CoroTaskYield& yield);
-        void flowMenuScene(gameEngine::CoroTaskYield& yield);
-        void flowMainScene(gameEngine::CoroTaskYield& yield);
+        void flowMenuScene(CoroTaskYield& yield, InterludeCurtain* intrule);
+        void flowMainScene(CoroTaskYield& yield, InterludeCurtain* interlude);
     };
 }
 

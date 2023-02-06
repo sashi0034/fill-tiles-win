@@ -83,8 +83,8 @@ namespace gameEngine
     Vec2(InputIterator, InputIterator)
     -> Vec2<typename std::iterator_traits<InputIterator>::value_type>;
 
-    using IntVec2 = Vec2<int>;
-    using DoubleVec2 = Vec2<double>;
+    using VecInt2 = Vec2<int>;
+    using VecDouble2 = Vec2<double>;
 }
 
 #endif //FILL_TILES_VEC_H

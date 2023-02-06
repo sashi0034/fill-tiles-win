@@ -57,6 +57,8 @@ namespace inGame{
         m_ScrollManager->SetScroll(resetInfo.ScrollPos);
 
         initAfterBirth();
+
+        m_Root->GetAppState()->GetTimeMutable().Restart();
     }
 
     MainScene::~MainScene()

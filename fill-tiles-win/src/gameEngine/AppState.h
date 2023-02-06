@@ -25,6 +25,7 @@ namespace gameEngine
         [[nodiscard]] virtual Vec2<int> GetRealScreenSize() const = 0;
         [[nodiscard]] virtual int GetPixelPerUnit() const = 0;
         [[nodiscard]] virtual const Time& GetTime() const = 0;
+        [[nodiscard]] virtual Time& GetTimeMutable() = 0;
         [[nodiscard]] virtual SDL_Window* GetWindow() const = 0;
         [[nodiscard]] virtual SDL_Renderer* GetRenderer() const = 0;
         [[nodiscard]] virtual const Uint8* GetKeyboardState() const = 0;
@@ -62,6 +63,7 @@ namespace gameEngine
         [[nodiscard]] Vec2<int> GetScreenSize() const override;
         Vec2<int> GetRealScreenSize() const override;
         [[nodiscard]] const Time & GetTime() const override;
+        [[nodiscard]] Time& GetTimeMutable() override;
         [[nodiscard]] SDL_Window* GetWindow() const override;
         [[nodiscard]] SDL_Renderer* GetRenderer() const override;
         [[nodiscard]] const Uint8* GetKeyboardState() const override;

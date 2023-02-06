@@ -36,6 +36,10 @@ namespace gameEngine
     {
         return *m_Time;
     }
+    Time& AppState::GetTimeMutable()
+    {
+        return *m_Time;
+    }
     SDL_Window *AppState::GetWindow() const
     {
         return m_Window;

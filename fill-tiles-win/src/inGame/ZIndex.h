@@ -21,6 +21,7 @@ namespace inGame
         const double baseCharacterZ = baseRange * 0;
         const double baseEffect = baseRange * -1;
         const double baseUiZ = baseRange * -2;
+        const double baseForegroundZ = baseRange * -3;
     };
 
     class ZIndexBackGround : public ZIndex
@@ -61,6 +62,17 @@ namespace inGame
     public:
         ZIndexUi(SpriteTexture *texture);
         ZIndexUi& SetIndex(int frontLargerIndex);
+        void ApplyZ() override;
+    private:
+        SpriteTexture* m_Texture;
+        int m_Index{};
+    };
+
+    class ZIndexForeground : public ZIndex
+    {
+    public:
+        ZIndexForeground(SpriteTexture* texture);
+        ZIndexForeground& SetIndex(int frontLargerIndex);
         void ApplyZ() override;
     private:
         SpriteTexture* m_Texture;

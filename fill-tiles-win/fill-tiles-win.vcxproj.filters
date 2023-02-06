@@ -130,6 +130,7 @@
     <ClInclude Include="src\inGame\ZIndex.h" />
     <ClInclude Include="include\stdafx.h" />
     <ClInclude Include="src\inGame\field\renderBackmostGrass.h" />
+    <ClInclude Include="src\inGame\InterludeCurtain.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\gameEngine\AppState.cpp" />
@@ -250,5 +251,6 @@
     <ClCompile Include="src\inGame\ZIndex.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\inGame\field\renderBackmostGrass.cpp" />
+    <ClCompile Include="src\inGame\InterludeCurtain.cpp" />
   </ItemGroup>
 </Project>
