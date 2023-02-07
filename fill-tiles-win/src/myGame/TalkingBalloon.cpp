@@ -55,7 +55,8 @@ namespace myGame{
         yield();
         constexpr double duration = 0.5;
 
-        auto scaling = m_Scene->GetEffectManager()->GetAnimator()->TargetTo(m_Background->GetSprite())
+        auto&& animator = m_Scene->GetEffectManager()->GetAnimator();
+        auto scaling = animator->TargetTo(m_Background->GetSprite())
                 ->AnimScale(Vec2{1.0, 1.0}, duration)->SetEase(EAnimEase::OutBack)->ToWeakPtr();
         coroUtil::WaitForExpire(yield, scaling);
 
@@ -86,6 +87,17 @@ namespace myGame{
         //performAnimGuruGuruChar(yield, duration / 2.0, currStr, 1);
 
         //coroUtil::WaitForTime(yield, duration);
+
+        auto&& animFade = animator->TargetVirtual()
+            ->AnimValue(1, 0, [this](double value) {
+                    const auto scale = VecDouble2{ value, 1 };
+                    m_TextPassage.SetScale(scale);
+                    m_TextPassage.UpdateView();
+                    m_Background->GetSprite().SetScale(scale);
+                }, duration)->SetEase(EAnimEase::InBack)
+            ->ToWeakPtr();
+
+        coroUtil::WaitForExpire(yield, animFade);
 
         getBelongingPool()->Destroy(this);
     }

@@ -102,6 +102,11 @@ namespace myGame{
         m_VerticalAlign = verticalAlign;
     }
 
+    void TextPassage::SetScale(VecDouble2 scale)
+    {
+        m_Scale = scale;
+    }
+
     void TextPassage::UpdateView()
     {
         if (m_TextList.empty()) return;
@@ -121,6 +126,7 @@ namespace myGame{
 
             const Vec2<double> deltaPos = Vec2<double>{deltaX, deltaY};;
             line.GetTexture().SetPosition(basePos + deltaPos);
+            line.GetTexture().SetScale(m_Scale);
 
             if (m_IsZIndexForeground == false)
                 ZIndexUi(&line.GetTexture()).SetIndex(m_ZIndex).ApplyZ();

@@ -34,11 +34,13 @@ namespace myGame
         void SetPositionParent(SpriteTexture& parent);
         void SetPos(const Vec2<double> &pos);
         void SetAlignment(ETextHorizontalAlign horizontalAlign, ETextVerticalAlign verticalAlign);
+        void SetScale(VecDouble2 scale);
         void UpdateView();
         void UpdateTextAndView(const std::string &text);
     private:
         IAppState* m_App;
-        Vec2<double> m_Pos{};
+        VecDouble2 m_Pos{};
+        VecDouble2 m_Scale = VecOne<double>();
         ETextHorizontalAlign m_HorizontalAlign = ETextHorizontalAlign::Left;
         ETextVerticalAlign m_VerticalAlign = ETextVerticalAlign::Top;
 
