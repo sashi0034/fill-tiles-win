@@ -57,10 +57,11 @@ namespace myUtil
         checkChangeWindowSize();
 
         m_KeyboardState = SDL_GetKeyboardState(NULL);
-        m_Time->Update(true);
+        m_Time->Update(false);
         SpriteTextureContext::Global()->UpdateAll(this);
     }
 
+    constexpr int minPixelInScreen = 1600 * 900;
     constexpr int maxPixelInScreen = 1920 * 1080;
 
     void AppState::checkChangeWindowSize()
@@ -71,11 +72,17 @@ namespace myUtil
 
         m_LiteralRealScreenSize = Vec2{w, h};;
 
+        // 解像度が最小値を超えないようにする
+        const double largerRate = std::sqrt(
+                std::max(1.0, double(minPixelInScreen) / (w * h)));
+
         // 解像度が最大値を超えないようにする
         const double smallerRate = std::sqrt(
                 std::min(1.0, double(maxPixelInScreen) / (w * h)));
 
-        m_RealScreenSize = Vec2{int(w * smallerRate), int(h * smallerRate)};
+        const double scaleRate = largerRate * smallerRate;
+
+        m_RealScreenSize = Vec2{int(w * scaleRate), int(h * scaleRate)};
 
         //resetRenderingBuffer(m_RealScreenSize);
 

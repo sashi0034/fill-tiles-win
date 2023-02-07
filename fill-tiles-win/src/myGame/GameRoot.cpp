@@ -9,6 +9,7 @@
 #include "../debug.h"
 #include "title/MenuScene.h"
 #include "InterludeCurtain.h"
+#include "DebugMetaInfoView.h"
 
 namespace myGame{
     GameRoot::GameRoot(IAppState *appState)
@@ -61,12 +62,19 @@ namespace myGame{
 
     void GameRoot::processAppFlow(CoroTaskYield& yield)
     {
+#ifdef MYGAME_DEBUG
+        m_ChildrenPool.Birth(new DebugMetaInfoView(this));
+#endif
         auto&& interlude = m_ChildrenPool.BirthAs<InterludeCurtain>(new InterludeCurtain(this));
 
-        while (true) {
-            flowMainScene(yield, interlude);
+#ifdef MYGAME_DEBUG_MAINSCENE
+        flowMainScene(yield, interlude);
+#endif
 
+        while (true) {
             flowMenuScene(yield, interlude);
+
+            flowMainScene(yield, interlude);
         }
     }
 

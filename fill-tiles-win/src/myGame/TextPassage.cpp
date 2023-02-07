@@ -46,6 +46,13 @@ namespace myGame{
     void TextPassage::SetZIndex(int index)
     {
         m_ZIndex = index;
+        m_IsZIndexForeground = false;
+    }
+
+    void TextPassage::SetZIndexForeground(int index)
+    {
+        m_ZIndex = index;
+        m_IsZIndexForeground = true;
     }
 
     void TextPassage::UpdateTextAndView(const std::string &text)
@@ -115,7 +122,10 @@ namespace myGame{
             const Vec2<double> deltaPos = Vec2<double>{deltaX, deltaY};;
             line.GetTexture().SetPosition(basePos + deltaPos);
 
-            ZIndexUi(&line.GetTexture()).SetIndex(m_ZIndex).ApplyZ();
+            if (m_IsZIndexForeground == false)
+                ZIndexUi(&line.GetTexture()).SetIndex(m_ZIndex).ApplyZ();
+            else
+                ZIndexForeground(&line.GetTexture()).SetIndex(m_ZIndex).ApplyZ();
             if (m_PositionParent != nullptr) line.GetTexture().SetPositionParent(*m_PositionParent);
         }
     }

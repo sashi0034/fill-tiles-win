@@ -55,9 +55,16 @@ namespace myUtil
         }
     }
 
-    Fps Time::GetFps()
+    Fps Time::GetFps() const
     {
         return m_Fps;
+    }
+
+    std::string Fps::ToString() const
+    {
+        std::stringstream ss;
+        ss << "FPS: " << Value;
+        return ss.str();
     }
 
 }

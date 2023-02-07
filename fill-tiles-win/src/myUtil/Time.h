@@ -13,6 +13,7 @@ namespace myUtil
     struct Fps
     {
         int Value;
+        std::string ToString() const;
     };
 
     class Time
@@ -38,7 +39,7 @@ namespace myUtil
 
         void Update(bool isPrintDebugFps= false);
 
-        Fps GetFps();
+        Fps GetFps() const;
     };
 }
 

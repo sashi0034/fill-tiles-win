@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\myGame\DebugMetaInfoView.h" />
     <ClInclude Include="src\myGame\ScreenSweeper.h" />
     <ClInclude Include="src\myGame\InterludeCurtain.h" />
     <ClInclude Include="src\myGame\field\renderBackmostGrass.h" />
@@ -152,6 +153,7 @@
     <ClInclude Include="include\stdafx.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\myGame\DebugMetaInfoView.cpp" />
     <ClCompile Include="src\myGame\ScreenSweeper.cpp" />
     <ClCompile Include="src\myGame\InterludeCurtain.cpp" />
     <ClCompile Include="src\myGame\field\renderBackmostGrass.cpp" />

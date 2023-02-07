@@ -2,6 +2,8 @@
 // Created by sashi0034 on 2022/06/19.
 //
 
+// デバッグビルド
+#define MYGAME_DEBUG
 
 // メインシーンデバッグ
 #define MYGAME_DEBUG_MAINSCENE

@@ -29,6 +29,7 @@ namespace myGame
         explicit TextPassage(IAppState *app, FontResource *font);
         TextPassage(IAppState *app, FontResource *font, Rgba foreground, Rgba outline);
         void SetZIndex(int index);
+        void SetZIndexForeground(int index);
         void SetLineSpacingHeight(int lineHeight);
         void SetPositionParent(SpriteTexture& parent);
         void SetPos(const Vec2<double> &pos);
@@ -48,6 +49,7 @@ namespace myGame
         SpriteTexture* m_PositionParent{};
         int m_ZIndex = 0;
         int m_LineSpacingHeight = 4;
+        bool m_IsZIndexForeground = false;
 
         Rgba m_ForegroundColor = Rgba(255, 255, 255);
         Rgba m_OutlineColor = Rgba(64, 64, 64);
