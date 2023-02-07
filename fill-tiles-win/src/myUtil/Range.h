@@ -48,6 +48,9 @@ namespace myUtil
         }
 
     };
+
+    using RangeInt = Range<int>;
+    using RangeDouble = Range<double>;
 }
 
 

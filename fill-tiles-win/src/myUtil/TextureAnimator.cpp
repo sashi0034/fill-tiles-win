@@ -12,6 +12,13 @@ namespace myUtil{
         return product;
     }
 
+    textureAnimator::ITextureAnimationStarter* TextureAnimator::TargetVirtual()
+    {
+        auto product = new textureAnimator::TextureAnimationProcessor(WeakPtr <SpriteTexture>(nullptr), &m_Pool, nullptr);
+        m_Pool.Birth(product);
+        return product;
+    }
+
     void TextureAnimator::Update(double deltaTime)
     {
         m_Pool.ProcessEach([&deltaTime](textureAnimator::TextureAnimationProcessor& animation){ animation.Update(deltaTime);});

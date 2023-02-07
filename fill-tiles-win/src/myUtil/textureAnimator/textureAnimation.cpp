@@ -34,7 +34,7 @@ namespace myUtil::textureAnimator::textureAnimation
 
 
     Position::Position(const WeakPtr<SpriteTexture> &targetTexture, const Vec2<double> &endPos, double endTime)
-            : m_Texture(targetTexture), m_Easer(TextureAnimationEaser(targetTexture, endTime))
+            : m_Texture(targetTexture), m_Easer(TextureAnimationEaser(endTime))
     {
         m_EndPos = endPos;
     }
@@ -62,7 +62,7 @@ namespace myUtil::textureAnimator::textureAnimation
     }
 
     Rotation::Rotation(const WeakPtr<SpriteTexture> &targetTexture, double endDeg, double endTime)
-            : m_Texture(targetTexture), m_Easer(TextureAnimationEaser(targetTexture, endTime))
+            : m_Texture(targetTexture), m_Easer(TextureAnimationEaser(endTime))
     {
         m_EndDeg = endDeg;
     }
@@ -87,7 +87,7 @@ namespace myUtil::textureAnimator::textureAnimation
     }
 
     Scale::Scale(const WeakPtr<SpriteTexture> &targetTexture, const Vec2<double> &endScale, double endTime)
-            : m_Texture(targetTexture), m_Easer(TextureAnimationEaser(targetTexture, endTime))
+            : m_Texture(targetTexture), m_Easer(TextureAnimationEaser(endTime))
     {
         m_EndScale = endScale;
     }
@@ -112,8 +112,8 @@ namespace myUtil::textureAnimator::textureAnimation
     }
 
 
-    Blend::Blend(const WeakPtr<SpriteTexture> &targetTexture, int endBlendPal, double endTime)
-            : m_Texture(targetTexture), m_Easer(TextureAnimationEaser(targetTexture, endTime))
+    Blend::Blend(const WeakPtr<SpriteTexture> &targetTexture, int endBlendPal, double endTime) :
+        m_Texture(targetTexture), m_Easer(TextureAnimationEaser(endTime))
     {
         m_EndBlendPal = endBlendPal;
     }
@@ -136,6 +136,27 @@ namespace myUtil::textureAnimator::textureAnimation
     }
 
     TextureAnimationEaser *Blend::GetEaser()
+    {
+        return &m_Easer;
+    }
+
+
+    ValueChange::ValueChange(double start, double end, std::function<void(double)> func, double endTime) :
+        m_Start(start), m_End(end),
+        m_GivenFunc(func), m_Easer(TextureAnimationEaser(endTime))
+    {}
+
+    void ValueChange::Start(){}
+
+    bool ValueChange::UpdateAnimation(double deltaSecond)
+    {
+        m_Easer.Update(deltaSecond);
+        const double curr = m_Easer.CalcProgressValue<double>(m_Start, m_End);
+        m_GivenFunc(curr);
+        return !m_Easer.IsDead();
+    }
+
+    TextureAnimationEaser* ValueChange::GetEaser()
     {
         return &m_Easer;
     }

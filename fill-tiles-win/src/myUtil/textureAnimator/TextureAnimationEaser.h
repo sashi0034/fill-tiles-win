@@ -14,7 +14,7 @@ namespace myUtil::textureAnimator
     {
     private:
     public:
-        explicit TextureAnimationEaser(const WeakPtr<SpriteTexture> &mTargetTexture, double endSecond);
+        explicit TextureAnimationEaser(double endSecond);
 
         void SetEase(EAnimEase ease);
         void SetLoop(int loopMax);
@@ -23,7 +23,6 @@ namespace myUtil::textureAnimator
         bool IsDead() const;
 
     private:
-        WeakPtr<SpriteTexture> m_TargetTexture;
         EAnimEase m_Ease = EAnimEase::Linear;
 
         const double m_EndTime = 0;

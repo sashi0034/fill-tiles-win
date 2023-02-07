@@ -99,6 +99,20 @@ namespace myUtil::textureAnimator::textureAnimation
         TextureAnimationEaser m_Easer;
     };
 
+    class ValueChange final : public EaseAbleAnimationBase
+    {
+    public:
+        ValueChange(double start, double end, std::function<void(double)> func, double endTime);
+        void Start() override;
+        bool UpdateAnimation(double deltaSecond) override;
+        TextureAnimationEaser* GetEaser() override;
+        ~ValueChange() override = default;
+    private:
+        double m_Start{};
+        double m_End{};
+        std::function<void(double)> m_GivenFunc;
+        TextureAnimationEaser m_Easer;
+    };
 
     class Graph final: public AnimationBase
     {

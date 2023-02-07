@@ -8,8 +8,8 @@
 
 namespace myUtil::textureAnimator
 {
-    TextureAnimationEaser::TextureAnimationEaser(const WeakPtr<SpriteTexture> &mTargetTexture, double endSecond)
-            : m_TargetTexture(mTargetTexture), m_EndTime(endSecond)
+    TextureAnimationEaser::TextureAnimationEaser(double endSecond)
+            : m_EndTime(endSecond)
     {}
 
     void TextureAnimationEaser::SetEase(EAnimEase ease)

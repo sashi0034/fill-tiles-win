@@ -38,9 +38,9 @@ namespace myUtil
     {
     public:
         textureAnimator::ITextureAnimationStarter * TargetTo(SpriteTexture &texture) override;
+        textureAnimator::ITextureAnimationStarter* TargetVirtual();
 
         bool Destroy(TextureAnimationWeakPtr &target) override;
-        //unique_ptr<TextureAnimationCreator> VirtualTo();
 
         void Update(double deltaTime);
         void Release();

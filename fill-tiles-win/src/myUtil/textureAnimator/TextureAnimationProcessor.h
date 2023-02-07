@@ -32,6 +32,7 @@ namespace myUtil::textureAnimator
         virtual ITextureAnimationEaseProperty * AnimRotation(double endDeg, double duration) = 0;
         virtual ITextureAnimationEaseProperty * AnimScale(const Vec2<double> &endScale, double duration) = 0;
         virtual ITextureAnimationEaseProperty * AnimBlend(int blendPal, double duration) = 0;
+        virtual ITextureAnimationEaseProperty* AnimValue(double start, double end, std::function<void(double)> func, double duration) = 0;
         virtual ITextureAnimationGraphProperty * AnimGraph(Vec2<int> cellSize) = 0;
         virtual ITextureAnimationLinker * DelayVirtual(std::function<void()> process, double deltaTime) = 0;
     };
@@ -94,6 +95,7 @@ namespace myUtil::textureAnimator
         ITextureAnimationEaseProperty * AnimRotation(double endDeg, double duration) override;
         ITextureAnimationEaseProperty * AnimScale(const Vec2<double> &endScale, double duration) override;
         ITextureAnimationEaseProperty * AnimBlend(int endBlendPal, double duration) override;
+        ITextureAnimationEaseProperty* AnimValue(double start, double end, std::function<void(double)> func, double duration) override;
         ITextureAnimationLinker * DelayVirtual(std::function<void()> process, double delayTime) override;
         ITextureAnimationStarter * Then() override;
         ITextureAnimationStarter * With() override;
@@ -118,7 +120,7 @@ namespace myUtil::textureAnimator
     private:
         WeakPtr<TextureAnimationProcessor> m_SelfWeakPtr{};
         unique_ptr<textureAnimation::AnimationBase> m_AnimationProcess{};
-        WeakPtr<SpriteTexture> m_TargetTexture;
+        WeakPtr<SpriteTexture> m_TargetTexture{};
         IChildrenPool <TextureAnimationProcessor> * m_ParentalPool;
         double m_CountTime = 0;
 

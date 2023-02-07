@@ -219,6 +219,17 @@ namespace myUtil::textureAnimator
 
     }
 
+    ITextureAnimationEaseProperty* TextureAnimationProcessor::AnimValue(double start, double end, std::function<void(double)> func, double duration)
+    {
+        auto nextAnimation = new TextureAnimationProcessor(m_TargetTexture, m_ParentalPool, &m_SelfWeakPtr);
+        nextAnimation->m_AnimationProcess = std::make_unique<textureAnimation::ValueChange>(
+            start, end, func, duration);
+
+        m_ParentalPool->Birth(nextAnimation);
+        m_NextAnimation = nextAnimation->GetWeakPtr();
+        return nextAnimation;
+    }
+
 }
 
 
