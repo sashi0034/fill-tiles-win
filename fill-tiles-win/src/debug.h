@@ -4,19 +4,19 @@
 
 
 // メインシーンデバッグ
-#define INGAME_DEBUG_MAINSCENE
+#define MYGAME_DEBUG_MAINSCENE
 
 // フィールドデバッグ
-//#define INGAME_DEBUG_FIELDVIEW
+//#define MYGAME_DEBUG_FIELDVIEW
 
 // メインシーンのクリアイベントのデバッグ
-// #define INGAME_DEBUG_IMMEDIATE_CLEAREVENT
+// #define MYGAME_DEBUG_IMMEDIATE_CLEAREVENT
 
 // デバッグマップ番号
-#define INGAME_DEBUG_MAP_INDEX 1
+#define MYGAME_DEBUG_MAP_INDEX 1
 
 // エフェクトテスト
-#define INGAME_DEBUG_EFFECTTEST
+#define MYGAME_DEBUG_EFFECTTEST
 
 
 

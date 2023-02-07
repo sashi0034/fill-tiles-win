@@ -2,9 +2,10 @@
 // Created by sashi0034 on 2022/05/04.
 //
 
-#include "gameEngine/gameEngine.h"
+#include "stdafx.h"
+#include "myUtil/myUtil.h"
 #include "GameProcess.h"
-#include "inGame/GameLooper.h"
+#include "myGame/GameLooper.h"
 
 int GameProcess::RunGame()
 {
@@ -20,7 +21,7 @@ int GameProcess::RunGame()
         return -1;
     }
 
-    SDL_Window *window = SDL_CreateWindow("Fill Tiles (Debug)", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+    SDL_Window *window = SDL_CreateWindow("Fill Tiles", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
                                           screenWidth * pixelPerUnit, screenHeight * pixelPerUnit, SDL_WINDOW_SHOWN);
     SDL_SetWindowResizable(window, SDL_TRUE);
 
@@ -35,7 +36,7 @@ int GameProcess::RunGame()
     auto renderer = appState->GetRenderer();
     SDL_SetRenderDrawColor(renderer, 64, 64, 64, 0);
 
-    inGame::GameLooper::Loop(appState);
+    myGame::GameLooper::Loop(appState);
 
     IMG_Quit();
     SDL_DestroyRenderer(renderer);

@@ -1,6 +1,5 @@
 
-
-#include "gameEngine/gameEngine.h"
+#include "stdafx.h"
 #include "GameProcess.h"
 
 
@@ -14,7 +13,7 @@ int main(int argc, char* argv[]) {
     freopen_s(&stream, "CONOUT$", "w", stdout);
     freopen_s(&stream, "CONOUT$", "w", stderr);
 
-    int res = GameProcess::RunGame();
+    int result = GameProcess::RunGame();
 
-    return res;
+    return result;
 }
