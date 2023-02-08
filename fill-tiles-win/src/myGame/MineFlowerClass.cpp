@@ -11,9 +11,10 @@ namespace myGame
             : MineFlowerTile(mineFlowerTile), BlockTile(blockTile), m_ClassLevel{classLevel}
     {}
 
-    void MineFlowerClass::IncreaseMineFlower()
+    void MineFlowerClass::RegisterMineFlower(VecInt2 pos)
     {
         ++m_MineFlowerCount;
+        m_AllPosList.push_back(pos);
     }
 
     void MineFlowerClass::DecreaseMineFlower()
@@ -67,6 +68,11 @@ namespace myGame
     std::vector<character::MineFlower*> &MineFlowerClass::GetBloomedList()
     {
         return m_BloomedMineFlowerList;
+    }
+
+    std::vector<VecInt2>& MineFlowerClass::GetAllPosList()
+    {
+        return m_AllPosList;
     }
 
     MineFlowerClass *MineFlowerClass::SortBloomedListByPos(const MatPos &centerPos)

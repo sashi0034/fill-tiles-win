@@ -24,7 +24,7 @@ namespace myGame
 
         const field::ETileKind MineFlowerTile;
         const field::ETileKind BlockTile;
-        void IncreaseMineFlower();
+        void RegisterMineFlower(VecInt2 pos);
         void DecreaseMineFlower();
         bool HasMineFlower();
         void FixMaxMineFlowerCount();
@@ -38,6 +38,7 @@ namespace myGame
 
         void PushBloomedMineFlower(character::MineFlower* element);
         std::vector<character::MineFlower*>& GetBloomedList();
+        std::vector<VecInt2>& GetAllPosList();
 
         MineFlowerClass* SortBloomedListByPos(const MatPos& centerPos);
     private:
@@ -47,6 +48,7 @@ namespace myGame
 
         unique_ptr<MatPos> m_RespawnMatPos{};
         std::vector<character::MineFlower*> m_BloomedMineFlowerList;
+        std::vector<VecInt2> m_AllPosList;
     };
 
 } // myGame

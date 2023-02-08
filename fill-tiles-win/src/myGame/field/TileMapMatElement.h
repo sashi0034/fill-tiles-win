@@ -46,6 +46,10 @@ namespace myGame::field
         switch_red,
         switch_blue,
         carrot,
+        grass_checked_1,
+        grass_checked_2,
+        grass_checked_3,
+        grass_checked_4,
 
         max,
     };
@@ -72,7 +76,7 @@ namespace myGame::field
         virtual bool IsIceFloor() = 0;
     };
 
-    class ITileMapMatElementWritable
+    class TileMapMatElementWritable
     {
     public:
         virtual void AddChip(const TilePropertyChip *chip) = 0;
@@ -87,7 +91,7 @@ namespace myGame::field
         virtual void SetGlassFloor(character::GlassFloor* glassFloor) = 0;
     };
 
-    class TileMapMatElement final: public ITileMapMatElement, public ITileMapMatElementWritable
+    class TileMapMatElement final: public ITileMapMatElement, public TileMapMatElementWritable
     {
     public:
         TileMapMatElement();

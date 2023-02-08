@@ -369,12 +369,12 @@ namespace myGame::field
     }
 
 
-    ITileMapMatElement * TileMap::GetElementAt(const Vec2<int> &pos)
+    TileMapMatElement * TileMap::GetElementAt(const Vec2<int> &pos)
     {
         return getElementAt(pos);
     }
 
-    ITileMapMatElementWritable *TileMap::GetElementWritableAt(const Vec2<int> &pos)
+    TileMapMatElementWritable *TileMap::GetElementWritableAt(const Vec2<int> &pos)
     {
         return getElementAt(pos);
     }
@@ -412,6 +412,13 @@ namespace myGame::field
     const StaticTileset &TileMap::GetStaticTileSet()
     {
         return staticTileset;
+    }
+
+    TilePropertyChip* TileMap::GetTilePropOf(ETileKind kind)
+    {
+        auto iter = m_TilesetByKind.find(kind);
+        assert(iter != m_TilesetByKind.end());
+        return iter->second;
     }
 
 

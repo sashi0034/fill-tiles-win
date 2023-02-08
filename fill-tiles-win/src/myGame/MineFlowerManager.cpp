@@ -52,25 +52,38 @@ namespace myGame{
             CheckStepOnMine(playerPos);
         });
 
+        // 既に通過したチェックポイントまでフィールドを復元
         removeAlreadyClearedBlocks();
     }
 
-    // 既に通過したチェックポイントまでブロックを取り除く
     void MineFlowerManager::removeAlreadyClearedBlocks()
     {
         for (int level=1; level < m_MainScene->GetLevelOnRestart(); ++level)
         {
             auto mineClass = GetMineFlowerClassByLevel(level);
-            auto& blockList = m_MainScene->GetFieldManager()->GetCheckpointBlockList(mineClass->BlockTile);
+            auto&& filed = m_MainScene->GetFieldManager();
+            auto& blockList = filed->GetCheckpointBlockList(mineClass->BlockTile);
+
+            // 既に通過したチェックポイントまでブロックを取り除く
             blockList.ForEach([&](character::CheckpointBlock* block){
                block->Destroy();
             });
+
+            auto&& posList = mineClass->GetAllPosList();
+            auto flowerTileKind = mineClass->MineFlowerTile;
+            auto&& tileMap = filed->GetTileMap();
+
+            // マップチップをチェックマークに書き換える
+            for (auto&& pos : posList)
+                tileMap->GetElementWritableAt(pos)->ReplaceChip(
+                    tileMap->GetTilePropOf(flowerTileKind),
+                    tileMap->GetStaticTileSet().GetOf(field::ETileKind::grass_checked_1));
         }
     }
 
     void MineFlowerManager::CheckStepOnMine(const MatPos &pos)
     {
-        if (!AliveFlag.IsUp()) return;
+        if (!m_AliveFlag.IsUp()) return;
 
         checkBloomMineFlower(pos, *m_CurrMineFlowerClass);
     }
@@ -117,7 +130,7 @@ namespace myGame{
 
     void MineFlowerManager::onStepOnMine(const MatPos &matPos)
     {
-        AliveFlag.GoDown();
+        m_AliveFlag.GoDown();
         SteppedOnMineEvent().StartEvent(SteppedOnMineEventArgs{m_MainScene, GetCurrMineFlowerClass(), matPos});
     }
 
@@ -137,8 +150,8 @@ namespace myGame{
 
         for (int x = 0; x < matSize.X; ++x)
             for (int y = 0; y < matSize.Y; ++y)
-                if (field->GetTileMap()->HasChipAt(Vec2{x, y}, mineClass.MineFlowerTile) == Boolean::True)
-                    mineClass.IncreaseMineFlower();
+                if (field->GetTileMap()->HasChipAt(VecInt2{x, y}, mineClass.MineFlowerTile) == Boolean::True)
+                    mineClass.RegisterMineFlower(VecInt2{x, y});
 
         mineClass.FixMaxMineFlowerCount();
     }
@@ -232,18 +245,31 @@ namespace myGame{
         int listSize = int(flowerList.size());
         for (int i=0; i<listSize; ++i)
         {
-            auto targetFlower = flowerList[i];
+            auto&& targetFlower = flowerList[i];
+            const auto targetPos = targetFlower->Position;
 
+            // お花エフェクト
             effect::SakuraFormation::Produce(
                     m_MainScene->GetEffectManager(),
-                    targetFlower->Position.GetVecByFiledPixel() + FieldManager::MatPixelSize.CastTo<double>() / 2.0);
+                    targetPos.GetVecByFiledPixel() + FieldManager::MatPixelSize.CastTo<double>() / 2.0);
 
             targetFlower->Destroy();
 
-            if (i>=listSize-1) continue;
+            //if (i < listSize - 1)
+            //{
+            //    auto&& nextTarget = flowerList[i + 1];
+            //    if (playerMatPos.CalcManhattan(targetPos) == playerMatPos.CalcManhattan(nextTarget->Position)) continue;
+            //}
 
-            auto nextTarget = flowerList[i+1];
-            if (playerMatPos.CalcManhattan(targetFlower->Position) == playerMatPos.CalcManhattan(nextTarget->Position)) continue;
+            auto&& field = m_MainScene->GetFieldManager();
+            auto&& tileMap = field->GetTileMap();
+            auto&& flowerTileKind = mineClass.MineFlowerTile;
+
+            // マップチップをチェックマークに書き換える
+            tileMap->GetElementWritableAt(targetPos.GetVec())->ReplaceChip(
+                tileMap->GetTilePropOf(flowerTileKind),
+                tileMap->GetStaticTileSet().GetOf(field::ETileKind::grass_checked_1));
+            field->RenderTileMapAt(targetPos.GetVec());
 
             coroUtil::WaitForTime(yield, 0.1);
         }

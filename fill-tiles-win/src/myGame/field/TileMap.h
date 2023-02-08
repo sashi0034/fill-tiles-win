@@ -20,31 +20,20 @@ namespace myGame{
 
 namespace myGame::field
 {
-    class ITileMap
-    {
-    public:
-        virtual Boolean HasChipAt(const Vec2<int> &pos, ETileKind checkingKind) = 0;
-        virtual Vec2<int> GetMatSize() const = 0;
-        virtual Vec2<int> GetSizeByPixel() const = 0;
-        virtual ITileMapMatElement * GetElementAt(const Vec2<int>& pos) = 0;
-        virtual ITileMapMatElementWritable * GetElementWritableAt(const Vec2<int>& pos) = 0;
-        virtual const StaticTileset& GetStaticTileSet() = 0;
-        virtual bool IsInRange(const Vec2<int>& pos) const = 0;
-    };
-
-    class TileMap : public ITileMap
+    class TileMap
     {
     public:
         explicit TileMap(MainScene *mainScene);
         void LoadMapFile(const std::string &fileName);
-        Vec2<int> GetMatSize() const override;
-        Vec2<int> GetSizeByPixel() const override;
-        ITileMapMatElement * GetElementAt(const Vec2<int>& pos) override;
-        ITileMapMatElementWritable * GetElementWritableAt(const Vec2<int>& pos) override;
-        bool IsInRange(const Vec2<int>& pos) const override;
-        Boolean HasChipAt(const Vec2<int> &pos, ETileKind checkingKind) override;
+        Vec2<int> GetMatSize() const;
+        Vec2<int> GetSizeByPixel() const;
+        TileMapMatElement * GetElementAt(const Vec2<int>& pos);
+        TileMapMatElementWritable * GetElementWritableAt(const Vec2<int>& pos);
+        bool IsInRange(const Vec2<int>& pos) const;
+        Boolean HasChipAt(const Vec2<int> &pos, ETileKind checkingKind);
         Graph& GetTilesetImage() const;
-        const StaticTileset &GetStaticTileSet() override;
+        const StaticTileset &GetStaticTileSet();
+        TilePropertyChip* GetTilePropOf(ETileKind kind);
 
         static inline const std::string TileMapDirectory = "./assets/tilemaps/";
     private:

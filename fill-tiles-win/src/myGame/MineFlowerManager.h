@@ -26,7 +26,7 @@ namespace myGame
         MainScene* m_MainScene;
         std::vector<MineFlowerClass> m_MineFlowerClass{};
         MineFlowerClass* m_CurrMineFlowerClass{};
-        UpFlag AliveFlag{};
+        UpFlag m_AliveFlag{};
 
         void initMineFlowerCount(MineFlowerClass& mineClass);
         void removeAlreadyClearedBlocks();

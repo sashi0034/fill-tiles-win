@@ -61,7 +61,7 @@ namespace myGame
         void OverwriteWallFlag(const MatPos &pos, bool isWall);
         void OverwriteWallFlag(const MatPos &pos, const Vec2<int> &fillSize, bool isWall);
 
-        field::ITileMap* GetTileMap();
+        field::TileMap* GetTileMap();
 
         static inline const int PixelPerMat = pixel::PixelPerMat;
         static inline const Vec2<int> MatPixelSize = {PixelPerMat, PixelPerMat};
@@ -71,6 +71,9 @@ namespace myGame
         MineFlowerManager *GetMineFlowerManager();
         SwitchAcornManager* GetSwitchAcornManager();
         WarpManager* GetWarpManager();
+
+        void RenderTileMapAt(const Vec2<int>& renderingChipPoint);
+        void RenderTileMapWhere(const Vec2<int>& renderingChipStartingPoint, const Vec2<int>& renderingChipEndPoint);
     private:
         void createRenderedTileMapToBuffer(IAppState *appState);
         void renderChip(const field::TilePropertyChip *chip, field::FieldRenderer &fieldRenderer, SDL_Renderer *sdlRenderer,
@@ -93,8 +96,8 @@ namespace myGame
 
         void initFieldByLevel(int level);
 
-        void renderTileMapUnsafely(const Vec2<int> &renderingChipStartingPoint, const Vec2<int> &renderingChipEndPoint,
-                                   SDL_Renderer *const sdlRenderer, SDL_Texture *renderingTarget);
+        void renderTileMapInternal(const Vec2<int> &renderingChipStartingPoint, const Vec2<int> &renderingChipEndPoint,
+                                   SDL_Renderer *const sdlRenderer, SDL_Texture *renderingTarget, bool isClearBuffer);
 
         static std::string getCurrentMapFileName() ;
     };

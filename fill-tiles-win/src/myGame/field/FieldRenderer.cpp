@@ -11,7 +11,7 @@ namespace myGame::field
 
     FieldRenderer::FieldRenderer(const resource::Image *image, const Vec2<int> &matPos,
                                  const Vec2<int> &screenPos, SDL_Renderer *renderer, const Vec2<int> &srcSize,
-                                 const Vec2<double> &renderingSize, ITileMap *tileMap)
+                                 const Vec2<double> &renderingSize, TileMap *tileMap)
             : m_ResImage(image),
               m_MatPos(matPos),
               m_ScreenPos(screenPos),
@@ -70,6 +70,18 @@ namespace myGame::field
                 renderAutoTile(m_ResImage->ice_floor_16x16.get(), [&](int x, int y) {
                     return isNeighbor(x, y, ETileKind::ice);
                 });
+                break;
+            case ETileKind::grass_checked_1:
+                renderCell(m_ResImage->grass_checked_16x16.get(), Vec2<int>{0, 0});
+                break;
+            case ETileKind::grass_checked_2:
+                renderCell(m_ResImage->grass_checked_16x16.get(), Vec2<int>{1, 0});
+                break;
+            case ETileKind::grass_checked_3:
+                renderCell(m_ResImage->grass_checked_16x16.get(), Vec2<int>{2, 0});
+                break;
+            case ETileKind::grass_checked_4:
+                renderCell(m_ResImage->grass_checked_16x16.get(), Vec2<int>{3, 0});
                 break;
             default:
                 return false;

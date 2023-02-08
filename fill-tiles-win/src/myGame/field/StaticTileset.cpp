@@ -23,6 +23,11 @@ namespace myGame::field
 
         addStaticChip(&tileset, ETileKind::high_plateau_cliff, true);
 
+        addStaticChip(&tileset, ETileKind::grass_checked_1, true);
+        addStaticChip(&tileset, ETileKind::grass_checked_2, true);
+        addStaticChip(&tileset, ETileKind::grass_checked_3, true);
+        addStaticChip(&tileset, ETileKind::grass_checked_4, true);
+
         return tileset;
     }
 

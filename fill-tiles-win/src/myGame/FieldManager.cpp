@@ -34,12 +34,11 @@ namespace myGame
     void FieldManager::Init()
     {
         m_TileMap.LoadMapFile(getCurrentMapFileName());
+        m_MineFlowerManager->Init();
 
         createRenderedTileMapToBuffer(m_ParentalScene->GetRoot()->GetAppState());
         m_TileMapTexture.SetGraph(m_BufferGraph.get());
         m_TileMapTexture.SetSrcRect(Rect<int>{Vec2{0, 0}, m_BufferGraphSize});
-
-        m_MineFlowerManager->Init();
 
         initFieldByLevel(m_MineFlowerManager->GetCurrMineFlowerClass()->GetClassLevel());
     }
@@ -76,18 +75,36 @@ namespace myGame
         SDL_Texture *renderingTarget = SDL_CreateTexture(sdlRenderer, SDL_PIXELFORMAT_RGBA8888,
                                                          SDL_TEXTUREACCESS_TARGET, m_BufferGraphSize.X, m_BufferGraphSize.Y);
         assert(renderingTarget);
-        renderTileMapUnsafely(renderingChipStartingPoint, renderingChipEndPoint, sdlRenderer, renderingTarget);
+        renderTileMapInternal(renderingChipStartingPoint, renderingChipEndPoint, sdlRenderer, renderingTarget, true);
 
         m_BufferGraph = std::make_unique<Graph>(renderingTarget);
     }
 
+    void FieldManager::RenderTileMapAt(const Vec2<int>& renderingChipPoint)
+    {
+        RenderTileMapWhere(renderingChipPoint, renderingChipPoint);
+    }
+
+    void FieldManager::RenderTileMapWhere(const Vec2<int>& renderingChipStartingPoint, const Vec2<int>& renderingChipEndPoint)
+    {
+        auto&& app = m_ParentalScene->GetRoot()->GetAppState();
+        renderTileMapInternal(
+            renderingChipStartingPoint, renderingChipEndPoint,
+            app->GetRenderer(), m_BufferGraph->GetSdlTexture(), false);
+    }
+
     void
-    FieldManager::renderTileMapUnsafely(const Vec2<int> &renderingChipStartingPoint,
-                                        const Vec2<int> &renderingChipEndPoint,
-                                        SDL_Renderer *const sdlRenderer, SDL_Texture *renderingTarget)
+    FieldManager::renderTileMapInternal(
+        const Vec2<int> &renderingChipStartingPoint, const Vec2<int> &renderingChipEndPoint,
+        SDL_Renderer *const sdlRenderer, SDL_Texture *renderingTarget,
+        bool isClearBuffer)
     {
         auto renderChange = TempRenderTargetChanger(sdlRenderer);
-        renderChange.ChangeInScope(renderingTarget)->RenderClearTransparent();
+
+        if (isClearBuffer)
+            renderChange.ChangeInScope(renderingTarget)->RenderClearTransparent();
+        else
+            renderChange.ChangeInScope(renderingTarget);
 
         for (int chipY = renderingChipStartingPoint.Y; chipY<=renderingChipEndPoint.Y; ++chipY)
             for (int chipX = renderingChipStartingPoint.X; chipX<=renderingChipEndPoint.X; ++chipX)
@@ -203,7 +220,7 @@ namespace myGame
         OverwriteWallFlag(pos, Vec2<int>{1, 1}, isWall);
     }
 
-    field::ITileMap* FieldManager::GetTileMap()
+    field::TileMap* FieldManager::GetTileMap()
     {
         return &m_TileMap;
     }
