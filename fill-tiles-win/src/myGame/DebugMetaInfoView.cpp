@@ -12,11 +12,13 @@ namespace myGame {
         m_TextPassage.SetAlignment(ETextHorizontalAlign::Left, ETextVerticalAlign::Top);
         m_TextPassage.SetZIndexForeground(10);
         m_TextPassage.UpdateTextAndView("(meta info)");
+        m_Time.Restart();
     }
 
     void DebugMetaInfoView::Update(IAppState* app)
     {
-        auto&& newText = app->GetTime().GetFps().ToString();
+        m_Time.Update();
+        auto&& newText = m_Time.GetFps().ToString();
         if (newText == m_TextOld) return;
 
         m_TextPassage.UpdateTextAndView(newText);

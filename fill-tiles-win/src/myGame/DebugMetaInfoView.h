@@ -14,5 +14,6 @@ namespace myGame {
         TextPassage initTextPassage(GameRoot* root) const;
         TextPassage m_TextPassage;
         std::string m_TextOld{};
+        Time m_Time{};
     };
 }
