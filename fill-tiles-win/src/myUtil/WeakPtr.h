@@ -23,8 +23,8 @@ namespace myUtil
 
         static void Dec(PtrInfo *&p_info)
         {
-            if (!p_info)
-            { return; }
+            if (!p_info) { return; }
+
             --p_info->m_RefCount;
             if (p_info->m_RefCount == 0)
             {
@@ -60,8 +60,7 @@ namespace myUtil
         }
 
         WeakPtr()
-        {
-        }
+        {}
 
         explicit WeakPtr(myUtil::PtrInfo *p_ptrInfo) : m_PtrInfo(p_ptrInfo)
         {
@@ -99,14 +98,14 @@ namespace myUtil
         template<class U>
         WeakPtr<U> ToUpCasted()
         {
-            static_assert(std::is_base_of<U, T>::value, "UがTの基底クラスでありません。");
+            static_assert(std::is_base_of<U, T>::value, "U is not the base class of T.");
             return WeakPtr<U>(m_PtrInfo);
         }
 
         template<class U>
         WeakPtr<U> ToDownCasted()
         {
-            static_assert(std::is_base_of<T, U>::value, "UはTの派生クラスである必要があります。");
+            static_assert(std::is_base_of<T, U>::value, "U must be a derived class of T.");
             if (dynamic_cast<U*>(GetPtr()))
             {
                 return WeakPtr<U>(m_PtrInfo);
@@ -116,7 +115,7 @@ namespace myUtil
         }
 
         bool IsNull() const
-        { return !m_PtrInfo || m_PtrInfo->IsNull(); }
+        { return m_PtrInfo == nullptr || m_PtrInfo->IsNull(); }
 
         T *GetPtr() const
         { return m_PtrInfo ? m_PtrInfo->GetPtr<T>() : nullptr; }

@@ -59,6 +59,7 @@ namespace myGame::resource
         REGISTER_RESOURCE_PNG(grass_texture_01);
         REGISTER_RESOURCE_PNG(illust_scenery);
         REGISTER_RESOURCE_PNG(grass_checked_16x16);
+        REGISTER_RESOURCE_PNG(icon_back_32x32);
 
         explicit Image(IAppState* appState);
     private:

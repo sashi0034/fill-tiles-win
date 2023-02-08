@@ -63,6 +63,11 @@ namespace myGame
         return ss.str();
     }
 
+    std::function<void()> util::FuncEmpty()
+    {
+        return []() {};
+    }
+
     Vec2<double> util::GetTextureCentralPos(SpriteTexture &texture)
     {
         const auto pos = texture.GetPosition();

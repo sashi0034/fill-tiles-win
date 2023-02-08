@@ -15,6 +15,7 @@
 #include "effect/SpiritualController.h"
 #include "StageClearEvent.h"
 #include "ScreenSweeper.h"
+#include "RetirementHelp.h"
 
 namespace myGame{
     MainScene::MainScene(IChildrenPool<ActorBase> *parent, GameRoot *root, const MainSceneResetInfo &resetInfo):
@@ -56,6 +57,8 @@ namespace myGame{
         effect::SpiritualController::Produce(m_EffectManager);
 
         m_ScrollManager->SetScroll(resetInfo.ScrollPos);
+
+        m_ChildrenPool.Birth(new RetirementHelp(this, resetInfo));
 
         initAfterBirth();
 
@@ -122,6 +125,11 @@ namespace myGame{
         return m_EffectManager;
     }
 
+    ChildrenPool<ActorBase>* MainScene::GetChildren()
+    {
+        return &m_ChildrenPool;
+    }
+
     void MainScene::RequestResetScene(MainSceneResetInfo resetInfo)
     {
         m_NextResetInfo = unique_ptr<MainSceneResetInfo>(new MainSceneResetInfo(resetInfo));
@@ -172,6 +180,10 @@ namespace myGame{
     {
         this->PassedStetppedCount = scene->GetPlayer()->GetSteppedCount();
         return *this;
+    }
+    bool MainSceneResetInfo::IsFirstTry() const
+    {
+        return PassedStetppedCount == 0;
     }
 }
 

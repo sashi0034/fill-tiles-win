@@ -62,6 +62,17 @@ namespace myGame{
         UpdateView();
     }
 
+    int TextPassage::GetMaxWidth() const
+    {
+        int result = 0;
+        for (auto&& text : m_TextList) {
+            auto&& size = text->GetSize();
+            result = (std::max)(result, size.X);
+        }
+
+        return result;
+    }
+
     void TextPassage::updateText(const std::string &text)
     {
         m_Strings = splitText(text, "<br>");
@@ -105,6 +116,23 @@ namespace myGame{
     void TextPassage::SetScale(VecDouble2 scale)
     {
         m_Scale = scale;
+    }
+
+    void TextPassage::HideImmediately()
+    {
+        setVisibleImmediately(false);
+    }
+
+    void TextPassage::ShowImmediately()
+    {
+        setVisibleImmediately(true);
+    }
+
+    void TextPassage::setVisibleImmediately(bool isVisible)
+    {
+        for (auto&& text : m_TextList) {
+            text->GetTexture().SetVisible(isVisible);
+        }
     }
 
     void TextPassage::UpdateView()

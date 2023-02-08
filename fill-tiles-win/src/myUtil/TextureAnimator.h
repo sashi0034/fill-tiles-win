@@ -25,7 +25,7 @@ namespace myUtil
     };
 
 
-    using TextureAnimationWeakPtr = WeakPtr<textureAnimator::ITextureAnimationPointer>;
+    using TextureAnimationWeakPtr = WeakPtr<textureAnimator::TextureAnimationProcessor>;
 
     class ITextureAnimator
     {

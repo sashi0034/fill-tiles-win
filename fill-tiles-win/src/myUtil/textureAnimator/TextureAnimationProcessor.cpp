@@ -14,10 +14,12 @@ namespace myUtil::textureAnimator
                                                          WeakPtr<TextureAnimationProcessor> *beforeAnimation)
             : m_TargetTexture(texture), m_ParentalPool(parentalPool)
     {
+        m_SelfWeakPtr = this->GetWeakPtr();
+
         if (beforeAnimation == nullptr)
             trigger();
         else
-            m_BeforeAnimation = *beforeAnimation;
+            m_BeforeAnimation = (*beforeAnimation);
     }
 
 
@@ -194,17 +196,19 @@ namespace myUtil::textureAnimator
 
     void TextureAnimationProcessor::ForceDestroy()
     {
-        assert(!m_NextAnimation.IsNull());
+        assert(m_NextAnimation.IsNull());
+
+        auto beforeAnimation = m_BeforeAnimation.GetPtr();
 
         auto isSucceeded = m_ParentalPool->Destroy(this);
         assert(isSucceeded);
 
-        if (auto beforeAnimation = m_BeforeAnimation->GetWeakPtr()) beforeAnimation->ForceDestroy();
+        if (beforeAnimation) beforeAnimation->ForceDestroy();
     }
 
-    WeakPtr<ITextureAnimationPointer> TextureAnimationProcessor::ToWeakPtr()
+    WeakPtr<TextureAnimationProcessor> TextureAnimationProcessor::ToWeakPtr()
     {
-        return this->GetWeakPtr().ToUpCasted<ITextureAnimationEaseProperty>().ToUpCasted<ITextureAnimationPointer>();
+        return this->GetWeakPtr();
     }
 
     ITextureAnimationEaseProperty *TextureAnimationProcessor::AnimBlend(int endBlendPal, double duration)

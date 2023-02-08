@@ -133,6 +133,7 @@
     <ClInclude Include="src\myGame\InterludeCurtain.h" />
     <ClInclude Include="src\myGame\ScreenSweeper.h" />
     <ClInclude Include="src\myGame\DebugMetaInfoView.h" />
+    <ClInclude Include="src\myGame\RetirementHelp.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\myUtil\AppState.cpp" />
@@ -256,5 +257,6 @@
     <ClCompile Include="src\myGame\InterludeCurtain.cpp" />
     <ClCompile Include="src\myGame\ScreenSweeper.cpp" />
     <ClCompile Include="src\myGame\DebugMetaInfoView.cpp" />
+    <ClCompile Include="src\myGame\RetirementHelp.cpp" />
   </ItemGroup>
 </Project>

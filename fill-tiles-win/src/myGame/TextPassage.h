@@ -35,8 +35,11 @@ namespace myGame
         void SetPos(const Vec2<double> &pos);
         void SetAlignment(ETextHorizontalAlign horizontalAlign, ETextVerticalAlign verticalAlign);
         void SetScale(VecDouble2 scale);
+        void HideImmediately();
+        void ShowImmediately();
         void UpdateView();
         void UpdateTextAndView(const std::string &text);
+        int GetMaxWidth() const;
     private:
         IAppState* m_App;
         VecDouble2 m_Pos{};
@@ -61,6 +64,7 @@ namespace myGame
         Vec2<double> getBasePosAppliedVertical();
 
         void updateText(const std::string &text);
+        void setVisibleImmediately(bool isVisible);
     };
 }
 

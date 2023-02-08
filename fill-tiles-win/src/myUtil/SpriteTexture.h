@@ -70,6 +70,7 @@ namespace myUtil
         [[nodiscard]] double GetZ() const;
 
         void SetGraph(Graph* graph);
+        void SetGraphThenSrcGraph(Graph* graph);
         [[nodiscard]] Graph* GetGraph() const;
 
         void SetSrcRect(const Rect<int>& srcRect);

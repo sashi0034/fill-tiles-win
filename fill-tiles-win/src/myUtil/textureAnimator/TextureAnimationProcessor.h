@@ -37,10 +37,12 @@ namespace myUtil::textureAnimator
         virtual ITextureAnimationLinker * DelayVirtual(std::function<void()> process, double deltaTime) = 0;
     };
 
+    class TextureAnimationProcessor;
+
     class ITextureAnimationPointer
     {
     public:
-        virtual WeakPtr<ITextureAnimationPointer> ToWeakPtr() = 0;
+        virtual WeakPtr<TextureAnimationProcessor> ToWeakPtr() = 0;
         virtual void ForceDestroy() = 0;
     };
 
@@ -87,7 +89,7 @@ namespace myUtil::textureAnimator
     {
     public:
         DEF_WEAK_CONTROLLER(TextureAnimationProcessor);
-        WeakPtr<ITextureAnimationPointer> ToWeakPtr() override;
+        WeakPtr<TextureAnimationProcessor> ToWeakPtr() override;
     public:
         TextureAnimationProcessor(const WeakPtr <SpriteTexture> &texture, IChildrenPool <TextureAnimationProcessor> *parentalPool, WeakPtr<TextureAnimationProcessor> *beforeAnimation);
 

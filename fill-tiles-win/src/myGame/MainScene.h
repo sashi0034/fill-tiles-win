@@ -29,6 +29,7 @@ namespace myGame
 
         static MainSceneResetInfo FromLevel(int level);
         MainSceneResetInfo& WriteCurrSceneInfo(MainScene* scene);
+        bool IsFirstTry() const;
     };
 
     class MainScene: public ActorBase
@@ -45,6 +46,7 @@ namespace myGame
         ScrollManager *GetScrollManager();
         FieldEventManager *GetFieldEventManager();
         EffectManager* GetEffectManager();
+        ChildrenPool<ActorBase>* GetChildren();
         void RequestResetScene(MainSceneResetInfo resetInfo);
 
         void FinishScene();

@@ -67,6 +67,12 @@ namespace myUtil
         m_Graph = graph;
     }
 
+    void SpriteTexture::SetGraphThenSrcGraph(Graph* graph)
+    {
+        m_Graph = graph;
+        SetSrcRect(graph->GetSize());
+    }
+
     Graph *SpriteTexture::GetGraph() const
     {
         return m_Graph;

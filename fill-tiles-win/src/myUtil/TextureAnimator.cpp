@@ -38,7 +38,10 @@ namespace myUtil{
     {
         if (auto targetPtr = target.GetPtr())
         {
-            return m_Pool.Destroy(dynamic_cast<textureAnimator::TextureAnimationProcessor*>(targetPtr));
+            //return m_Pool.Destroy(dynamic_cast<textureAnimator::TextureAnimationProcessor*>(targetPtr));
+
+            targetPtr->ForceDestroy();
+            return true;
         }
         return false;
     }

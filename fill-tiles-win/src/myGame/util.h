@@ -24,6 +24,8 @@ namespace myGame
         bool IsPushedOk(IAppState* app);
 
         std::string StringfyMMSS(int milliSec);
+
+        std::function<void()> FuncEmpty();
     }
 }
 

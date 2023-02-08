@@ -13,6 +13,7 @@ namespace myGame::player::input
 
     EAngle GetInputAngle(const Uint8 *keyState);
     bool IsPushingConfirm(const Uint8 *keyState);
+    bool IsPushingBack(const Uint8* keyState);
 
 } // myGame
 

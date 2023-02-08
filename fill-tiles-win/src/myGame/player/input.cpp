@@ -21,4 +21,9 @@ namespace myGame::player::input
         return keyState[SDL_Scancode::SDL_SCANCODE_SPACE];
     }
 
+    bool IsPushingBack(const Uint8* keyState)
+    {
+        return keyState[SDL_Scancode::SDL_SCANCODE_BACKSPACE];
+    }
+
 }
