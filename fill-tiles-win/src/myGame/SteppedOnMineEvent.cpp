@@ -35,7 +35,7 @@ namespace myGame
 
         coroUtil::WaitForTime(yield, 2.0);
 
-        args.MainScene->RequestResetScene(MainSceneResetInfo::FromLevel(args.ClassAtFailed->GetClassLevel()));
+        args.MainScene->RequestResetScene(MainSceneResetInfo::FromLevel(args.ClassAtFailed->GetClassLevel()).WriteCurrSceneInfo(args.MainScene));
     }
 
     // 順番に爆発していく演出

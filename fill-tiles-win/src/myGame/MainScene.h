@@ -23,10 +23,12 @@ namespace myGame
 
     struct MainSceneResetInfo
     {
-        const int InitialLevel;
-        const Vec2<double> ScrollPos;
+        int InitialLevel{};
+        Vec2<double> ScrollPos{};
+        int PassedStetppedCount{};
 
         static MainSceneResetInfo FromLevel(int level);
+        MainSceneResetInfo& WriteCurrSceneInfo(MainScene* scene);
     };
 
     class MainScene: public ActorBase
@@ -48,6 +50,7 @@ namespace myGame
         void FinishScene();
         bool IsFinished() const;
         int GetLevelOnRestart() const;
+        int GetPassedMilliSec() const;
     private:
         void initAfterBirth();
         void constructInternal(const myGame::MainSceneResetInfo& resetInfo);
@@ -66,6 +69,7 @@ namespace myGame
 
         bool m_IsFinished = false;
         int m_LevelOnRestart{};
+        int m_PassedMilliSec{};
     };
 }
 

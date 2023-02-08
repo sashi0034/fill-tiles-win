@@ -50,6 +50,19 @@ namespace myGame
         return app->GetKeyboardState()[SDL_Scancode::SDL_SCANCODE_SPACE];
     }
 
+    std::string util::StringfyMMSS(int milliSec)
+    {
+        std::stringstream ss{};
+
+        int totalSec = milliSec / 1000;
+
+        ss << std::setfill('0') << std::right << std::setw(2) << (totalSec / 60);
+        ss << ":";
+        ss << std::setfill('0') << std::right << std::setw(2) << (totalSec % 60);
+
+        return ss.str();
+    }
+
     Vec2<double> util::GetTextureCentralPos(SpriteTexture &texture)
     {
         const auto pos = texture.GetPosition();

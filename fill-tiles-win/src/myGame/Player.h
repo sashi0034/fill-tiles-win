@@ -36,7 +36,7 @@ namespace myGame
     class Player final : public ActorBase
     {
     public:
-        explicit Player(IChildrenPool<ActorBase> *belonging, MainScene *mainScene);
+        explicit Player(IChildrenPool<ActorBase> *belonging, MainScene *mainScene, const MainSceneResetInfo& resetInfo);
         void Init() override;
         void Update(IAppState *appState) override;
         Vec2<double> GetPos();
@@ -48,6 +48,7 @@ namespace myGame
         void ChangeStateToDead();
         void ChangeStateToWarp(const MatPos& startPos, const MatPos& endPos);
         PlayerScroll* GetScroll();
+        int GetSteppedCount() const;
 
         static inline const Vec2<int> CellSize{32, 32};
     private:
@@ -69,6 +70,8 @@ namespace myGame
         EAngle m_Angle = EAngle::Down;
         MainScene* m_ParentalScene;
         FieldManager* m_Field;
+
+        int m_SteppedCount = 0;
 
         ChildrenPool<ProcessTimer> m_SubProcess{};
         rx::subject<PlayerMoveData*> m_OnMoveBegin{};

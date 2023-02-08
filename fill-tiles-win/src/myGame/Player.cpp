@@ -16,17 +16,20 @@ using namespace boost::coroutines2;
 
 namespace myGame
 {
-    Player::Player(IChildrenPool<ActorBase> *belonging, MainScene *mainScene)
-            : ActorBase(belonging), m_State(EPlayerState::Walking), m_ParentalScene(mainScene), m_Field(mainScene->GetFieldManager())
-{
+    Player::Player(IChildrenPool<ActorBase> *belonging, MainScene *mainScene, const MainSceneResetInfo& resetInfo) :
+        ActorBase(belonging), m_State(EPlayerState::Walking),
+        m_ParentalScene(mainScene),
+        m_Field(mainScene->GetFieldManager()),
+        m_SteppedCount(resetInfo.PassedStetppedCount)
+    {
         m_Image = mainScene->GetRoot()->RscImage->kisaragi_32x32.get();
 
         initViewModel();
 
         m_AnimationLogic = std::make_unique<PlayerAnimation>(m_ParentalScene, CellSize, m_PlayerAnimator, m_View.get());
 
-    m_PlayerScroll = std::make_unique<PlayerScroll>(
-                m_ParentalScene->GetFieldEventManager(), m_ParentalScene->GetScrollManager(), &m_View->GetModel());
+        m_PlayerScroll = std::make_unique<PlayerScroll>(
+                    m_ParentalScene->GetFieldEventManager(), m_ParentalScene->GetScrollManager(), &m_View->GetModel());
         
         initAction();
     }
@@ -183,6 +186,8 @@ namespace myGame
 
         coroUtil::WaitForExpire<>(yield, moveAnim);
 
+        m_SteppedCount++;
+
         // 移動終了時のフィールドイベントを発火
         this->m_OnMoveFinish.get_subscriber().on_next(&moveData);
 
@@ -309,6 +314,11 @@ namespace myGame
     PlayerScroll *Player::GetScroll()
     {
         return m_PlayerScroll.get();
+    }
+
+    int Player::GetSteppedCount() const
+    {
+        return m_SteppedCount;
     }
 
     void Player::ChangeStateToWarp(const MatPos& startPos, const MatPos& endPos)

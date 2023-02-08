@@ -22,6 +22,8 @@ namespace myGame
         void ClearRendererTransparent(SDL_Renderer* renderer);
 
         bool IsPushedOk(IAppState* app);
+
+        std::string StringfyMMSS(int milliSec);
     }
 }
 

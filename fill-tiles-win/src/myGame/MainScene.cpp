@@ -40,7 +40,7 @@ namespace myGame{
 
         m_FieldManager = m_ChildrenPool.BirthAs<FieldManager>(new FieldManager(&m_ChildrenPool, this));
 
-        m_Player = m_ChildrenPool.BirthAs<Player>(new Player(&m_ChildrenPool, this));
+        m_Player = m_ChildrenPool.BirthAs<Player>(new Player(&m_ChildrenPool, this, resetInfo));
 
         m_EffectManager = m_ChildrenPool.BirthAs<EffectManager>(new EffectManager(&m_ChildrenPool,
             m_ScrollManager->GetSprite()->GetWeakPtr(),
@@ -77,6 +77,8 @@ namespace myGame{
         m_ChildrenPool.ProcessEach([&](auto& child){ child.Update(appState);});
 
         m_TextureAnimator.Update(appState->GetTime().GetDeltaSec());
+
+        m_PassedMilliSec += appState->GetTime().GetDeltaMilli();
 
         if (m_NextResetInfo.get()!= nullptr) resetScene();
     }
@@ -140,6 +142,11 @@ namespace myGame{
         return m_LevelOnRestart;
     }
 
+    int MainScene::GetPassedMilliSec() const
+    {
+        return m_PassedMilliSec;
+    }
+
     void MainScene::resetScene()
     {
         auto const gameRoot = m_Root;
@@ -157,7 +164,14 @@ namespace myGame{
 
     MainSceneResetInfo MainSceneResetInfo::FromLevel(int level)
     {
-        return MainSceneResetInfo{level, Vec2{0.0, 0.0}};
+        auto result = MainSceneResetInfo{};
+        result.InitialLevel = level;
+        return result;
+    }
+    MainSceneResetInfo& MainSceneResetInfo::WriteCurrSceneInfo(MainScene* scene)
+    {
+        this->PassedStetppedCount = scene->GetPlayer()->GetSteppedCount();
+        return *this;
     }
 }
 

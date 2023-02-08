@@ -5,6 +5,8 @@
 #include "StageClearEvent.h"
 #include "ZIndex.h"
 
+#include "Player.h"
+
 namespace myGame
 {
     GameRoot *StageClearEventArgs::GetRoot() const
@@ -121,7 +123,13 @@ namespace myGame
         text->SetAlignment(ETextHorizontalAlign::Left, ETextVerticalAlign::Center);
         text->SetPositionParent(args.GetRoot()->GetAnchor()->GetOf(ENineAnchorX::Center, ENineAnchorY::Middle));
         text->SetZIndex(zIndexValue + 1);
-        text->UpdateTextAndView("ステップ数:  0<br>クリア時間:  01:23");
+
+        auto clearedStep = args.SceneRef->GetPlayer()->GetSteppedCount();
+        auto clearedTime = args.SceneRef->GetPassedMilliSec();
+
+        std::stringstream ss{};
+        ss << "ステップ数 :  " << clearedStep << "<br>クリア時間 :  " << util::StringfyMMSS(clearedTime);
+        text->UpdateTextAndView(ss.str());
 
         return text;
     }
