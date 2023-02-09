@@ -10,6 +10,7 @@
 #include "resource/Font.h"
 #include "LuaEngine.h"
 #include "./NineAnchor.h"
+#include "GameSaveData.h"
 
 namespace myGame
 {
@@ -43,10 +44,12 @@ namespace myGame
         LuaEngine m_LuaEngine{this};
         CoroutineManager m_Coro{};
         NineAnchor m_Anchor{};
+        GameSaveData m_SaveData{};
         void createSelfSpr();
         void processAppFlow(CoroTaskYield& yield);
         void flowMenuScene(CoroTaskYield& yield, InterludeCurtain* intrule);
         void flowMainScene(CoroTaskYield& yield, InterludeCurtain* interlude);
+        void testSaveData();
     };
 }
 

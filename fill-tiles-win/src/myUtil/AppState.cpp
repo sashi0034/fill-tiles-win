@@ -36,7 +36,7 @@ namespace myUtil
     {
         return *m_Time;
     }
-    Time& AppState::GetTimeMutable()
+    Time& AppState::MutTime()
     {
         return *m_Time;
     }

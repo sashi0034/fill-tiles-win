@@ -19,6 +19,7 @@ namespace myGame{
     {
         createSelfSpr();
         m_Coro.Start([this](CoroTaskYield& yield) { processAppFlow(yield); });
+        testSaveData();
     }
 
     GameRoot::~GameRoot()
@@ -102,6 +103,19 @@ namespace myGame{
         interlude->WaitProcessClose(yield);
 
         m_ChildrenPool.Destroy(mainScene);
+    }
+
+    const char* saveFileName = "save.dat";
+
+    void GameRoot::testSaveData()
+    {
+        auto test = GameSaveData{ 198, 345 };
+
+        test.WriteData(saveFileName);
+
+        m_SaveData.ReadData(saveFileName);
+
+        std::cout << m_SaveData.MyData;
     }
 
 }

@@ -62,7 +62,7 @@ namespace myGame{
 
         initAfterBirth();
 
-        m_Root->GetAppState()->GetTimeMutable().Restart();
+        m_Root->GetAppState()->MutTime().Restart();
     }
 
     MainScene::~MainScene()
