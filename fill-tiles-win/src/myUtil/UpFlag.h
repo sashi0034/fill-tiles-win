@@ -6,7 +6,7 @@
 #define FILL_TILES_UPFLAG_H
 
 
-namespace myGame
+namespace myUtil
 {
     class UpFlag
     {

@@ -4,7 +4,7 @@
 
 #include "IntCounter.h"
 
-namespace myGame
+namespace myUtil
 {
     void IntCounter::IncreaseCount()
     {
@@ -26,4 +26,4 @@ namespace myGame
 
     IntCounter::IntCounter()
     {}
-} // myGame
+} // myUtil

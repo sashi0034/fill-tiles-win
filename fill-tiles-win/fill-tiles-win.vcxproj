@@ -67,7 +67,7 @@
     <ClInclude Include="src\myGame\ActorBase.h" />
     <ClInclude Include="src\myGame\Angle.h" />
     <ClInclude Include="src\myGame\AnimTest.h" />
-    <ClInclude Include="src\myGame\Boolean.h" />
+    <ClInclude Include="src\myUtil\Boolean.h" />
     <ClInclude Include="src\myGame\CharacterViewModel.h" />
     <ClInclude Include="src\myGame\character\BigTree.h" />
     <ClInclude Include="src\myGame\character\Carrot.h" />
@@ -107,7 +107,7 @@
     <ClInclude Include="src\myGame\FontTest.h" />
     <ClInclude Include="src\myGame\GameLooper.h" />
     <ClInclude Include="src\myGame\GameRoot.h" />
-    <ClInclude Include="src\myGame\IntCounter.h" />
+    <ClInclude Include="src\myUtil\IntCounter.h" />
     <ClInclude Include="src\myGame\LibraryTest.h" />
     <ClInclude Include="src\myGame\LuaEngine.h" />
     <ClInclude Include="src\myGame\MainScene.h" />
@@ -147,7 +147,7 @@
     <ClInclude Include="src\myGame\title\StageView.h" />
     <ClInclude Include="src\myGame\title\TitleBackground.h" />
     <ClInclude Include="src\myGame\title\zParam.h" />
-    <ClInclude Include="src\myGame\UpFlag.h" />
+    <ClInclude Include="src\myUtil\UpFlag.h" />
     <ClInclude Include="src\myGame\util.h" />
     <ClInclude Include="src\myGame\WarpManager.h" />
     <ClInclude Include="src\myGame\ZIndex.h" />
@@ -191,7 +191,7 @@
     <ClCompile Include="src\myGame\ActorBase.cpp" />
     <ClCompile Include="src\myGame\Angle.cpp" />
     <ClCompile Include="src\myGame\AnimTest.cpp" />
-    <ClCompile Include="src\myGame\Boolean.cpp" />
+    <ClCompile Include="src\myUtil\Boolean.cpp" />
     <ClCompile Include="src\myGame\CharacterViewModel.cpp" />
     <ClCompile Include="src\myGame\character\BigTree.cpp" />
     <ClCompile Include="src\myGame\character\Carrot.cpp" />
@@ -231,7 +231,7 @@
     <ClCompile Include="src\myGame\FontTest.cpp" />
     <ClCompile Include="src\myGame\GameLooper.cpp" />
     <ClCompile Include="src\myGame\GameRoot.cpp" />
-    <ClCompile Include="src\myGame\IntCounter.cpp" />
+    <ClCompile Include="src\myUtil\IntCounter.cpp" />
     <ClCompile Include="src\myGame\LibraryTest.cpp" />
     <ClCompile Include="src\myGame\LuaEngine.cpp" />
     <ClCompile Include="src\myGame\MainScene.cpp" />
@@ -271,7 +271,7 @@
     <ClCompile Include="src\myGame\title\StageView.cpp" />
     <ClCompile Include="src\myGame\title\TitleBackground.cpp" />
     <ClCompile Include="src\myGame\title\zParam.cpp" />
-    <ClCompile Include="src\myGame\UpFlag.cpp" />
+    <ClCompile Include="src\myUtil\UpFlag.cpp" />
     <ClCompile Include="src\myGame\util.cpp" />
     <ClCompile Include="src\myGame\WarpManager.cpp" />
     <ClCompile Include="src\myGame\ZIndex.cpp" />

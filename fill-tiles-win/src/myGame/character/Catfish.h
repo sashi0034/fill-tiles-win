@@ -9,7 +9,6 @@
 #include "../MatPos.h"
 #include "../MainScene.h"
 #include "../CharacterViewModel.h"
-#include "../UpFlag.h"
 #include "../ParabolaAnimation.h"
 #include "MovableObjectLogic.h"
 

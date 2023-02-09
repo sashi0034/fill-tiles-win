@@ -9,7 +9,6 @@
 
 #include "TileMapMatElement.h"
 
-#include "../Boolean.h"
 #include "StaticTileset.h"
 #include "../MatPos.h"
 

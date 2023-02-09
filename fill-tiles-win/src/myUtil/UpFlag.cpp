@@ -5,7 +5,7 @@
 #include "cassert"
 #include "UpFlag.h"
 
-namespace myGame{
+namespace myUtil{
 
     bool UpFlag::IsUp() const
     {

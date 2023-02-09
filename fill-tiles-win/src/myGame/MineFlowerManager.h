@@ -7,7 +7,6 @@
 
 
 #include "MineFlowerClass.h"
-#include "UpFlag.h"
 
 namespace myGame
 {

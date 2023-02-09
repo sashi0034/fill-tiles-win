@@ -34,6 +34,9 @@
 #include "TextureText.h"
 #include "TempRenderTargetChanger.h"
 #include "Random.h"
+#include "Boolean.h"
+#include "UpFlag.h"
+#include "IntCounter.h"
 
 using std::shared_ptr;
 using std::unique_ptr;

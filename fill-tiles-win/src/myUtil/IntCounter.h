@@ -5,7 +5,7 @@
 #ifndef FILL_TILES_INTCOUNTER_H
 #define FILL_TILES_INTCOUNTER_H
 
-namespace myGame
+namespace myUtil
 {
 
     class IntCounter
@@ -21,6 +21,6 @@ namespace myGame
         int m_Count = 0;
     };
 
-} // myGame
+} // myUtil
 
 #endif //FILL_TILES_INTCOUNTER_H

@@ -8,7 +8,6 @@
 #include "../MainScene.h"
 #include "../EffectManager.h"
 #include "./SpiritualElement.h"
-#include "../IntCounter.h"
 
 namespace myGame::effect
 {

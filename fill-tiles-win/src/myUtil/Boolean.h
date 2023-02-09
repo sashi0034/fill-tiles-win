@@ -6,7 +6,7 @@
 #define FILL_TILES_BOOLEAN_H
 
 
-namespace myGame
+namespace myUtil
 {
     enum class Boolean
     {
