@@ -36,7 +36,7 @@ namespace myUtil
 #ifdef DEBUG_BUILD
         if (pal<0 || 255<pal)
         {
-            LOG_CAUTION << "BlendPal: " << pal << " Is Out Of Range" << std::endl ;
+            LOG_CAUTION << "BlendPal: " << pal << " Is Out Of Range";
         }
 #endif
         m_Pal = std::max(0, std::min(255, pal));

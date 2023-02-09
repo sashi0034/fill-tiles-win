@@ -18,9 +18,10 @@
 #include "RetirementHelp.h"
 
 namespace myGame{
-    MainScene::MainScene(IChildrenPool<ActorBase> *parent, GameRoot *root, const MainSceneResetInfo &resetInfo):
+    MainScene::MainScene(IChildrenPool<ActorBase> *parent, GameRoot *root, const MainSceneResetInfo &resetInfo, int stageIndex):
             ActorBase(parent),
-            m_Root(root)
+            m_Root(root),
+            m_MapIndex(stageIndex)
     {
         constructInternal(resetInfo);
     }
@@ -153,6 +154,11 @@ namespace myGame{
     int MainScene::GetPassedMilliSec() const
     {
         return m_PassedMilliSec;
+    }
+
+    int MainScene::GetMapIndex() const
+    {
+        return m_MapIndex;
     }
 
     void MainScene::resetScene()

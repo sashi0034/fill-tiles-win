@@ -13,7 +13,7 @@ namespace myGame::resource
     Image::Image(IAppState *appState)
     : m_AppStatePtr(appState)
     {
-        LOG_INFO << "Loaded Image Resources." << std::endl;
+        LOG_INFO << "Loaded Image Resources.";
     }
 
     unique_ptr<Graph> Image::loadPng(const std::string& fileName)

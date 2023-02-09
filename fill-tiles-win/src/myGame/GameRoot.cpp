@@ -12,6 +12,9 @@
 #include "DebugMetaInfoView.h"
 
 namespace myGame{
+
+    const char* saveFileName = "save.dat";
+
     GameRoot::GameRoot(IAppState *appState)
     : RscImage(std::make_unique<resource::Image>(appState)),
       RscFont(std::make_unique<resource::Font>(appState)),
@@ -19,7 +22,8 @@ namespace myGame{
     {
         createSelfSpr();
         m_Coro.Start([this](CoroTaskYield& yield) { processAppFlow(yield); });
-        testSaveData();
+
+        m_SaveData.ReadData(saveFileName);
     }
 
     GameRoot::~GameRoot()
@@ -61,6 +65,21 @@ namespace myGame{
         return &m_Anchor;
     }
 
+    const GameSaveData& GameRoot::GetSaveData() const
+    {
+        return m_SaveData;
+    }
+
+    GameSaveData* const GameRoot::MutSaveData()
+    {
+        return &m_SaveData;
+    }
+
+    void GameRoot::WriteSaveData()
+    {
+        m_SaveData.WriteData(saveFileName);
+    }
+
     void GameRoot::processAppFlow(CoroTaskYield& yield)
     {
 #ifdef MYGAME_DEBUG
@@ -69,53 +88,45 @@ namespace myGame{
         auto&& interlude = m_ChildrenPool.BirthAs<InterludeCurtain>(new InterludeCurtain(this));
 
 #ifdef MYGAME_DEBUG_MAINSCENE
-        flowMainScene(yield, interlude);
+        flowMainScene(yield, interlude, title::MenuSelectedInfo().ConfirmSelect(MYGAME_DEBUG_MAINSCENE));
 #endif
 
         while (true) {
-            flowMenuScene(yield, interlude);
+            auto info = flowMenuScene(yield, interlude);
 
-            flowMainScene(yield, interlude);
+            flowMainScene(yield, interlude, info);
         }
     }
 
-    void GameRoot::flowMenuScene(myUtil::CoroTaskYield& yield, InterludeCurtain* interlude)
+    title::MenuSelectedInfo GameRoot::flowMenuScene(myUtil::CoroTaskYield& yield, InterludeCurtain* interlude)
     {
         interlude->StartOpen();
 
         auto title = m_ChildrenPool.BirthAs<title::MenuScene>(new title::MenuScene(&m_ChildrenPool, this));
 
-        while (title->GetInfo().IsSelected() == false) { yield(); }
+        auto&& info = title->GetInfo();
+        while (info.IsSelected() == false) { yield(); }
 
         interlude->WaitProcessClose(yield);
 
+        auto result = info;
         m_ChildrenPool.Destroy(title);
+
+        return result;
     }
 
-    void GameRoot::flowMainScene(myUtil::CoroTaskYield& yield, InterludeCurtain* interlude)
+    void GameRoot::flowMainScene(myUtil::CoroTaskYield& yield, InterludeCurtain* interlude, title::MenuSelectedInfo info)
     {
         interlude->StartOpen();
 
-        auto&& mainScene = m_ChildrenPool.BirthAs<MainScene>(new MainScene(&m_ChildrenPool, this, MainSceneResetInfo::FromLevel(1)));
+        auto&& mainScene = m_ChildrenPool.BirthAs<MainScene>(
+            new MainScene(&m_ChildrenPool, this, MainSceneResetInfo::FromLevel(1), info.GetSelectedIndex()));
 
         while (mainScene->IsFinished() == false) { yield(); }
 
         interlude->WaitProcessClose(yield);
 
         m_ChildrenPool.Destroy(mainScene);
-    }
-
-    const char* saveFileName = "save.dat";
-
-    void GameRoot::testSaveData()
-    {
-        auto test = GameSaveData{ 198, 345 };
-
-        test.WriteData(saveFileName);
-
-        m_SaveData.ReadData(saveFileName);
-
-        std::cout << m_SaveData.MyData;
     }
 
 }

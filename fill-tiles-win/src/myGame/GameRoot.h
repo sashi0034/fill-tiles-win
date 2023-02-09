@@ -23,6 +23,10 @@ namespace myGame
     class LuaEngine;
     class InterludeCurtain;
 
+    namespace title {
+
+        class MenuSelectedInfo;
+    }
 
     class GameRoot : public Singleton<GameRoot>
     {
@@ -36,6 +40,10 @@ namespace myGame
         LuaEngine* GetLua();
         IChildrenPool<ActorBase>* GetChildren();
         NineAnchor* GetAnchor();
+
+        const GameSaveData& GetSaveData() const;
+        GameSaveData* const MutSaveData();
+        void WriteSaveData();
     private:
         SpriteTexture m_Spr = SpriteTexture::Create();
         ChildrenPool<ActorBase> m_ChildrenPool{};
@@ -47,8 +55,8 @@ namespace myGame
         GameSaveData m_SaveData{};
         void createSelfSpr();
         void processAppFlow(CoroTaskYield& yield);
-        void flowMenuScene(CoroTaskYield& yield, InterludeCurtain* intrule);
-        void flowMainScene(CoroTaskYield& yield, InterludeCurtain* interlude);
+        title::MenuSelectedInfo flowMenuScene(CoroTaskYield& yield, InterludeCurtain* intrule);
+        void flowMainScene(CoroTaskYield& yield, InterludeCurtain* interlude, title::MenuSelectedInfo info);
         void testSaveData();
     };
 }

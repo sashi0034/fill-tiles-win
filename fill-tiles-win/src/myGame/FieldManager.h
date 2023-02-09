@@ -99,7 +99,7 @@ namespace myGame
         void renderTileMapInternal(const Vec2<int> &renderingChipStartingPoint, const Vec2<int> &renderingChipEndPoint,
                                    SDL_Renderer *const sdlRenderer, SDL_Texture *renderingTarget, bool isClearBuffer);
 
-        static std::string getCurrentMapFileName() ;
+        static std::string getCurrentMapFileName(int mapIndex);
     };
 }
 

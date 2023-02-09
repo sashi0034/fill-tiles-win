@@ -5,17 +5,14 @@
 // デバッグビルド
 #define MYGAME_DEBUG
 
-// メインシーンデバッグ
-#define MYGAME_DEBUG_MAINSCENE
+// メインシーンデバッグ (デバッグマップ番号)
+#define MYGAME_DEBUG_MAINSCENE 1
 
 // フィールドデバッグ
 //#define MYGAME_DEBUG_FIELDVIEW
 
 // メインシーンのクリアイベントのデバッグ
 // #define MYGAME_DEBUG_IMMEDIATE_CLEAREVENT
-
-// デバッグマップ番号
-#define MYGAME_DEBUG_MAP_INDEX 1
 
 // エフェクトテスト
 #define MYGAME_DEBUG_EFFECTTEST

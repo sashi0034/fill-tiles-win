@@ -18,8 +18,8 @@ namespace myGame::title
     public:
         bool IsSelected() const;
         int GetSelectedIndex() const;
-        void ConfirmSelect(int index);
-    public:
+        MenuSelectedInfo& ConfirmSelect(int index);
+    private:
         bool _isSelected;
         int _selectedIndex;
     };

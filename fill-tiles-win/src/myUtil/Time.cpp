@@ -51,7 +51,7 @@ namespace myUtil
             int ret = m_FpsCount;
             m_FpsCount = 0;
             m_Fps= Fps{ret};
-            if (isPrintDebugFps) LOG_INFO << "FPS: " << m_Fps.Value << std::endl;
+            if (isPrintDebugFps) LOG_INFO << "FPS: " << m_Fps.Value;
         }
     }
 

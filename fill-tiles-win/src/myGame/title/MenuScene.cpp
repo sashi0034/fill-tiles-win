@@ -52,9 +52,10 @@ namespace myGame::title
     {
         return _selectedIndex;
     }
-    void MenuSelectedInfo::ConfirmSelect(int index)
+    MenuSelectedInfo& MenuSelectedInfo::ConfirmSelect(int index)
     {
         _isSelected = true;
         _selectedIndex = index;
+        return *this;
     }
 } // myGame

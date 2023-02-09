@@ -24,6 +24,16 @@ namespace myGame
         return SceneRef->GetEffectManager()->GetCoroutineManager();
     }
 
+    int StageClearEventArgs::GetClearedStep() const
+    {
+        return SceneRef->GetPlayer()->GetSteppedCount();
+    }
+
+    int StageClearEventArgs::GetClearedTime() const
+    {
+        return SceneRef->GetPassedMilliSec();
+    }
+
     constexpr int zIndexValue = 100;
 
     void StageClearEvent::Start(const StageClearEventArgs &args)
@@ -38,6 +48,10 @@ namespace myGame
         yield();
 
         constexpr double duration = 0.5;
+
+        // セーブ
+        args.GetRoot()->MutSaveData()->StageClear[args.SceneRef->GetMapIndex()] = StageClearData{args.GetClearedTime(), args.GetClearedStep()};
+        args.GetRoot()->WriteSaveData();
 
         // CLEARラベルを表示
         SpriteTexture labelClear = SpriteTexture::Create();
@@ -124,8 +138,8 @@ namespace myGame
         text->SetPositionParent(args.GetRoot()->GetAnchor()->GetOf(ENineAnchorX::Center, ENineAnchorY::Middle));
         text->SetZIndex(zIndexValue + 1);
 
-        auto clearedStep = args.SceneRef->GetPlayer()->GetSteppedCount();
-        auto clearedTime = args.SceneRef->GetPassedMilliSec();
+        auto clearedStep = args.GetClearedStep();
+        auto clearedTime = args.GetClearedTime();
 
         std::stringstream ss{};
         ss << "ステップ数 :  " << clearedStep << "<br>クリア時間 :  " << util::StringfyMMSS(clearedTime);

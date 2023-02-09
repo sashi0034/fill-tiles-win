@@ -10,6 +10,6 @@ namespace myGame::resource
     Font::Font(IAppState *appState)
     : m_AppStatePtr(appState)
     {
-        LOG_INFO << "Loaded Font Resources." << std::endl;
+        LOG_INFO << "Loaded Font Resources.";
     }
 }

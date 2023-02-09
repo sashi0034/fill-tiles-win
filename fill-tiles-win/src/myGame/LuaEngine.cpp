@@ -51,7 +51,7 @@ namespace myGame
         if (!result.valid())
         {
             sol::error error = result;
-            LOG_ERR << filePath  << ": " << error.what() << std::endl;
+            LOG_ERR << filePath  << ": " << error.what();
             return false;
         }
         return true;

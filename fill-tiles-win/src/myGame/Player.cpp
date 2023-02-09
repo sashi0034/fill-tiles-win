@@ -224,7 +224,7 @@ namespace myGame
 
     void Player::SetPos(const Vec2<double> &pos)
     {
-        LOG_INFO << "Player Position set to " << pos.ToString() << std::endl;
+        LOG_INFO << "Player Position set to " << pos.ToString();
         m_View->GetModel().SetPosition(pos);
         m_PlayerScroll->RequestResetScroll();
     }

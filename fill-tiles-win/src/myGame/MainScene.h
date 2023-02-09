@@ -35,7 +35,7 @@ namespace myGame
     class MainScene: public ActorBase
     {
     public:
-        explicit MainScene(IChildrenPool<ActorBase> *parent, GameRoot *root, const MainSceneResetInfo &resetInfo);
+        explicit MainScene(IChildrenPool<ActorBase> *parent, GameRoot *root, const MainSceneResetInfo &resetInfo, int stageIndex);
         ~MainScene();
 
         Player* GetPlayer();
@@ -53,6 +53,7 @@ namespace myGame
         bool IsFinished() const;
         int GetLevelOnRestart() const;
         int GetPassedMilliSec() const;
+        int GetMapIndex() const;
     private:
         void initAfterBirth();
         void constructInternal(const myGame::MainSceneResetInfo& resetInfo);
@@ -69,6 +70,7 @@ namespace myGame
 
         unique_ptr<MainSceneResetInfo> m_NextResetInfo{};
 
+        const int m_MapIndex;
         bool m_IsFinished = false;
         int m_LevelOnRestart{};
         int m_PassedMilliSec{};

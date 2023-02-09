@@ -15,9 +15,11 @@ namespace myGame
     {
         MainScene* const SceneRef;
 
-        [[nodiscard]] GameRoot* GetRoot() const;
-        [[nodiscard]] TextureAnimator* GetAnimator() const;
-        [[nodiscard]] CoroutineManager* GetCoroutineManager() const;
+        GameRoot* GetRoot() const;
+        TextureAnimator* GetAnimator() const;
+        CoroutineManager* GetCoroutineManager() const;
+        int GetClearedStep() const;
+        int GetClearedTime() const;
     };
 
     class StageClearEvent

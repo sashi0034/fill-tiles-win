@@ -9,7 +9,7 @@
 #include "GameRoot.h"
 
 void myGame::GameLooper::Loop(unique_ptr<AppState>& appState) {
-    LOG_INFO << "Start Game Loop." << std::endl;
+    LOG_INFO << "Start Game Loop.";
 
     GameRoot mainRoot(appState.get());
 
@@ -19,5 +19,5 @@ void myGame::GameLooper::Loop(unique_ptr<AppState>& appState) {
         appState->RenderFrame();
     } while (!appState->CanQuitApp());
 
-    LOG_INFO << "Finished Game Loop." << std::endl;
+    LOG_INFO << "Finished Game Loop.";
 }

@@ -22,7 +22,7 @@ namespace myUtil
         {
             if (instance != nullptr)
             {
-                LOG_ERR << "Singleton Object Is Already Exit." << std::endl;
+                LOG_ERR << "Singleton Object Is Already Exit.";
                 return;
             }
             instance = static_cast<T*>(this);

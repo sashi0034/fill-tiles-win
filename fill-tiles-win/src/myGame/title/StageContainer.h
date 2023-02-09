@@ -25,10 +25,11 @@ namespace myGame::title
         std::vector<unique_ptr<StageView>> _viewList;
         unique_ptr<StageClearInfoView> _infoView;
         SpriteTexture _emptySpr = SpriteTexture::Create();
-        int _currStageIndex = 0;
+        int _currCursorIndex = 0;
         int _maxStageIndex{};
         static constexpr int viewOffsetX = 880 / pixel::PixelPerUnit;
 
+        int getCurrStageIndex() const;
         bool createNewView(int index, MenuScene *const sceneRef, const std::string &imageDir);
         void controlByInputAsync(CoroTaskYield& yield);
         void scrollStageAsync(CoroTaskYield& yield, PlusMinusSign inputSign);

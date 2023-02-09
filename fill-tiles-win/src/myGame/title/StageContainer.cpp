@@ -31,6 +31,11 @@ namespace myGame::title
         sceneRef->GetCoroutine()->Start([this](auto&& yield){ controlByInputAsync(yield);});
     }
 
+    int StageContainer::getCurrStageIndex() const
+    {
+        return _currCursorIndex + 1;
+    }
+
     bool StageContainer::createNewView(int index, MenuScene *const sceneRef, const std::string &imageDir)
     {
         std::stringstream screenshotPath{};
@@ -67,7 +72,7 @@ namespace myGame::title
             if (isPushedOkBefore == false && util::IsPushedOk(app))
             {
                 // ステージ決定
-                _sceneRef->GetInfo().ConfirmSelect(_currStageIndex);
+                _sceneRef->GetInfo().ConfirmSelect(getCurrStageIndex());
                 return;
             }
             isPushedOkBefore = util::IsPushedOk(app);
@@ -79,13 +84,13 @@ namespace myGame::title
 
     void StageContainer::scrollStageAsync(CoroTaskYield &yield, PlusMinusSign inputSign)
     {
-        int oldIndex = _currStageIndex;
-        _currStageIndex = Range<int>(0, _maxStageIndex).MakeInRange(_currStageIndex + inputSign.Value);
-        if (oldIndex==_currStageIndex) return;
+        int oldIndex = _currCursorIndex;
+        _currCursorIndex = Range<int>(0, _maxStageIndex).MakeInRange(_currCursorIndex + inputSign.Value);
+        if (oldIndex==_currCursorIndex) return;
 
         constexpr double duration = 0.3;
         auto animation = _sceneRef->GetAnimator()->TargetTo(_emptySpr)
-                ->AnimPosition(Vec2<double>{double(-viewOffsetX*_currStageIndex), 0}, duration)
+                ->AnimPosition(Vec2<double>{double(-viewOffsetX*_currCursorIndex), 0}, duration)
                 ->SetEase(EAnimEase::OutBack)
                 ->ToWeakPtr();
 

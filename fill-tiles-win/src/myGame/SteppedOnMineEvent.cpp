@@ -27,7 +27,7 @@ namespace myGame
         auto eventInScope = args.MainScene->GetFieldEventManager()->UseEvent();
         eventInScope.StartFromHere();
 
-        LOG_INFO << "stepped on mine." << std::endl;
+        LOG_INFO << "stepped on mine";
 
         args.GetFieldManager()->GetCoroutine()->Start([this, &args](auto&& yield){explodeFlowersAsync(yield, args); });
 
