@@ -29,7 +29,7 @@ namespace myGame
     private:
         SpriteTexture m_ViewModel= SpriteTexture::Create();
         SpriteTexture m_View = SpriteTexture::Create();
-        unique_ptr<SprRectCollider> m_Collider;
+        unique_ptr<SprRectCollider> m_Collider{};
     };
 }
 

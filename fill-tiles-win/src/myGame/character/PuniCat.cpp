@@ -122,7 +122,10 @@ namespace myGame::character
         // 魚が跳び跳ねて
         targetFood->JumpWhenEat()->AwaitForReturnToStart(yield)->Forget();
 
-        // 食べて消す
+        // 食べて
+        targetFood->ScrapSelf();
+
+        // 消す
         targetFood->Destroy();
 
         searchCatfishEveryAngle(m_Scene, nullptr);

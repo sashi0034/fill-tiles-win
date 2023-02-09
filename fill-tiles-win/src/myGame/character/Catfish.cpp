@@ -5,6 +5,7 @@
 #include "Catfish.h"
 #include "../ZIndex.h"
 #include "../ParabolaAnimation.h"
+#include "../effect/TextureScrapping.h"
 
 namespace myGame::character
 {
@@ -47,6 +48,11 @@ namespace myGame::character
         return m_EatableFlag;
     }
 
+    //CharacterViewModel* const Catfish::GetView()
+    //{
+    //    return &m_View;
+    //}
+
     ParabolaAnimation* Catfish::JumpWhenEat()
     {
         return ParabolaAnimation::Create(m_Scene->GetEffectManager(), &m_View.GetView())->SetSpeedByPeekHeightAndTime(40.0, 0.5);
@@ -55,6 +61,15 @@ namespace myGame::character
     MovableObjectLogic *Catfish::GetMovable()
     {
         return &m_MovableObjectLogic;
+    }
+
+    void Catfish::ScrapSelf()
+    {
+        effect::TextureScrapping::Produce(effect::TextureScrappingArgs{
+            m_Scene->GetEffectManager(),
+            m_View.GetViewModelPos(),
+            m_View.GetView().GetSrcRect(),
+            m_Scene->GetRoot()->RscImage->catfish_24x24.get() });
     }
 
 } // myGame

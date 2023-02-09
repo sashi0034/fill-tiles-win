@@ -74,13 +74,13 @@ namespace myGame::character
             constexpr double nearDistance = 3;
             if (moveData->AfterPos.CalcManhattan(m_View.GetMatPos())>nearDistance) return;
             mainScene->GetFieldManager()->GetCoroutine()->Start([this](auto&& yield){
-                startChildProcess(yield);
+                startYoungProcess(yield);
             });
         });
     }
 
     // イベント発生時の一連の処理
-    void GrowingChick::startChildProcess(CoroTaskYield &yield)
+    void GrowingChick::startYoungProcess(CoroTaskYield &yield)
     {
         auto eventInScope = m_Scene->GetFieldEventManager()->AwaitIfEventExist(yield)->UseEvent();
         eventInScope.StartFromHere();
@@ -88,7 +88,15 @@ namespace myGame::character
         auto manualText = createManualText(m_Scene);
         initManualText(manualText);
 
-        becomeChild();
+        // 説明テキストアニメ
+        auto&& animator = m_Scene->GetTextureAnimator();
+        auto&& textAnimStart = animator.TargetVirtual()
+            ->AnimValue(0, 1, [this, &manualText](double value) {
+                manualText->SetScale(VecDouble2{ value, 1 });
+                manualText->UpdateView();
+            }, 1.0)->SetEase(EAnimEase::OutBack)->ToWeakPtr();
+
+        becomeYoung();
 
         auto const scroll = m_Scene->GetPlayer()->GetScroll();
         scroll->ChangeFocus(&m_View.GetModel());
@@ -96,10 +104,19 @@ namespace myGame::character
         performAnimJumpUpWhenBorn(yield);
 
         moveUntilConfirm(yield);
+        animator.Destroy(textAnimStart);
 
         scroll->ResetFocus();
 
         becomeAdult();
+
+        // 説明テキストアニメ
+        auto&& textAnimEnd = animator.TargetVirtual()
+            ->AnimValue(1, 0, [this, &manualText](double value) {
+                manualText->SetScale(VecDouble2{ value, 1 });
+                manualText->UpdateView();
+            }, 1.0)->SetEase(EAnimEase::InBack)->ToWeakPtr();
+            coroUtil::WaitForExpire(yield, textAnimEnd);
     }
 
     void GrowingChick::initManualText(unique_ptr<TextPassage> &manualText)
@@ -128,7 +145,7 @@ namespace myGame::character
                 ->Forget();
     }
 
-    void GrowingChick::becomeChild()
+    void GrowingChick::becomeYoung()
     {
         m_Growth = growth::Child;
 

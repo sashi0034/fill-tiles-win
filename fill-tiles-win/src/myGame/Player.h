@@ -33,7 +33,7 @@ namespace myGame
         bool IsFromOnIce;
     };
 
-    class Player final : public ActorBase
+    class Player final : public ActorBase, ISprRectColliderOwner
     {
     public:
         explicit Player(IChildrenPool<ActorBase> *belonging, MainScene *mainScene, const MainSceneResetInfo& resetInfo);

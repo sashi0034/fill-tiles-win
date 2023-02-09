@@ -44,7 +44,7 @@ namespace myGame::character
         static const inline Vec2<int> adultCellSrcSize = Vec2<int>{32, 32};
 
         void animWhenEgg();
-        void startChildProcess(CoroTaskYield& yield);
+        void startYoungProcess(CoroTaskYield& yield);
 
         void setViewPos(const Vec2<int>& cellSize);
 
@@ -63,7 +63,7 @@ namespace myGame::character
 
         void becomeAdult();
 
-        void becomeChild();
+        void becomeYoung();
 
 
         void performAnimJumpUpWhenBorn(CoroTaskYield &yield);

@@ -42,6 +42,8 @@ namespace myGame
         m_View->GetView().SetPosition(Vec2<double>{
                 (pixelPerMat - CellSize.X) / 2.0,
                 pixelPerMat - CellSize.Y} + FieldManager::CharacterPadding);
+        m_View->SetCollider(this, m_ParentalScene->GetFieldManager(),
+                   Rect{ 0, 0, FieldManager::PixelPerMat, FieldManager::PixelPerMat });
     }
 
 

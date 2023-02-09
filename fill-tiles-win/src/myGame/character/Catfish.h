@@ -21,9 +21,11 @@ namespace myGame::character
         Catfish(MainScene *mainScene, const MatPos &matPos);
         ParabolaAnimation * JumpWhenEat();
         MovableObjectLogic* GetMovable();
+        void ScrapSelf();
 
         void Update(IAppState *app) override;
         UpFlag& GetEatableFlag();
+        //CharacterViewModel* const GetView();
     private:
         MainScene* m_Scene;
         CharacterViewModel m_View{};
