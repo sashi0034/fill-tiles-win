@@ -190,17 +190,17 @@
   </object>
   <object id="4" name="fairy" class="fairy" x="128" y="496" width="16" height="16">
    <properties>
-    <property name="talk" value="階段の上のタイルを踏んで&lt;br&gt;お花を咲かせよう"/>
+    <property name="talk" value="タイルを通って&lt;br&gt;お花を全部咲かせてみてね"/>
    </properties>
   </object>
   <object id="6" name="fairy" class="fairy" x="208" y="416" width="16" height="16">
    <properties>
-    <property name="talk" value="お花は踏むと爆発するよ&lt;br&gt;気を付けてね"/>
+    <property name="talk" value="お花を踏んじゃだめだよ"/>
    </properties>
   </object>
   <object id="7" name="fairy" class="fairy" x="448" y="288" width="16" height="16">
    <properties>
-    <property name="talk" value="周りをよく見ようね"/>
+    <property name="talk" value="うまくいくまで&lt;br&gt;何回でもやり直してね"/>
    </properties>
   </object>
   <object id="8" name="win" class="win" x="208" y="176" width="16" height="16"/>
