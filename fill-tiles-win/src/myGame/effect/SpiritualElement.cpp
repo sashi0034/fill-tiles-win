@@ -82,7 +82,7 @@ namespace myGame::effect
 
     void SpiritualElement::initTexture(EffectManager *effectManager)
     {
-        int uniquePercent = 25;
+        int uniquePercent = 50;
         if (_canSplit || Random::Global->Get(100) > uniquePercent)
         {
             // 通常

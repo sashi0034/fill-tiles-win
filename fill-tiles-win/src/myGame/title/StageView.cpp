@@ -53,6 +53,10 @@ namespace myGame::title
 
     void StageView::initCrown(const StageViewArgs &args)
     {
+        assert(args.NumStageIndex > 0);
+        auto&& clearData = args.SceneRef->RootRef->GetSaveData().StageClear[args.NumStageIndex];
+        if (clearData.IsCleared() == false) return;
+
         auto&& image =args.SceneRef->RootRef->RscImage->crown.get();
         _crownSpr.SetGraph(image);
         _crownSpr.SetSrcRect(Rect{Vec2{0, 0}, image->GetSize()});

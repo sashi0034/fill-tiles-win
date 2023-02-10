@@ -20,9 +20,11 @@ namespace myGame::title
     {
     public:
         explicit StageClearInfoView(const StageClearInfoViewArgs& args);
+        void UpdateText(int mapIndex);
     private:
         unique_ptr<NinePatchImage> _background{};
         unique_ptr<TextPassage> _text;
+        StageClearInfoViewArgs _initialArgs;
         void initBackground(const StageClearInfoViewArgs& args);
         void initText(const StageClearInfoViewArgs &args);
     };

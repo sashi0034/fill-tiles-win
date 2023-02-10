@@ -49,9 +49,14 @@ namespace myGame
 
         constexpr double duration = 0.5;
 
-        // セーブ
-        args.GetRoot()->MutSaveData()->StageClear[args.SceneRef->GetMapIndex()] = StageClearData{args.GetClearedTime(), args.GetClearedStep()};
-        args.GetRoot()->WriteSaveData();
+        // まだクリアしてないか、ステップ数が前よりも小さいなら上書き
+        auto&& saveData = args.GetRoot()->MutSaveData();
+        if (saveData->StageClear[args.SceneRef->GetMapIndex()].IsCleared() == false ||
+            saveData->StageClear[args.SceneRef->GetMapIndex()].PassedSteps > args.GetClearedStep())
+        {
+            saveData->StageClear[args.SceneRef->GetMapIndex()] = StageClearData{ args.GetClearedTime(), args.GetClearedStep() };
+            args.GetRoot()->WriteSaveData();
+        }
 
         // CLEARラベルを表示
         SpriteTexture labelClear = SpriteTexture::Create();

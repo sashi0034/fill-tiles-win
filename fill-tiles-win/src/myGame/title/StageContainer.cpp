@@ -64,6 +64,7 @@ namespace myGame::title
         auto const app = _sceneRef->RootRef->GetAppState();
 
         bool isPushedOkBefore = true;
+        _infoView->UpdateText(getCurrStageIndex());
 
         while (true)
         {
@@ -94,7 +95,11 @@ namespace myGame::title
                 ->SetEase(EAnimEase::OutBack)
                 ->ToWeakPtr();
 
+        _infoView->UpdateText(-1);
+
         coroUtil::WaitForExpire(yield, animation);
+
+        _infoView->UpdateText(getCurrStageIndex());
     }
 
 

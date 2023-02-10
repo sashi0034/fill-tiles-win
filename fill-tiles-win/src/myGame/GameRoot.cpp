@@ -21,9 +21,10 @@ namespace myGame{
       m_AppState(appState)
     {
         createSelfSpr();
-        m_Coro.Start([this](CoroTaskYield& yield) { processAppFlow(yield); });
 
         m_SaveData.ReadData(saveFileName);
+
+        m_Coro.Start([this](CoroTaskYield& yield) { processAppFlow(yield); });
     }
 
     GameRoot::~GameRoot()
