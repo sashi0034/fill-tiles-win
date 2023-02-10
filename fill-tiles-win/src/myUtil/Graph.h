@@ -30,6 +30,7 @@ namespace myUtil
         [[nodiscard]] SDL_Texture* GetSdlTexture() const;
         VecInt2 GetSize() const;
         void RenderGraph(const SDL_Renderer* renderer, const Vec2<int>& startPoint, const Rect<int>& srcRect, Vec2<double> scale, double rotationDeg=0, bool isFlipHorizontal= false, const GraphBlend &blend=defaultBlend);
+        void RenderGraphToDest(const SDL_Renderer* renderer, const RectInt& srcRect, const RectInt& destRect, double rotationDeg = 0, bool isFlipHorizontal = false, const GraphBlend& blend = defaultBlend);
     };
 }
 

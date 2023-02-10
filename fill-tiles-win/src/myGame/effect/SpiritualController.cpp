@@ -3,6 +3,7 @@
 //
 
 #include "SpiritualController.h"
+#include "../ZIndex.h"
 
 namespace myGame::effect
 {
@@ -15,7 +16,10 @@ namespace myGame::effect
     SpiritualController::SpiritualController(EffectManager *effectManager) :
             ActorBase(effectManager->GetChildren()),
             _process(initProcess(effectManager))
-    {}
+    {
+        _canvas.SetRenderingProcess(renderingProcess::WrapRenderSpriteDotByDot(&_canvas));
+        ZIndexEffect(&_canvas).SetIndex(0).ApplyZ();
+    }
 
     void SpiritualController::Update(IAppState *appState)
     {
@@ -24,12 +28,22 @@ namespace myGame::effect
 
     ProcessTimer SpiritualController::initProcess(EffectManager *effectManager)
     {
+        constexpr int idealFps = 60;
+        constexpr int fps = 30;
+
         return {[this, effectManager](){
             _time++;
             checkCreateSpiritual(effectManager);
-            _spiritList.ProcessEach([](SpiritualElementBase& element){element.UpdateFixed(); });
+
+            _spiritList.ProcessEach([](SpiritualElementBase& element){element.UpdateFixed(idealFps / fps); });
+
+            // 注意: このcontextはUpdateAll呼んでない
+            _canvasContext.RenderAll(effectManager->GetRoot()->GetAppState());
+            _canvas.SetGraph(_canvasContext.GetRenderingBuffer());
+            _canvas.SetSrcRect(RectInt{ VecZero<int>(), _canvasContext.GetRenderingBuffer()->GetSize() });
+
             return EProcessStatus::Running;
-        }, 1.0 / 60};
+        }, 1.0 / fps};
     }
 
     IChildrenPool<SpiritualElementBase>* SpiritualController::GetSpiritualList()
@@ -42,7 +56,7 @@ namespace myGame::effect
         constexpr int duration = 6;
         if (_time%duration < 0) return;
 
-        const int maxSpiritual = 16;
+        const int maxSpiritual = 32;
         if (_elementCount.GetCount() > maxSpiritual) return;
 
         appendElement(effectManager);
@@ -59,6 +73,11 @@ namespace myGame::effect
     {
         _elementCount.DecreaseCount();
         _spiritList.Destroy(element);
+    }
+
+    SpriteTextureContext* SpiritualController::GetSprContext()
+    {
+        return &_canvasContext;
     }
 
 

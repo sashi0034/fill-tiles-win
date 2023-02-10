@@ -6,15 +6,14 @@
 
 #include <utility>
 #include <cassert>
+#include "TempRenderTargetChanger.h"
 
 namespace myUtil
 {
     SpriteTextureContext SpriteTextureContext::globalInstance = {};
 
-    SpriteTexture::SpriteTexture(Graph *graph, const Rect<int> &srcRect)
+    SpriteTexture::SpriteTexture()
     {
-        m_Graph = graph;
-        m_SrcRect = srcRect;
         m_UpdateProcess = [](IAppState*){};
         m_RenderingProcess = [this](IAppState* appState){
             renderingProcess::RenderSpriteAlignToUnit(appState, this);
@@ -35,9 +34,20 @@ namespace myUtil
 
     SpriteTexture SpriteTexture::Create(Graph *graph, const Rect<int> &srcRect)
     {
-        auto product = SpriteTexture(graph, srcRect);
+        auto product = SpriteTexture();
+        product.SetGraph(graph);
+        product.SetSrcRect(srcRect);
 
         SpriteTextureContext::Global()->AddSprite(product);
+
+        return product;
+    }
+
+    SpriteTexture SpriteTexture::CreateIn(SpriteTextureContext* context)
+    {
+        auto product = SpriteTexture();
+
+        context->AddSprite(product);
 
         return product;
     }
@@ -70,7 +80,7 @@ namespace myUtil
     void SpriteTexture::SetGraphThenSrcGraph(Graph* graph)
     {
         m_Graph = graph;
-        SetSrcRect(graph->GetSize());
+        SetSrcRect(RectInt{VecZero<int>(), graph->GetSize() });
     }
 
     Graph *SpriteTexture::GetGraph() const
@@ -180,11 +190,6 @@ namespace myUtil
         }
     }
 
-    SpriteTexture::SpriteTexture()
-    {
-        assert(false);
-    }
-
     void SpriteTexture::SetVisibilityParent(SpriteTexture &parent)
     {
         m_VisibilityParent = parent.GetWeakPtr();
@@ -239,8 +244,8 @@ namespace myUtil
     {
         checkResetRenderingBuffer(appState);
 
-        SDL_SetRenderTarget(appState->GetRenderer(), _renderingBuffer->GetSdlTexture());
-        SDL_RenderClear(appState->GetRenderer());
+        auto renderChange = TempRenderTargetChanger(appState->GetRenderer());
+        renderChange.ChangeInScope(_renderingBuffer->GetSdlTexture())->RenderClearTransparent();
 
         std::stable_sort(_spriteTexturePool.begin(), _spriteTexturePool.end(), [](const WeakPtr<SpriteTexture>& left, const WeakPtr<SpriteTexture>& right) -> bool {
             auto leftShared = left.GetPtr();

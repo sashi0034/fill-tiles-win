@@ -17,7 +17,7 @@ namespace myUtil
         explicit Random(int seed);
         int Get(int max);
         int Get(int min, int max);
-        static Random* const Instance;
+        static Random* const Global;
     private:
         std::random_device device;
         std::default_random_engine engine;

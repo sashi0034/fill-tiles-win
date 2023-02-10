@@ -16,7 +16,7 @@ namespace myGame::effect
     class SpiritualElementBase
     {
     public:
-        virtual void UpdateFixed(){}
+        virtual void UpdateFixed(int timeSpeed){}
         virtual ~SpiritualElementBase() = default;
     };
 
@@ -25,7 +25,7 @@ namespace myGame::effect
     {
     public:
         explicit SpiritualElement(SpiritualController *controller, IAppState *app, EffectManager *effectManager);
-        void UpdateFixed() override;
+        void UpdateFixed(int timeSpeed) override;
     private:
         static const inline Vec2<int> imageSize{64, 64};
         static const inline Vec2<double> imageOriginTerm = (imageSize / 2 / pixel::PixelPerUnit * -1).CastTo<double>();
@@ -33,23 +33,24 @@ namespace myGame::effect
         SpiritualController* const _parent;
         IAppState* const _app;
         EffectManager* const _effectManager;
-        SpriteTexture _texture = SpriteTexture::Create();
+        SpriteTexture _texture;
         Vec2<double> _pos{};
         Vec2<double> _vel{};
         Vec2<double> _accel{};
         int _animCount{};
         int _remainingLife = 1;
         const bool _canSplit = determineCanSplitRandomly();
+        bool _isUniqueAir = false;
 
         void initTexture(EffectManager *effectManager);
         static bool determineCanSplitRandomly();
         void initCoordinate(const IAppState *app, const EffectManager *effectManager);
         void updateTexture();
         void resetAccel();
-        void updateCoordinate();
+        void updateCoordinate(int timeSpeed);
         void resetPos(const IAppState *app, const EffectManager *effectManager);
         bool checkDie(const Vec2<double> &globalPos, const Vec2<double> &minPos, const Vec2<double> &maxPos);
-        void checkCreateSplitAfterImage();
+        void checkCreateSplitAfterImage(int timeSpeed);
     };
 
 } // myGame

@@ -23,15 +23,20 @@ namespace myGame::effect
         }
     }
 
-    WarpLoops::WarpLoops(EffectManager *effectManager, const Vec2<double> &pos)
-    : ActorBase(effectManager->GetChildren()), m_Manager(effectManager),
-    initialPos(pos)
+    const auto exMargin = VecOne<double>() * 1;
+
+    WarpLoops::WarpLoops(EffectManager *effectManager, const Vec2<double> &pos) :
+        ActorBase(effectManager->GetChildren()), m_Manager(effectManager),
+        initialPos(pos - exMargin)
     {
         effectManager->ApplyParentalPos(m_Texture);
-        m_Texture.SetGraph(effectManager->GetRoot()->RscImage->warp_tile_16x16.get());
-        m_Texture.SetSrcRect(Rect<int>{0, cellSize, cellSize, cellSize});
+        m_Texture.SetGraphThenSrcGraph(effectManager->GetRoot()->RscImage->warp_circle.get());
         m_Texture.SetBlend(GraphBlend(0));
-        util::SetTextureByCenter(m_Texture, pos);
+
+        m_Texture.SetPosition(initialPos);
+        m_Texture.SetScale(VecOne<double>() * pixel::PixelPerMat + exMargin * 2);
+
+        m_Texture.SetRenderingProcess(renderingProcess::WrapRenderSprScaleAsDestAlignToUnit(&m_Texture));
         ZIndexEffect(&m_Texture).SetIndex(1).ApplyZ();
     }
 

@@ -53,6 +53,7 @@ namespace myGame::resource
         REGISTER_RESOURCE_PNG(numbers_32x32);
         REGISTER_RESOURCE_PNG(crown);
         REGISTER_RESOURCE_PNG(spirit_64x64);
+        REGISTER_RESOURCE_PNG(spirit_air);
         REGISTER_RESOURCE_PNG(carrot_16x32);
         REGISTER_RESOURCE_PNG(win_24x24);
         REGISTER_RESOURCE_PNG(clear_label);
@@ -60,6 +61,7 @@ namespace myGame::resource
         REGISTER_RESOURCE_PNG(illust_scenery);
         REGISTER_RESOURCE_PNG(grass_checked_16x16);
         REGISTER_RESOURCE_PNG(icon_back_32x32);
+        REGISTER_RESOURCE_PNG(warp_circle);
 
         explicit Image(IAppState* appState);
     private:

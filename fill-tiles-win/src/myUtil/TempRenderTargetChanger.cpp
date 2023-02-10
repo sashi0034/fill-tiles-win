@@ -24,7 +24,7 @@ namespace myUtil
 
     void TempRenderTargetChanger::RenderClearTransparent()
     {
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 0);
         SDL_RenderClear(renderer);
     }
 } // myUtil

@@ -7,7 +7,7 @@
 
 namespace myUtil
 {
-    Random* const Random::Instance = new Random();
+    Random* const Random::Global = new Random();
 
     Random::Random() : engine(device()), distribution(0, INT_MAX - 1)
     {}

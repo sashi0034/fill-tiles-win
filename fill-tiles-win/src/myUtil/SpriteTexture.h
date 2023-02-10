@@ -30,7 +30,7 @@ namespace myUtil
 
         unique_ptr<Graph> _renderingBuffer{};
         Vec2<int> _renderingSize{};
-        std::vector<WeakPtr<SpriteTexture>> _spriteTexturePool;
+        std::vector<WeakPtr<SpriteTexture>> _spriteTexturePool{};
 
         void checkResetRenderingBuffer(IAppState* appState);
         void resetRenderingBuffer(IAppState* appState, Vec2<int> newSize);
@@ -57,11 +57,12 @@ namespace myUtil
         std::function<void(IAppState*)> m_UpdateProcess;
 
         SpriteTexture();
-        SpriteTexture(Graph *graph, const Rect<int> &srcRect);
     public:
         static SpriteTexture Create();
         static SpriteTexture Create(Graph *graph);
         static SpriteTexture Create(Graph *graph, const Rect<int> &srcRect);
+
+        static SpriteTexture CreateIn(SpriteTextureContext* context);
 
         void SetPosition(const Vec2<double>& pos);
         [[nodiscard]] Vec2<double> GetPosition() const;

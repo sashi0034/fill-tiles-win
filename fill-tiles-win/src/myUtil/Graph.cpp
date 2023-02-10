@@ -65,6 +65,18 @@ namespace myUtil
                          rotationDeg, nullptr, isFlipHorizontal ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
     }
 
+    void Graph::RenderGraphToDest(const SDL_Renderer* renderer, const RectInt& srcRect, const RectInt& destRect, double rotationDeg, bool isFlipHorizontal, const GraphBlend& blend)
+    {
+        SDL_Rect srcRectSize = SDL_Rect{ srcRect.X, srcRect.Y, srcRect.Width, srcRect.Height };
+        SDL_Rect destRectSize = SDL_Rect{ destRect.X, destRect.Y, destRect.Width, destRect.Height };
+
+        SDL_SetTextureBlendMode(m_SdlTexture, blend.GetMode());
+        SDL_SetTextureAlphaMod(m_SdlTexture, blend.GetPal());
+
+        SDL_RenderCopyEx(const_cast<SDL_Renderer*>(renderer), m_SdlTexture, &srcRectSize, &destRectSize,
+                         rotationDeg, nullptr, isFlipHorizontal ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
+    }
+
     Graph *Graph::CreateFromFilePath(SDL_Renderer *renderer, const std::string &filePath)
     {
         auto surface = IMG_Load(filePath.c_str());

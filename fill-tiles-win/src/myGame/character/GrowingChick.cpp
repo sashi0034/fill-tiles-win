@@ -94,7 +94,7 @@ namespace myGame::character
             ->AnimValue(0, 1, [this, &manualText](double value) {
                 manualText->SetScale(VecDouble2{ value, 1 });
                 manualText->UpdateView();
-            }, 1.0)->SetEase(EAnimEase::OutBack)->ToWeakPtr();
+            }, 0.3)->SetEase(EAnimEase::OutBack)->ToWeakPtr();
 
         becomeYoung();
 
@@ -115,8 +115,8 @@ namespace myGame::character
             ->AnimValue(1, 0, [this, &manualText](double value) {
                 manualText->SetScale(VecDouble2{ value, 1 });
                 manualText->UpdateView();
-            }, 1.0)->SetEase(EAnimEase::InBack)->ToWeakPtr();
-            coroUtil::WaitForExpire(yield, textAnimEnd);
+            }, 0.3)->SetEase(EAnimEase::InBack)->ToWeakPtr();
+        coroUtil::WaitForExpire(yield, textAnimEnd);
     }
 
     void GrowingChick::initManualText(unique_ptr<TextPassage> &manualText)

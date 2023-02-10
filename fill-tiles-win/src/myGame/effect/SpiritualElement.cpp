@@ -11,26 +11,27 @@ namespace myGame::effect
     class SpiritualElementAfterImage : public SpiritualElementBase
     {
     private:
-        SpriteTexture _texture = SpriteTexture::Create();
         SpiritualController* const _controller;
+        SpriteTexture _texture;
         int _time = 0;
     public:
         explicit SpiritualElementAfterImage(SpriteTexture& baseElement, SpiritualController* controller) :
-            _controller(controller)
+            _controller(controller),
+            _texture(SpriteTexture::CreateIn(controller->GetSprContext()))
         {
             _texture.CopyVisuallyFrom(baseElement);
             _texture.SetRenderingProcess([this](auto&& app){renderingProcess::RenderSpriteDotByDot(app, &_texture); });
         }
 
-        void UpdateFixed() override
+        void UpdateFixed(int timeSpeed) override
         {
-            _time++;
+            _time += timeSpeed;
 
             constexpr int lifeTime = 60;
 
             constexpr int updateInterval = 6;
 
-            if (_time % updateInterval != 0) return;
+            if (_time % updateInterval > timeSpeed) return;
             _texture.SetBlend(GraphBlend(_texture.GetBlend().GetPal() * 0.9));
 
             if (_time < lifeTime) return;
@@ -44,7 +45,8 @@ namespace myGame::effect
     SpiritualElement::SpiritualElement(SpiritualController *controller, IAppState *app, EffectManager *effectManager) :
         _parent(controller),
         _app(app),
-        _effectManager(effectManager)
+        _effectManager(effectManager),
+        _texture(SpriteTexture::CreateIn(controller->GetSprContext()))
     {
         initCoordinate(app, effectManager);
 
@@ -55,7 +57,7 @@ namespace myGame::effect
     {
         resetPos(app, effectManager);
 
-        const double velRad = M_PI * Random::Instance->Get(360) / 180.0;
+        const double velRad = M_PI * Random::Global->Get(360) / 180.0;
         _vel = Vec2<double>{std::cos(velRad), std::sin(velRad)} * velMax;
 
         resetAccel();
@@ -64,7 +66,7 @@ namespace myGame::effect
     void SpiritualElement::resetPos(const IAppState *app, const EffectManager *effectManager)
     {
         const auto screenSize = app->GetScreenSize();
-        _pos = Vec2<int>{Random::Instance->Get(screenSize.X), Random::Instance->Get(screenSize.Y)}.CastTo<double>();
+        _pos = Vec2<int>{Random::Global->Get(screenSize.X), Random::Global->Get(screenSize.Y)}.CastTo<double>();
 
         const auto scrollPos = effectManager->GetParentalPos();
         _pos = _pos - scrollPos;
@@ -72,18 +74,33 @@ namespace myGame::effect
 
     void SpiritualElement::resetAccel()
     {
-        const int accDeg = Random::Instance->Get(360);
+        const int accDeg = Random::Global->Get(360);
         const double accRad = accDeg * M_PI / 180;
         _accel = Vec2<double>{cos(accRad), sin(accRad) } * velMax;
     }
 
     void SpiritualElement::initTexture(EffectManager *effectManager)
     {
-        _texture.SetGraph(effectManager->GetRoot()->RscImage->spirit_64x64.get());
-        _texture.SetSrcRect(Rect{Vec2{0, 0}, imageSize});
+        int uniquePercent = 25;
+        if (_canSplit || Random::Global->Get(100) > uniquePercent)
+        {
+            // 通常
+            _texture.SetGraphThenSrcGraph(effectManager->GetRoot()->RscImage->spirit_64x64.get());
 
-        constexpr double baseScale = 1.5;
-        _texture.SetScale(Vec2<double>{1, 1} * baseScale * 100.0 / (100 + Random::Instance->Get(100)));
+            constexpr double baseScale = 1.5;
+            _texture.SetScale(Vec2<double>{1, 1} *baseScale * 100.0 / (100 + Random::Global->Get(100)));
+        }
+        else
+        {
+            // 特殊バージョン
+            _texture.SetGraphThenSrcGraph(effectManager->GetRoot()->RscImage->spirit_air.get());
+
+            constexpr double baseScale = 15.0;
+            _texture.SetScale(Vec2<double>{1, 1} * baseScale * 100.0 / (100 + Random::Global->Get(100)));
+            _isUniqueAir = true;
+        }
+
+
         ZIndexEffect(&_texture).SetIndex(0).ApplyZ();
         _texture.SetBlend(GraphBlend(0));
         _texture.SetRenderingProcess([this](auto&& app){renderingProcess::RenderSpriteDotByDot(app, &_texture); });
@@ -93,16 +110,16 @@ namespace myGame::effect
     bool SpiritualElement::determineCanSplitRandomly()
     {
         int splittable = 30;
-        return Random::Instance->Get(100) < splittable;
+        return Random::Global->Get(100) < splittable;
     }
 
-    void SpiritualElement::UpdateFixed()
+    void SpiritualElement::UpdateFixed(int timeSpeed)
     {
         updateTexture();
 
-        checkCreateSplitAfterImage();
+        checkCreateSplitAfterImage(timeSpeed);
 
-        updateCoordinate();
+        updateCoordinate(timeSpeed);
 
         const auto globalPos = _texture.GetPosition() + _texture.GetParentalGlobalPosition() - imageOriginTerm;
         const auto minPos = imageOriginTerm;
@@ -111,7 +128,7 @@ namespace myGame::effect
         bool isDie = checkDie(globalPos, minPos, maxPos);
         if (isDie) return;
 
-        _animCount++;
+        _animCount += timeSpeed;
     }
 
     bool
@@ -135,9 +152,9 @@ namespace myGame::effect
         return false;
     }
 
-    void SpiritualElement::updateCoordinate()
+    void SpiritualElement::updateCoordinate(int timeSpeed)
     {
-        constexpr double delta = 1.0 / 60;
+        const double delta = timeSpeed / 60.0;
 
         _vel = _vel + _accel * delta;
         if (_vel.CalcMagnitude() > velMax * velMax)
@@ -159,11 +176,11 @@ namespace myGame::effect
         _texture.SetPosition(_pos + imageOriginTerm);
     }
 
-    void SpiritualElement::checkCreateSplitAfterImage()
+    void SpiritualElement::checkCreateSplitAfterImage(int timeSpeed)
     {
         if (!_canSplit) return;
         constexpr int animDuration = 12;
-        if ((_animCount % animDuration) != 0) return;
+        if ((_animCount % animDuration) > timeSpeed) return;
 
         _parent->GetSpiritualList()->Birth(new SpiritualElementAfterImage(_texture, _parent));
     }

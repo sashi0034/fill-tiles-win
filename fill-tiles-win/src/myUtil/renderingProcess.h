@@ -19,9 +19,14 @@ namespace myUtil::renderingProcess
     void RenderSprite(IAppState* appState, SpriteTexture* renderingSpr, double baseScale);
     void RenderSpriteAlignToUnit(IAppState* appState, SpriteTexture* renderingSpr);
     void RenderSpriteDotByDot(IAppState* appState, SpriteTexture* renderingSpr);
-    // void RenderSpriteTwoDots(IAppState* appState, SpriteTexture* renderingSpr);
+
+    void RenderSprScaleAsDest(IAppState* appState, SpriteTexture* renderingSpr, double baseScale);
+    void RenderSprScaleAsDestAlignToUnit(IAppState* appState, SpriteTexture* renderingSpr);
+    void RenderSprScaleAsDestDotByDot(IAppState* appState, SpriteTexture* renderingSpr);
 
     std::function<void(IAppState*)> WrapRenderSpriteDotByDot(SpriteTexture* renderingSpr);
+    std::function<void(IAppState*)> WrapRenderSprScaleAsDestAlignToUnit(SpriteTexture* renderingSpr);
+    std::function<void(IAppState*)> WrapRenderSprScaleAsDestDotByDot(SpriteTexture* renderingSpr);
 }
 
 
