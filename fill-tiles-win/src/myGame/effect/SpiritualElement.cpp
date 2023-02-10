@@ -5,6 +5,7 @@
 #include "SpiritualElement.h"
 #include "SpiritualController.h"
 #include "../ZIndex.h"
+#include "../Player.h"
 
 namespace myGame::effect
 {
@@ -97,7 +98,7 @@ namespace myGame::effect
 
             constexpr double baseScale = 15.0;
             _texture.SetScale(Vec2<double>{1, 1} * baseScale * 100.0 / (100 + Random::Global->Get(100)));
-            _isUniqueAir = true;
+            _isUniqueFog = true;
         }
 
 
@@ -171,7 +172,18 @@ namespace myGame::effect
         constexpr double blendSpeed = 2.0;
         const double blendPhaseDeg =_animCount * blendSpeed;
         const double blendPhaseRad = blendPhaseDeg * M_PI / 180.0;
-        _texture.SetBlend(GraphBlend(int(100.0 - 100.0 * std::cos(blendPhaseRad))));
+        if (_isUniqueFog == false)
+        {
+            _texture.SetBlend(GraphBlend(int(100.0 - 100.0 * std::cos(blendPhaseRad))));
+        }
+        else
+        {
+            // フォグはプレイヤーとの距離に応じて透明度調整
+            auto&& playerPos = _parent->GetScene()->GetPlayer()->GetPosCentral();
+            constexpr double attenuate = 200;
+            const auto distance = RangeDouble(0, 100).MakeInRange((playerPos - _pos).CalcMagnitude() / attenuate);
+            _texture.SetBlend(GraphBlend(int(distance - distance * std::cos(blendPhaseRad))));
+        }
         _texture.SetRotationDeg(blendPhaseDeg);
         _texture.SetPosition(_pos + imageOriginTerm);
     }

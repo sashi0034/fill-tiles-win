@@ -40,6 +40,7 @@ namespace myGame
         void Init() override;
         void Update(IAppState *appState) override;
         Vec2<double> GetPos();
+        Vec2<double> GetPosCentral();
         void SetPos(const Vec2<double> &pos);
         MatPos GetMatPos();
         [[nodiscard]] rx::observable<PlayerMoveData*> OnMoveBegin() const;

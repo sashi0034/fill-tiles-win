@@ -224,6 +224,11 @@ namespace myGame
         return m_View->GetModel().GetPosition();
     }
 
+    Vec2<double> Player::GetPosCentral()
+    {
+        return m_View->GetModel().GetPosition() + VecOne<double>() * (pixel::PixelPerMat / 2);
+    }
+
     void Player::SetPos(const Vec2<double> &pos)
     {
         LOG_INFO << "Player Position set to " << pos.ToString();

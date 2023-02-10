@@ -12,6 +12,7 @@
 #include "GraphBlend.h"
 #include "AppState.h"
 #include "renderingProcess.h"
+#include "Rgba.h"
 
 using std::unique_ptr;
 
@@ -24,6 +25,7 @@ namespace myUtil
         void UpdateAll(IAppState* appState);
         void AddSprite(SpriteTexture& texture);
         Graph* const GetRenderingBuffer();
+        void SetBufferClearColor(Rgba color);
         static SpriteTextureContext* const Global();
     private:
         static SpriteTextureContext globalInstance;
@@ -31,6 +33,7 @@ namespace myUtil
         unique_ptr<Graph> _renderingBuffer{};
         Vec2<int> _renderingSize{};
         std::vector<WeakPtr<SpriteTexture>> _spriteTexturePool{};
+        Rgba _bufferClearColor = Rgba(255, 255, 255, 0);
 
         void checkResetRenderingBuffer(IAppState* appState);
         void resetRenderingBuffer(IAppState* appState, Vec2<int> newSize);

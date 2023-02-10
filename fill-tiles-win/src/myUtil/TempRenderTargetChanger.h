@@ -6,6 +6,7 @@
 #define FILL_TILES_TEMPRENDERTARGETCHANGER_H
 
 #include <stdafx.h>
+#include "Rgba.h"
 
 namespace myUtil
 {
@@ -16,6 +17,7 @@ namespace myUtil
         [[nodiscard("Keep it in scope.")]] explicit TempRenderTargetChanger(SDL_Renderer* renderer);
         TempRenderTargetChanger* ChangeInScope(SDL_Texture* changingTarget);
         void RenderClearTransparent();
+        void RenderClearBy(Rgba color);
         ~TempRenderTargetChanger();
     private:
         SDL_Renderer* const renderer;

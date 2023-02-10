@@ -24,7 +24,12 @@ namespace myUtil
 
     void TempRenderTargetChanger::RenderClearTransparent()
     {
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 0);
+        RenderClearBy(Rgba(255, 255, 255, 0));
+    }
+
+    void TempRenderTargetChanger::RenderClearBy(Rgba color)
+    {
+        SDL_SetRenderDrawColor(renderer, color.GetR(), color.GetG(), color.GetB(), color.GetAlpha());
         SDL_RenderClear(renderer);
     }
 } // myUtil

@@ -10,17 +10,20 @@
 
 namespace myGame
 {
+    class MainScene;
+
     class EffectManager : public ActorBase
     {
     public:
-        EffectManager(IChildrenPool<ActorBase> *belongingPool, SpriteTexture *parentalPos, GameRoot *root);
+        EffectManager(IChildrenPool<ActorBase> *belongingPool, SpriteTexture *parentalPos, GameRoot *roo);
         void Update(IAppState* appState) override;
         TextureAnimator* GetAnimator();
         CoroutineManager* GetCoroutineManager();
         IChildrenPool<ActorBase> * GetChildren();
         void ApplyParentalPos(SpriteTexture &target);
         Vec2<double> GetParentalPos() const;
-        [[nodiscard]] GameRoot* GetRoot() const;
+        GameRoot* GetRoot() const;
+        MainScene* GetScene();
     private:
         ChildrenPool<ActorBase> m_Children{};
         SpriteTexture* m_ParentalPos;

@@ -8,17 +8,19 @@
 namespace myGame::effect
 {
 
-    void SpiritualController::Produce(EffectManager *effectManager)
+    void SpiritualController::Produce(EffectManager *effectManager, MainScene* mainScene)
     {
-        effectManager->GetChildren()->Birth(new SpiritualController(effectManager));
+        effectManager->GetChildren()->Birth(new SpiritualController(effectManager, mainScene));
     }
 
-    SpiritualController::SpiritualController(EffectManager *effectManager) :
+    SpiritualController::SpiritualController(EffectManager *effectManager, MainScene* mainScene) :
             ActorBase(effectManager->GetChildren()),
-            _process(initProcess(effectManager))
+            _process(initProcess(effectManager)),
+            m_Scene(mainScene)
     {
         _canvas.SetRenderingProcess(renderingProcess::WrapRenderSpriteDotByDot(&_canvas));
         ZIndexEffect(&_canvas).SetIndex(0).ApplyZ();
+        _canvasContext.SetBufferClearColor(Rgba(240, 255, 160, 0));
     }
 
     void SpiritualController::Update(IAppState *appState)
@@ -78,6 +80,11 @@ namespace myGame::effect
     SpriteTextureContext* SpiritualController::GetSprContext()
     {
         return &_canvasContext;
+    }
+
+    MainScene* const SpiritualController::GetScene()
+    {
+        return m_Scene;
     }
 
 

@@ -19,6 +19,10 @@ namespace myUtil
         Rgba& MakeInRange();
         [[nodiscard]] SDL_Color GetSdlColor() const;
 
+        int GetR() const;
+        int GetG() const;
+        int GetB() const;
+        int GetAlpha() const;
     private:
         static inline const Range<int> colorRange = Range<int>(0, 255);
         int m_R;

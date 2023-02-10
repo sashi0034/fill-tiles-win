@@ -33,4 +33,20 @@ namespace myUtil
         assert(colorRange.IsBetween(m_Alpha));
         return SDL_Color{Uint8(m_R), Uint8(m_G), Uint8(m_B), Uint8(m_Alpha)};
     }
+    int Rgba::GetR() const
+    {
+        return m_R;
+    }
+    int Rgba::GetG() const
+    {
+        return m_G;
+    }
+    int Rgba::GetB() const
+    {
+        return m_B;
+    }
+    int Rgba::GetAlpha() const
+    {
+        return m_Alpha;
+    }
 } // myUtil

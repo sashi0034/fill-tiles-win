@@ -44,9 +44,9 @@ namespace myGame{
 
         m_Player = m_ChildrenPool.BirthAs<Player>(new Player(&m_ChildrenPool, this, resetInfo));
 
-        m_EffectManager = m_ChildrenPool.BirthAs<EffectManager>(new EffectManager(&m_ChildrenPool,
-            m_ScrollManager->GetSprite()->GetWeakPtr(),
-            m_Root));
+        m_EffectManager = m_ChildrenPool.BirthAs<EffectManager>(
+            new EffectManager(
+                &m_ChildrenPool, m_ScrollManager->GetSprite()->GetWeakPtr(), m_Root));
         m_ChildrenPool.Birth(new RemainingMineUi(this, m_FieldManager->GetMineFlowerManager()));
 
 #ifdef MYGAME_DEBUG_EFFECTTEST
@@ -55,7 +55,7 @@ namespace myGame{
 #ifdef MYGAME_DEBUG_FIELDVIEW
         m_ChildrenPool.Birth(new test::FieldViewTest(this, &m_ChildrenPool));
 #endif
-        effect::SpiritualController::Produce(m_EffectManager);
+        effect::SpiritualController::Produce(m_EffectManager, this);
 
         m_ScrollManager->SetScroll(resetInfo.ScrollPos);
 

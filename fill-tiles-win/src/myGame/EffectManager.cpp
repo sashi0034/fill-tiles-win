@@ -7,8 +7,10 @@
 
 namespace myGame
 {
-    EffectManager::EffectManager(IChildrenPool<ActorBase> *belongingPool, SpriteTexture *parentalPos, GameRoot *root)
-    : ActorBase(belongingPool), m_ParentalPos(parentalPos), m_Root(root)
+    EffectManager::EffectManager(IChildrenPool<ActorBase> *belongingPool, SpriteTexture *parentalPos, GameRoot *root) :
+        ActorBase(belongingPool),
+        m_ParentalPos(parentalPos),
+        m_Root(root)
     {}
 
     void EffectManager::Update(IAppState *appState)

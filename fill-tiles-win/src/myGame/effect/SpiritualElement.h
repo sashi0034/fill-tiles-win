@@ -40,7 +40,7 @@ namespace myGame::effect
         int _animCount{};
         int _remainingLife = 1;
         const bool _canSplit = determineCanSplitRandomly();
-        bool _isUniqueAir = false;
+        bool _isUniqueFog = false;
 
         void initTexture(EffectManager *effectManager);
         static bool determineCanSplitRandomly();

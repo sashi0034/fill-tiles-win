@@ -245,7 +245,7 @@ namespace myUtil
         checkResetRenderingBuffer(appState);
 
         auto renderChange = TempRenderTargetChanger(appState->GetRenderer());
-        renderChange.ChangeInScope(_renderingBuffer->GetSdlTexture())->RenderClearTransparent();
+        renderChange.ChangeInScope(_renderingBuffer->GetSdlTexture())->RenderClearBy(_bufferClearColor);
 
         std::stable_sort(_spriteTexturePool.begin(), _spriteTexturePool.end(), [](const WeakPtr<SpriteTexture>& left, const WeakPtr<SpriteTexture>& right) -> bool {
             auto leftShared = left.GetPtr();
@@ -291,6 +291,11 @@ namespace myUtil
     Graph* const SpriteTextureContext::GetRenderingBuffer()
     {
         return _renderingBuffer.get();
+    }
+
+    void SpriteTextureContext::SetBufferClearColor(Rgba color)
+    {
+        _bufferClearColor = color;
     }
 
     SpriteTextureContext* const SpriteTextureContext::Global()
