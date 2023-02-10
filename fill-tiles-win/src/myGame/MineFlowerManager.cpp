@@ -56,6 +56,11 @@ namespace myGame{
         removeAlreadyClearedBlocks();
     }
 
+    field::ETileKind getKindOfGrassChecked(int level)
+    {
+        return field::ETileKind(int(field::ETileKind::grass_checked_1) + level - 1);
+    }
+
     void MineFlowerManager::removeAlreadyClearedBlocks()
     {
         for (int level=1; level < m_MainScene->GetLevelOnRestart(); ++level)
@@ -77,7 +82,7 @@ namespace myGame{
             for (auto&& pos : posList)
                 tileMap->GetElementWritableAt(pos)->ReplaceChip(
                     tileMap->GetTilePropOf(flowerTileKind),
-                    tileMap->GetStaticTileSet().GetOf(field::ETileKind::grass_checked_1));
+                    tileMap->GetStaticTileSet().GetOf(getKindOfGrassChecked(level)));
         }
     }
 
@@ -268,7 +273,7 @@ namespace myGame{
             // マップチップをチェックマークに書き換える
             tileMap->GetElementWritableAt(targetPos.GetVec())->ReplaceChip(
                 tileMap->GetTilePropOf(flowerTileKind),
-                tileMap->GetStaticTileSet().GetOf(field::ETileKind::grass_checked_1));
+                tileMap->GetStaticTileSet().GetOf(getKindOfGrassChecked(mineClass.GetClassLevel())));
             field->RenderTileMapAt(targetPos.GetVec());
 
             coroUtil::WaitForTime(yield, 0.1);
