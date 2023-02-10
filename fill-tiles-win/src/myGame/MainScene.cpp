@@ -55,7 +55,10 @@ namespace myGame{
 #ifdef MYGAME_DEBUG_FIELDVIEW
         m_ChildrenPool.Birth(new test::FieldViewTest(this, &m_ChildrenPool));
 #endif
+
+#ifndef MYGAME_DEBUG_FIELDVIEW
         effect::SpiritualController::Produce(m_EffectManager, this);
+#endif
 
         m_ScrollManager->SetScroll(resetInfo.ScrollPos);
 

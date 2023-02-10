@@ -6,16 +6,16 @@
 #define MYGAME_DEBUG
 
 // メインシーンデバッグ (デバッグマップ番号)
-#define MYGAME_DEBUG_MAINSCENE 1
+#define MYGAME_DEBUG_MAINSCENE 2
 
 // フィールドデバッグ
 //#define MYGAME_DEBUG_FIELDVIEW
 
 // メインシーンのクリアイベントのデバッグ
-// #define MYGAME_DEBUG_IMMEDIATE_CLEAREVENT
+//#define MYGAME_DEBUG_IMMEDIATE_CLEAREVENT
 
 // エフェクトテスト
-#define MYGAME_DEBUG_EFFECTTEST
+//#define MYGAME_DEBUG_EFFECTTEST
 
 
 

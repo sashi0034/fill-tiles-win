@@ -5,12 +5,18 @@
 #ifndef FILL_TILES_PIXEL_H
 #define FILL_TILES_PIXEL_H
 
+#include "../debug.h"
+
 namespace myGame::pixel{
 
     constexpr int DotByDot = 1;
 
-    constexpr int PixelPerUnit = 4;
-
+    constexpr int PixelPerUnit =
+#ifndef MYGAME_DEBUG_FIELDVIEW
+        4;
+#else
+        2;
+#endif
     constexpr int PixelPerMat = 16;
 
 }
