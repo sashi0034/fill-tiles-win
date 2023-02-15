@@ -19,7 +19,8 @@ namespace myGame::field
     enum class ETileKind
     {
         none,
-        fines,
+        static_bg,
+        static_fg,
         low_basin,
         low_basin_shade_face,
         low_basin_shade_edge,

@@ -17,7 +17,7 @@ namespace myGame::character
 
         m_View.SetModelPos(matPos);
 
-        ZIndexCharacter(m_View).ApplyZ();
+        ZIndexBackGround(&m_View.GetView()).GoFront(1).ApplyZ();
 
         auto writable = mainScene->GetFieldManager()->GetTileMap()->GetElementWritableAt(matPos.GetVec());
         writable->SetGlassFloor(this);

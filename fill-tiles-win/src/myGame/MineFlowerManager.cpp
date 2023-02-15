@@ -90,12 +90,15 @@ namespace myGame{
     {
         if (!m_AliveFlag.IsUp()) return;
 
+        assert(m_CurrMineFlowerClass != nullptr);
         checkBloomMineFlower(pos, *m_CurrMineFlowerClass);
     }
 
     bool MineFlowerManager::checkBloomMineFlower(const MatPos &matPos, MineFlowerClass &mineClass)
     {
         const auto field = m_MainScene->GetFieldManager();
+
+        if (mineClass.HasMineFlower() == false) return false;
 
         if (field->GetTileMap()->HasChipAt(matPos.GetVec(), mineClass.MineFlowerTile)!=Boolean::True) return false;
 

@@ -20,7 +20,7 @@ namespace myGame::field{
 
     void TileMapMatElement::AddChip(const TilePropertyChip *chip)
     {
-        assert(!HasChip(chip->Kind));
+        assert(!HasChip(chip->Kind)); // レイヤーの要素が重複
         m_ChipList.push_back(chip);
 
         m_IsWall = chip->IsWall;

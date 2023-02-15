@@ -6,7 +6,7 @@
 #define MYGAME_DEBUG
 
 // メインシーンデバッグ (デバッグマップ番号)
-#define MYGAME_DEBUG_MAINSCENE 2
+#define MYGAME_DEBUG_MAINSCENE 3
 
 // フィールドデバッグ
 //#define MYGAME_DEBUG_FIELDVIEW

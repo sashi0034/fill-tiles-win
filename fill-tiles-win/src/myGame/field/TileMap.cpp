@@ -342,15 +342,12 @@ namespace myGame::field
     {
         switch (kind)
         {
-//            case ETileKind::checkpoint_block_1:
-//            case ETileKind::checkpoint_block_2:
-//            case ETileKind::checkpoint_block_3:
-//            case ETileKind::checkpoint_block_4:
-//                propertyRef->IsWall = true;
-            default:
-                break;
+        case ETileKind::static_fg:
+            propertyRef->IsWall = true;
+            break;
+        default:
+            break;
         }
-        (void)propertyRef;
     }
 
     bool TileMap::isChipStairAt(const Vec2<int>& pos)

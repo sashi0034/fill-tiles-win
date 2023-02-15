@@ -71,7 +71,7 @@ namespace myGame::character
         player->OnMoveFinish().subscribe([mainScene, this](PlayerMoveData* moveData){
             if (m_Growth!=growth::Egg) return;
 
-            constexpr double nearDistance = 3;
+            constexpr double nearDistance = 1;
             if (moveData->AfterPos.CalcManhattan(m_View.GetMatPos())>nearDistance) return;
             mainScene->GetFieldManager()->GetCoroutine()->Start([this](auto&& yield){
                 startYoungProcess(yield);
@@ -171,8 +171,13 @@ namespace myGame::character
 
             const auto keyState = appState->GetKeyboardState();
 
+            // 終了ボタンを押したかチェック
             const bool isConfirm = input::IsPushingConfirm(keyState);
             if (isConfirm) break;
+
+            // お花を全部そろえたので終了
+            auto&& mineFlowerManager = m_Scene->GetFieldManager()->GetMineFlowerManager();
+            if (mineFlowerManager->GetCurrMineFlowerClass() == nullptr || mineFlowerManager->GetCurrMineFlowerClass()->HasMineFlower() == false) break;
 
             auto inputAngle = input::GetInputAngle(keyState);
 
@@ -217,7 +222,7 @@ namespace myGame::character
 
         onStartAnim();
 
-        constexpr double moveTime = 0.5;
+        constexpr double moveTime = 0.3;
         auto moveAnim = animator->TargetTo(m_View.GetModel())
                 ->AnimPosition(Angle(inputAngle).ToXY().CastTo<double>() * pixelPerMat, moveTime)->SetRelative(true)
                 ->ToWeakPtr();

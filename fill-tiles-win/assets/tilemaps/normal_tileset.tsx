@@ -98,22 +98,32 @@
  </tile>
  <tile id="97">
   <properties>
-   <property name="kind" value="fines"/>
+   <property name="kind" value="static_bg"/>
   </properties>
  </tile>
  <tile id="98">
   <properties>
-   <property name="kind" value="fines"/>
+   <property name="kind" value="static_bg"/>
+  </properties>
+ </tile>
+ <tile id="99">
+  <properties>
+   <property name="kind" value="static_fg"/>
+  </properties>
+ </tile>
+ <tile id="100">
+  <properties>
+   <property name="kind" value="static_fg"/>
   </properties>
  </tile>
  <tile id="101">
   <properties>
-   <property name="kind" value="fines"/>
+   <property name="kind" value="static_bg"/>
   </properties>
  </tile>
  <tile id="102">
   <properties>
-   <property name="kind" value="fines"/>
+   <property name="kind" value="static_bg"/>
   </properties>
  </tile>
  <tile id="129">
