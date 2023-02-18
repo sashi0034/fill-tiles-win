@@ -111,7 +111,7 @@ namespace myGame{
 
         auto const tileMap = field->GetTileMap();
 
-        if (auto glass = tileMap->GetElementAt(matPos.GetVec())->GetGlassFloor())
+        if (const auto glass = tileMap->GetElementAt(matPos.GetVec())->GetGlassFloor())
         {
             // ガラスの床があった
             glass->MakeBrokenAndDestroy();

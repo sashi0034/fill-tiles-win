@@ -8,7 +8,7 @@ namespace myGame
 {
     bool character::MovableObjectLogic::CanMove(EAngle angle)
     {
-        auto field =mainScene->GetFieldManager();
+        const auto field =mainScene->GetFieldManager();
         const auto currPos = view->GetMatPos();
 
         return field->CanMovableObjectMoveTo(currPos, angle);
@@ -17,7 +17,7 @@ namespace myGame
     void character::MovableObjectLogic::ForceMove(EAngle angle)
     {
         LOG_ASSERT(CanMove(angle), "invalid move");
-        
+
         mainScene->GetFieldManager()->GetCoroutine()->Start(
                 new CoroTaskCall([&](auto&& yield){ move(yield, angle);}));
     }
