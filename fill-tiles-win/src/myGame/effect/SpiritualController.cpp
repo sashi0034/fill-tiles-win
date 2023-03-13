@@ -17,11 +17,7 @@ namespace myGame::effect
             ActorBase(effectManager->GetChildren()),
             _process(initProcess(effectManager)),
             m_Scene(mainScene)
-    {
-        _canvas.SetRenderingProcess(renderingProcess::WrapRenderSpriteDotByDot(&_canvas));
-        ZIndexEffect(&_canvas).SetIndex(0).ApplyZ();
-        _canvasContext.SetBufferClearColor(Rgba(240, 255, 160, 0));
-    }
+    {}
 
     void SpiritualController::Update(IAppState *appState)
     {
@@ -38,11 +34,6 @@ namespace myGame::effect
             checkCreateSpiritual(effectManager);
 
             _spiritList.ProcessEach([](SpiritualElementBase& element){element.UpdateFixed(idealFps / fps); });
-
-            // 注意: このcontextはUpdateAll呼んでない
-            _canvasContext.RenderAll(effectManager->GetRoot()->GetAppState());
-            _canvas.SetGraph(_canvasContext.GetRenderingBuffer());
-            _canvas.SetSrcRect(RectInt{ VecZero<int>(), _canvasContext.GetRenderingBuffer()->GetSize() });
 
             return EProcessStatus::Running;
         }, 1.0 / fps};
@@ -75,11 +66,6 @@ namespace myGame::effect
     {
         _elementCount.DecreaseCount();
         _spiritList.Destroy(element);
-    }
-
-    SpriteTextureContext* SpiritualController::GetSprContext()
-    {
-        return &_canvasContext;
     }
 
     MainScene* const SpiritualController::GetScene()

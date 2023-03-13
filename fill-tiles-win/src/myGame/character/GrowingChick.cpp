@@ -155,7 +155,7 @@ namespace myGame::character
                 m_View.GetViewModelPos(),
                 m_View.GetView().GetSrcRect(),
                 m_View.GetView().GetGraph(),
-                4});
+                8});
 
         m_View.GetView().SetGraph(m_Scene->GetRoot()->RscImage->chick_16x16.get());
         m_View.GetView().SetSrcRect(Rect{Vec2<int>{0, 0}, childCellSrcSize});

@@ -57,7 +57,6 @@ namespace myGame
         void processAppFlow(CoroTaskYield& yield);
         title::MenuSelectedInfo flowMenuScene(CoroTaskYield& yield, InterludeCurtain* intrule);
         void flowMainScene(CoroTaskYield& yield, InterludeCurtain* interlude, title::MenuSelectedInfo info);
-        void testSaveData();
     };
 }
 

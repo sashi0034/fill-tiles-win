@@ -56,7 +56,7 @@ namespace myUtil
 
         checkChangeWindowSize();
 
-        m_KeyboardState = SDL_GetKeyboardState(NULL);
+        m_KeyboardState = SDL_GetKeyboardState(nullptr);
         m_Time->Update(false);
         SpriteTextureContext::Global()->UpdateAll(this);
     }
@@ -103,6 +103,20 @@ namespace myUtil
             nullptr, &destRect);
 
         SDL_RenderPresent(m_Renderer);
+
+        // フレームレートが一定になるように調整
+        waitAndControlFps();
+    }
+
+    void AppState::waitAndControlFps()
+    {
+        const auto performanceCounterNow = SDL_GetPerformanceCounter();
+        const auto performanceCounterDelta = performanceCounterNow - m_PerformanceCounterOld;
+        const float elapsedMilli =
+            performanceCounterDelta / static_cast<float>(SDL_GetPerformanceFrequency()) * 1000.0f;
+        const int delayMilli = floor((1000.0f / m_TargetFps) - elapsedMilli);
+        if (m_PerformanceCounterOld != 0 && delayMilli > 0) SDL_Delay(delayMilli);
+        m_PerformanceCounterOld = SDL_GetPerformanceCounter();
     }
 
     const Uint8 *AppState::GetKeyboardState() const

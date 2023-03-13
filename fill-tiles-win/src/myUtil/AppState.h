@@ -44,6 +44,9 @@ namespace myUtil
 
         [[nodiscard]] bool CanQuitApp() const;
     private:
+        int m_TargetFps = 60;
+        Uint64 m_PerformanceCounterOld{};
+
         Vec2<int> m_ScreenSize{};
         Vec2<int> m_RealScreenSize{};
         Vec2<int> m_LiteralRealScreenSize{};
@@ -70,6 +73,7 @@ namespace myUtil
         const IMouseState *GetMouseState() const override;
 
         void checkChangeWindowSize();
+        void waitAndControlFps();
     };
 }
 

@@ -13,12 +13,11 @@ namespace myGame::effect
     {
     private:
         SpiritualController* const _controller;
-        SpriteTexture _texture;
+        SpriteTexture _texture = SpriteTexture::Create();
         int _time = 0;
     public:
         explicit SpiritualElementAfterImage(SpriteTexture& baseElement, SpiritualController* controller) :
-            _controller(controller),
-            _texture(SpriteTexture::CreateIn(controller->GetSprContext()))
+            _controller(controller)
         {
             _texture.CopyVisuallyFrom(baseElement);
             _texture.SetRenderingProcess([this](auto&& app){renderingProcess::RenderSpriteDotByDot(app, &_texture); });
@@ -46,8 +45,7 @@ namespace myGame::effect
     SpiritualElement::SpiritualElement(SpiritualController *controller, IAppState *app, EffectManager *effectManager) :
         _parent(controller),
         _app(app),
-        _effectManager(effectManager),
-        _texture(SpriteTexture::CreateIn(controller->GetSprContext()))
+        _effectManager(effectManager)
     {
         initCoordinate(app, effectManager);
 

@@ -33,7 +33,7 @@ namespace myGame::effect
         SpiritualController* const _parent;
         IAppState* const _app;
         EffectManager* const _effectManager;
-        SpriteTexture _texture;
+        SpriteTexture _texture = SpriteTexture::Create();
         Vec2<double> _pos{};
         Vec2<double> _vel{};
         Vec2<double> _accel{};
