@@ -30,6 +30,9 @@ namespace myUtil
         [[nodiscard]] virtual SDL_Renderer* GetRenderer() const = 0;
         [[nodiscard]] virtual const Uint8* GetKeyboardState() const = 0;
         virtual const IMouseState* GetMouseState() const = 0;
+
+        // グラフィックコンテキストが破棄されたか
+        virtual bool JustGlInvalidated() const = 0;
     };
 
 
@@ -38,12 +41,17 @@ namespace myUtil
     public:
         AppState();
         AppState(const Vec2<int> &screenSize, const int pixelPerUnit, SDL_Window* window);
+        ~AppState();
 
         void UpdateFrame();
         void RenderFrame();
 
         [[nodiscard]] bool CanQuitApp() const;
+
+        static IAppState* Global();
     private:
+        static AppState* globalInstance;
+
         int m_TargetFps = 60;
         Uint64 m_PerformanceCounterOld{};
 
@@ -57,6 +65,7 @@ namespace myUtil
         const Uint8* m_KeyboardState{};
         bool m_CanQuitApp = false;
         bool m_IsWindowFullScreen = false;
+        bool m_JustGlInvalidated = false;
         void pollEvent();
         void processEvent(SDL_Event &e);
         void handleKeyDown(const SDL_Scancode& keyCode);
@@ -71,6 +80,7 @@ namespace myUtil
         [[nodiscard]] SDL_Renderer* GetRenderer() const override;
         [[nodiscard]] const Uint8* GetKeyboardState() const override;
         const IMouseState *GetMouseState() const override;
+        bool JustGlInvalidated() const override;
 
         void checkChangeWindowSize();
         void waitAndControlFps();

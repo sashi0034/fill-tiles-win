@@ -6,6 +6,8 @@
 
 namespace myUtil
 {
+    Time Time::globalInstance = Time{};
+
     Time::Time()
     {
         Restart();

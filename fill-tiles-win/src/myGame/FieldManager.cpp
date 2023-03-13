@@ -177,7 +177,16 @@ namespace myGame
         m_ChildrenPool.ProcessEach([&](character::CharacterBase& child){child.Update(app); });
         m_Animator.Update(app->GetTime().GetDeltaSec());
         m_CoroutineManager.UpdateEach();
+        if (app->JustGlInvalidated()) renderTileMapFully();
     }
+
+    void FieldManager::renderTileMapFully()
+    {
+        RenderTileMapWhere(
+            vec2::VecZero<int>(),
+            m_TileMap.GetMatSize() - VecOne<int>());
+    }
+
 
     SprRectColliderManager *FieldManager::GetCharacterCollider()
     {

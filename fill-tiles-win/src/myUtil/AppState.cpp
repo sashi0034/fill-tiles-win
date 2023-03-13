@@ -9,6 +9,7 @@
 
 namespace myUtil
 {
+    AppState* AppState::globalInstance = nullptr;
 
     AppState::AppState()
     {}
@@ -17,9 +18,15 @@ namespace myUtil
         m_ScreenSize(screenSize),
         m_PixelPerUnit(pixelPerUnit)
     {
+        if (globalInstance == nullptr) globalInstance = this;
         m_Time = std::make_unique<Time>();
         m_Window = window;
         m_Renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    }
+
+    AppState::~AppState()
+    {
+        if (globalInstance == this) globalInstance = nullptr;
     }
 
     int AppState::GetPixelPerUnit() const
@@ -52,6 +59,8 @@ namespace myUtil
 
     void AppState::UpdateFrame()
     {
+        m_JustGlInvalidated = false;
+
         pollEvent();
 
         checkChangeWindowSize();
@@ -167,6 +176,7 @@ namespace myUtil
         if (keyCode == SDL_SCANCODE_F11) {
             m_IsWindowFullScreen = !m_IsWindowFullScreen;
             SDL_SetWindowFullscreen(m_Window, m_IsWindowFullScreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
+            m_JustGlInvalidated = true;
         }
     }
 
@@ -175,9 +185,19 @@ namespace myUtil
         return m_CanQuitApp;
     }
 
+    IAppState* AppState::Global()
+    {
+        return globalInstance;
+    }
+
     const IMouseState *AppState::GetMouseState() const
     {
         return &m_Mouse;
+    }
+
+    bool AppState::JustGlInvalidated() const
+    {
+        return m_JustGlInvalidated;
     }
 
     Vec2<int> AppState::GetRealScreenSize() const

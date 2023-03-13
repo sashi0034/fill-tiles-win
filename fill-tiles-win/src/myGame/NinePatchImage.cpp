@@ -24,6 +24,10 @@ namespace myGame
         SetSize(sizeByUnit);
 
         m_Sprite.SetRenderingProcess(std::bind(renderingProcess::RenderSpriteDotByDot, std::placeholders::_1, &m_Sprite));
+        m_Sprite.SetUpdateProcess([this](IAppState* app)
+        {
+            if (app->JustGlInvalidated()) renderUnsafely(app->GetRenderer(), m_RenderingGraph->GetSdlTexture());
+        });
         ZIndexUi(&m_Sprite).SetIndex(0).ApplyZ();
     }
 

@@ -4,6 +4,8 @@
 
 #include "coroUtil.h"
 
+#include "AppState.h"
+
 namespace myUtil::coroUtil{
 
     CoroTask WaitForTime(CoroTaskYield &yield, const Time &timeSystem, double waitSecond)
@@ -21,16 +23,7 @@ namespace myUtil::coroUtil{
 
     CoroTask WaitForTime(CoroTaskYield &yield, double waitSecond)
     {
-        Time time{};
-        double totalTime = 0;
-
-        while (totalTime<waitSecond)
-        {
-            time.Update();
-            double deltaSec = time.GetDeltaSec();
-            totalTime += deltaSec;
-            yield();
-        }
+        WaitForTime(yield, AppState::Global()->GetTime(), waitSecond);
     }
 
     CoroTask WaitForTrue(CoroTaskYield &yield, const std::function<bool()>& discriminant)

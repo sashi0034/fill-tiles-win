@@ -18,6 +18,9 @@ namespace myUtil
 
     class Time
     {
+    private:
+        static Time globalInstance;
+
         std::chrono::system_clock::time_point m_OldTime{};
         int m_DeltaMilli{};
         double m_DeltaSec{};

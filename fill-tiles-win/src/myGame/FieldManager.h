@@ -100,6 +100,8 @@ namespace myGame
                                    SDL_Renderer *const sdlRenderer, SDL_Texture *renderingTarget, bool isClearBuffer);
 
         static std::string getCurrentMapFileName(int mapIndex);
+
+        void renderTileMapFully();
     };
 }
 
