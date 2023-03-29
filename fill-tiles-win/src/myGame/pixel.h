@@ -15,7 +15,7 @@ namespace myGame::pixel{
 #ifndef MYGAME_DEBUG_FIELDVIEW
         4;
 #else
-        2;
+        3;
 #endif
     constexpr int PixelPerMat = 16;
 

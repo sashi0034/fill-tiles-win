@@ -285,7 +285,7 @@
   </object>
   <object id="11" name="fairy" class="fairy" x="352" y="528" width="16" height="16">
    <properties>
-    <property name="talk" value="生まれたばかりのひよこは&lt;br&gt;始めに見た物を&lt;br&gt;親と認識するよ"/>
+    <property name="talk" value="生まれたてのひよこは&lt;br&gt;初めに目に入ったのを&lt;br&gt;親と思うんだって"/>
    </properties>
   </object>
   <object id="12" name="fairy" class="fairy" x="128" y="320" width="16" height="16">
